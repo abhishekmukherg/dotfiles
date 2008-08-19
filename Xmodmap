@@ -1,0 +1,16 @@
+remove Lock = Caps_Lock
+keysym Caps_Lock = Escape
+
+keycode 233 = XF86Forward
+keycode 234 = XF86Back
+
+keycode 159 = XF86VendorHome
+
+keycode 249 = XF86ZoomIn
+
+!keycode 144 = XF86AudioPrev
+!keycode 174 = XF86AudioStop
+!keycode 162 = XF86AudioPlay
+!keycode 153 = XF86AudioNext
+
+keycode 202 = XF86Eject
