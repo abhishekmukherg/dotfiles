@@ -1,0 +1,6 @@
+Mrxvt.autohideTabbar:	True
+Mrxvt.background:	black
+Mrxvt.foreground:	grey90
+Mrxvt.scrollbarRight:	True
+Mrxvt.font:		DejaVu Sans Mono
+Mrxvt.saveLines:	65535
