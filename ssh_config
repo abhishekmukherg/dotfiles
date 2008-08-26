@@ -1,3 +1,6 @@
+Host *
+	Compression "yes"
+
 Host *.cs.rpi.edu
 	User mukhea2
 	ForwardX11 "yes"
