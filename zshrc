@@ -59,7 +59,6 @@ setopt list_ambiguous
 alias ls='ls --color=auto'
 alias sl='sl -al'
 alias ll='ls -l'
-alias diff='colordiff'
 alias jobs='jobs -dlp'
 
 alias apt='sudo aptitude'
