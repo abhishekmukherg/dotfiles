@@ -3,7 +3,5 @@
 	email = linkinpark342@gmail.com
 [color]
 	pager = false
-[core]
-	pager = vimpager
 [alias]
 	ci = commit
