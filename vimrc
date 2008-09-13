@@ -1,5 +1,5 @@
 syntax on
-set background=light
+set background=dark
 
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
@@ -8,8 +8,8 @@ if has("autocmd")
   autocmd Filetype python set tabstop=4
   autocmd Filetype python set shiftwidth=4
   autocmd Filetype python set smarttab
-  autocmd Filetype python set expandtab
-  autocmd Filetype python set softtabstop=4
+  autocmd Filetype python set noexpandtab
+  autocmd Filetype python set softtabstop=0
   autocmd Filetype python set autoindent
 endif
 
@@ -36,7 +36,7 @@ set hidden             " Hide buffers when they are abandoned
 set nocp
 set completeopt=menu
 set nohlsearch
-set nu
+set wildignore=*.o,*.pyc
 
 nnoremap <silent><F8> :make<CR><CR>
 nnoremap <silent><F7> :copen<CR>

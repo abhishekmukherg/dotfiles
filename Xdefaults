@@ -1,1 +1,7 @@
 URxvt*secondaryScroll: true
+XTerm*foreground: white
+XTerm*background: black
+XTerm*selectToClipboard: true
+XTerm*scrollBar: true
+XTerm*scrollKey: true
+XTerm*scrollTtyOutput: false

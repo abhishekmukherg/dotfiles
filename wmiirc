@@ -1,5 +1,12 @@
 #!/bin/sh -f
 # Configure wmii
+# Startup things
+
+(pgrep pulseaudio || pulseaudio --start) &
+(pgrep xscreensaver || xscreensaver) &
+(pgrep xmodmap || xmodmap ~/.Xmodmap) &
+(pgrep xbindkeys || xbindkeys) &
+(pgrep knetworkmanager || knetworkmanager) &
 
 # Configuration Variables
 MODKEY=Mod1
@@ -18,7 +25,7 @@ WMII_FONT='-*-fixed-medium-r-*-*-13-*-*-*-*-*-*-*'
 set -- $(echo $WMII_NORMCOLORS $WMII_FOCUSCOLORS)
 WMII_MENU="dmenu -fn '$WMII_FONT' -nf '$1' -nb '$2' -sf '$4' -sb '$5'"
 WMII_9MENU="wmii9menu -font '$WMII_FONT' -nf '$1' -nb '$2' -sf '$4' -sb '$5' -br '$6'"
-WMII_TERM="konsole"
+WMII_TERM="xterm"
 
 # Column Rules
 wmiir write /colrules <<!
@@ -29,6 +36,11 @@ wmiir write /colrules <<!
 wmiir write /tagrules <<!
 /XMMS.*/ -> ~
 /MPlayer.*/ -> ~
+/Designer.*/ -> ~
+/Pidgin.Buddy List/ -> 8
+/Amarok.*/ -> 9
+/KNetworkManager.*/ -> ~
+/KNetworkManager.*/ -> 0
 /.*/ -> sel
 /.*/ -> 1
 !
@@ -168,17 +180,6 @@ normcolors $WMII_NORMCOLORS
 grabmod $MODKEY
 border 1
 EOF
-
-#echo xbindkeys
-#pkill xbindkeys
-#eval `xbindkeys &`
-#
-#echo xscreensaver
-#pkill xscreensaver
-#eval `xscreensaver &`
-
-#pkill nm-applet
-#eval `knetworkmanager &`
 
 export WMII_MENU WMII_9MENU WMII_FONT WMII_TERM
 export WMII_FOCUSCOLORS WMII_SELCOLORS WMII_NORMCOLORS

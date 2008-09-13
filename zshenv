@@ -5,6 +5,7 @@ export DEBFULLNAME="Abhishek Mukherjee"
 #export MANPAGER="/usr/bin/less -isR"
 export MANPAGER="vimmanpager"
 export DEBEMAIL="linkinpark342@gmail.com"
+export RLIMIT_CORE=0
 
 export CC="ccache cc"
 export CFLAGS="-march=nocona -O2 -pipe"
