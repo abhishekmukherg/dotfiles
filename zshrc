@@ -97,3 +97,7 @@ promptinit
 prompt elite2 2> /dev/null
 
 fortune -s
+
+zmodload zsh/zftp
+autoload -U zfinit
+zfinit
