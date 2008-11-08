@@ -1,18 +1,21 @@
 Host *
+	ControlPath ~/.ssh/master-%r@%h:%p
+	ControlMaster auto
+	VisualHostKey yes
 	Compression "yes"
+
+Host cs.rpi.edu
+	Hostname freebsd.remote.cs.rpi.edu
+	User mukhea2
 
 Host *.cs.rpi.edu
 	User mukhea2
-	ForwardX11 "yes"
 
 Host pratipm.accessmyoffice.net
 	User master
-	ForwardX11 "yes"
 
 Host 192.168.1.3
 	User master
-	ForwardX11 "yes"
 
 Host 192.168.1.3
 	User master
-	ForwardX11 "yes"

@@ -20,6 +20,33 @@ zstyle ':completion:*:*:kill:*' menu yes select
 zstyle ':completion:*:kill:*' force-list always
 zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#)*=36=31"
 
+# ssh, scp, ping, host
+zstyle ':completion:*:scp:*' tag-order \
+      'hosts:-host hosts:-domain:domain hosts:-ipaddr:IP\ address *'
+zstyle ':completion:*:scp:*' group-order \
+      users files all-files hosts-domain hosts-host hosts-ipaddr
+zstyle ':completion:*:ssh:*' tag-order \
+      users 'hosts:-host hosts:-domain:domain hosts:-ipaddr:IP\ address *'
+zstyle ':completion:*:ssh:*' group-order \
+      hosts-domain hosts-host users hosts-ipaddr
+
+zstyle ':completion:*:(ssh|scp):*:hosts-host' ignored-patterns \
+      '*.*' loopback localhost
+zstyle ':completion:*:(ssh|scp):*:hosts-domain' ignored-patterns \
+      '<->.<->.<->.<->' '^*.*' '*@*'
+zstyle ':completion:*:(ssh|scp):*:hosts-ipaddr' ignored-patterns \
+      '^<->.<->.<->.<->' '127.0.0.<->'
+zstyle ':completion:*:(ssh|scp):*:users' ignored-patterns \
+      adm bin daemon halt lp named shutdown sync
+
+zstyle -e ':completion:*:(ssh|scp):*' hosts 'reply=(
+      ${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) \
+                      /dev/null)"}%%[# ]*}//,/ }
+      ${=${(f)"$(cat /etc/hosts(|)(N) <<(ypcat hosts 2>/dev/null))"}%%\#*}
+      ${=${${${${(@M)${(f)"$(<~/.ssh/config)"}:#Host *}#Host }:#*\**}:#*\?*}}
+      )'
+
+
 # Uses Cache
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
@@ -37,6 +64,7 @@ setopt hist_verify
 setopt auto_continue
 setopt multios
 setopt interactive_comments
+setopt autocd
 DIRSTACKSIZE=50
 limit coredumpsize 10m
 
@@ -66,8 +94,7 @@ alias apti='apt install'
 alias aptc='apt-cache'
 alias aptcs='apt-cache search'
 
-CFLAGS='-Wall -g -O0'
-export CFLAGS
+alias paludis='sudo nice paludis'
 
 autoload zkbd
 [[ ! -d ~/.zkbd ]] && mkdir ~/.zkbd
@@ -85,12 +112,14 @@ source ~/.zkbd/$TERM-${DISPLAY:-$VENDOR-$OSTYPE}
 [[ -n "${key[Left]}"    ]]  && bindkey  ";5D"    backward-word
 [[ -n "${key[Right]}"   ]]  && bindkey  ";5C"   forward-word
 
-keychain id_rsa 2> /dev/null
-[ -z "$HOSTNAME" ] && HOSTNAME=`uname -n`
-[ -f $HOME/.keychain/$HOSTNAME-sh ] && \
-	. $HOME/.keychain/$HOSTNAME-sh
-[ -f $HOME/.keychain/$HOSTNAME-sh-gpg ] && \
-	. $HOME/.keychain/$HOSTNAME-sh-gpg
+eval "`dircolors -b`"
+
+#eval "`keychain --agents ssh --quiet --eval id_rsa`"
+#[ -z "$HOSTNAME" ] && HOSTNAME=`uname -n`
+#[ -f $HOME/.keychain/$HOSTNAME-sh ] && \
+	#. $HOME/.keychain/$HOSTNAME-sh
+#[ -f $HOME/.keychain/$HOSTNAME-sh-gpg ] && \
+	#. $HOME/.keychain/$HOSTNAME-sh-gpg
 
 autoload -U promptinit
 promptinit

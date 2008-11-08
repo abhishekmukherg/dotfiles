@@ -8,9 +8,15 @@ if has("autocmd")
   autocmd Filetype python set tabstop=4
   autocmd Filetype python set shiftwidth=4
   autocmd Filetype python set smarttab
-  autocmd Filetype python set noexpandtab
+  autocmd Filetype python set expandtab
   autocmd Filetype python set softtabstop=0
   autocmd Filetype python set autoindent
+
+  autocmd BufRead ~/Packages/adrastos/* set tabstop=4
+  autocmd BufRead ~/Packages/adrastos/* set shiftwidth=4
+  autocmd BufRead ~/Packages/adrastos/* set expandtab
+  
+  autocmd BufEnter *   execute ":lcd " . expand("%:p:h") 
 endif
 
 if has("autocmd")
@@ -33,6 +39,8 @@ set autowrite		" Automatically save before commands like :next and :make
 set linebreak
 set hidden             " Hide buffers when they are abandoned
 " set mouse=a		" Enable mouse usage (all modes) in terminals
+set foldmethod=syntax
+set foldlevelstart=1
 set nocp
 set completeopt=menu
 set nohlsearch
@@ -42,10 +50,16 @@ nnoremap <silent><F8> :make<CR><CR>
 nnoremap <silent><F7> :copen<CR>
 nnoremap <silent><C-F7> :cclose<CR>
 
+" OmniCPPComplete
+nnoremap <C-F11> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+let OmniCpp_DefaultNamespaces = ["std"]
+
+" NetRW
 let g:explVertical=1
 let g:netrw_list_hide="\.pyc,\.swp"
-map <F3> <Esc><Esc>:Explore<CR>
+nnoremap <F3> :Explore<CR>
 
 let g:pylint_onwrite = 0
 
-nmap <S-Space> <PageUp>
+" VCS
+let g:VCSCommandCommitOnWrite = 0

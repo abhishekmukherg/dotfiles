@@ -2,7 +2,8 @@
 # Configure wmii
 # Startup things
 
-(pgrep pulseaudio || pulseaudio --start) &
+# (pgrep pulseaudio || pulseaudio --start) &
+(pgrep pulseaudio || /usr/bin/start-pulseaudio-x11) &
 (pgrep xscreensaver || xscreensaver) &
 (pgrep xmodmap || xmodmap ~/.Xmodmap) &
 (pgrep xbindkeys || xbindkeys) &

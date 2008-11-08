@@ -1,15 +1,23 @@
-export PATH=/home/master/bin:/usr/lib/ccache/bin:${PATH}
+export PATH=/home/master/bin:/usr/lib/ccache/bin:/opt/cxoffice/bin:${PATH}
 export EDITOR="vim"
 export LESS="--ignore-case"
 export DEBFULLNAME="Abhishek Mukherjee"
 #export MANPAGER="/usr/bin/less -isR"
 export MANPAGER="vimmanpager"
 export DEBEMAIL="linkinpark342@gmail.com"
-export RLIMIT_CORE=0
 
 export CC="gcc"
-export CFLAGS="-march=nocona -O2 -pipe"
+CFLAGS_OPTIMIZATIONS="-march=core2 -O0 -pipe"
+CFLAGS_WARNINGS="-Wall -Wextra -Wmissing-declarations -Wfloat-equal -Wshadow -Wunsafe-loop-optimizations -Wwrite-strings -pedantic"
+CFLAGS_FEATURES="-fopenmp"
+CFLAGS_DEFINES="-D_GLIBCXX_PARALLEL"
+CFLAGS_OTHERS="-g"
+export CFLAGS="${CFLAGS_OPTIMIZATIONS} ${CFLAGS_WARNINGS} ${CFLAGS_FEATURES} ${CFLAGS_DEFINES} ${CFLAGS_OTHERS}"
+CXXFLAGS_WARNINGS="-Wabi -Wctor-dtor-privacy -Weffc++ -Wold-style-cast -Woverloaded-virtual"
+CXXFLAGS_OTHERS="-std=c++0x"
+export CXXFLAGS="${CFLAGS} ${CXXFLAGS_WARNINGS} ${CXXFLAGS_OTHERS}"
+export MAKEOPTS="-j5 -s"
 export PALUDIS_OPTIONS="--log-level warning"
 export INQUISITIO_OPTIONS="--log-level warning"
 export BROWSER="/usr/bin/firefox-bin '%s' &"
-TZ='America/New_York'; export TZ
+export TZ='America/New_York'
