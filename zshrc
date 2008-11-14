@@ -112,7 +112,7 @@ source ~/.zkbd/$TERM-${DISPLAY:-$VENDOR-$OSTYPE}
 [[ -n "${key[Left]}"    ]]  && bindkey  ";5D"    backward-word
 [[ -n "${key[Right]}"   ]]  && bindkey  ";5C"   forward-word
 
-eval "`dircolors -b`"
+eval "`dircolors ~/.dir_colors -b`"
 
 #eval "`keychain --agents ssh --quiet --eval id_rsa`"
 #[ -z "$HOSTNAME" ] && HOSTNAME=`uname -n`
