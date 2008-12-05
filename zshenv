@@ -2,8 +2,8 @@ export PATH=/home/master/bin:/usr/lib/ccache/bin:/opt/cxoffice/bin:${PATH}
 export EDITOR="vim"
 export LESS="--ignore-case -R"
 export DEBFULLNAME="Abhishek Mukherjee"
-#export MANPAGER="/usr/bin/less -isR"
-export MANPAGER="vimmanpager"
+export MANPAGER="/usr/bin/less -isR"
+#export MANPAGER="vimmanpager"
 export DEBEMAIL="linkinpark342@gmail.com"
 
 export CC="gcc"

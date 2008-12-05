@@ -46,6 +46,8 @@ set completeopt=menu
 set nohlsearch
 set wildignore=*.o,*.pyc
 
+nnoremap Q gq
+
 nnoremap <silent><F8> :make<CR><CR>
 nnoremap <silent><F7> :copen<CR>
 nnoremap <silent><C-F7> :cclose<CR>

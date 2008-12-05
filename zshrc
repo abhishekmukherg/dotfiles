@@ -123,7 +123,7 @@ eval "`dircolors ~/.dir_colors -b`"
 
 autoload -U promptinit
 promptinit
-prompt elite2 2> /dev/null
+prompt elite2
 
 fortune -s
 
