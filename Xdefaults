@@ -5,4 +5,3 @@ XTerm*selectToClipboard: true
 XTerm*scrollBar: true
 XTerm*scrollKey: true
 XTerm*scrollTtyOutput: false
-XTerm*font: -*-dejavu sans mono-medium-r-*-*-12-*-*-*-*-*-*-*

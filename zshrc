@@ -1,8 +1,10 @@
 # [[ $SHLVL -eq 1 ]] && screen && exit
-bindkey -e
+#bindkey -e
+bindkey -v
 
-autoload -U compinit
+autoload -U compinit colors
 compinit
+colors
 
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
@@ -56,21 +58,13 @@ zstyle ':completion::complete:*' use-cache 1
 setopt nohup
 
 unsetopt clobber
-setopt extended_history
-setopt auto_pushd
-setopt inc_append_history
-setopt hist_ignore_dups
-setopt hist_verify
-setopt auto_continue
-setopt multios
-setopt interactive_comments
-setopt autocd
+setopt extended_history auto_pushd inc_append_history hist_ignore_dups hist_verify auto_continue multios interactive_comments autocd extended_glob notify list_ambiguous
 DIRSTACKSIZE=50
 limit coredumpsize 10m
 
-HISTSIZE=2000
+HISTSIZE=10000
 HISTFILE=~/.zsh_history
-SAVEHIST=2000
+SAVEHIST=10000
 
 ## With commands like `rm' it's annoying if one gets offered the same filename
 ## again even if it is already on the command line. To avoid that:
@@ -80,13 +74,10 @@ zstyle ':completion:*:rm:*' ignore-line yes
 ## Load the completion module.
 zstyle :compinstall filename '/home/master/.zshrc'
 
-setopt extended_glob
-setopt notify
-setopt list_ambiguous
-
 alias ls='ls --color=auto'
 alias sl='sl -al'
 alias ll='ls -l'
+alias grep='ack'
 alias jobs='jobs -dlp'
 
 alias apt='sudo aptitude'
@@ -95,6 +86,9 @@ alias aptc='apt-cache'
 alias aptcs='apt-cache search'
 
 alias paludis='sudo nice paludis'
+
+#exec 2>>(while read line; do
+	#print "${fg[red]}${(q)line}${reset_color}" > /dev/tty; print -n $'\0'; done)
 
 autoload zkbd
 [[ ! -d ~/.zkbd ]] && mkdir ~/.zkbd
@@ -109,10 +103,11 @@ source ~/.zkbd/$TERM-${DISPLAY:-$VENDOR-$OSTYPE}
 [[ -n "${key[Up]}"      ]]  && bindkey  "${key[Up]}"      up-line-or-history
 [[ -n "${key[Down]}"    ]]  && bindkey  "${key[Down]}"    down-line-or-history
 [[ -n "${key[Left]}"    ]]  && bindkey  "${key[Left]}"    backward-char
-[[ -n "${key[Left]}"    ]]  && bindkey  ";5D"    backward-word
-[[ -n "${key[Right]}"   ]]  && bindkey  ";5C"   forward-word
+bindkey  ";5D"    backward-word
+bindkey  ";5C"   forward-word
 
-eval "`dircolors ~/.dir_colors -b`"
+[[ -f /etc/zsh_command_not_found ]] && source /etc/zsh_command_not_found
+[[ -f ~/.dir_colors ]] && eval "`dircolors ~/.dir_colors -b`"
 
 #eval "`keychain --agents ssh --quiet --eval id_rsa`"
 #[ -z "$HOSTNAME" ] && HOSTNAME=`uname -n`
@@ -123,10 +118,16 @@ eval "`dircolors ~/.dir_colors -b`"
 
 autoload -U promptinit
 promptinit
-prompt elite2
+#prompt fire white blue cyan white blue blue
+prompt elite2 green cyan
+export PS2="%{$fg_no_bold[grey]%}%_%{$reset_color%}- "
+export RPS1="%{$fg_no_bold[cyan]%}(%1(j,%{$fg_bold[blue]%},%{$reset_color%})%j %(?,%{$reset_color%},%{$fg[red]%})%?%{$reset_color%}"
 
 fortune -s
 
-zmodload zsh/zftp
-autoload -U zfinit
-zfinit
+# zmodload zsh/zftp
+# autoload -U zfinit
+# zfinit
+zle_highlight=(region:underline
+               special:bold
+              )

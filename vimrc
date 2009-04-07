@@ -18,6 +18,13 @@ if has("autocmd")
   
   autocmd BufEnter *   execute ":lcd " . expand("%:p:h") 
 endif
+augroup filetypedetect
+  autocmd BufRead,BufNewFile *.wiki setfiletype wikipedia
+  autocmd BufRead,BufNewFile *.wikipedia.org.* setfiletype wikipedia
+  autocmd BufRead,BufNewFile *.gentoo-wiki.com.* setfiletype wikipedia
+augroup END
+
+
 
 if has("autocmd")
 	autocmd FileType python set complete+=k/home/master/bin/pydiction-0.5/pydiction isk+=.,(
@@ -44,13 +51,15 @@ set foldlevelstart=1
 set nocp
 set completeopt=menu
 set nohlsearch
-set wildignore=*.o,*.pyc
+set wildignore=*.o,*.pyc,*.pyo
 
 nnoremap Q gq
 
 nnoremap <silent><F8> :make<CR><CR>
 nnoremap <silent><F7> :copen<CR>
 nnoremap <silent><C-F7> :cclose<CR>
+
+set backspace=indent,eol,start 
 
 " OmniCPPComplete
 nnoremap <C-F11> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>

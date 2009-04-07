@@ -1,8 +1,9 @@
 [user]
 	name = Abhishek Mukherjee
-	email = linkinpark342@gmail.com
+	email = abhishek.mukher.g@gmail.com
 [color]
-	pager = false
+	pager = true
+	ui = true
 [alias]
 	ci = commit
 [giggle]
