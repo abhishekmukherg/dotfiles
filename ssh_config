@@ -29,3 +29,6 @@ Host lp*.ccni.rpi.edu
 
 Host area51
 	User mukhea2
+
+Host silver
+	User gbrius

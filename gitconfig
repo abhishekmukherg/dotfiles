@@ -10,3 +10,8 @@
 	compact-mode = false
 	main-window-maximized = false
 	main-window-geometry = 976x675+86+44
+[gui]
+	fontdiff = -family \"DejaVu Sans Mono\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
+[github]
+	user = linkinpark342
+	token = 165fc21052f32c55d98333646c42455f
