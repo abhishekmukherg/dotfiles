@@ -1,13 +1,10 @@
-#!/bin/sh -f
+#!/bin/bash -f
 # Configure wmii
-# Startup things
 
-# (pgrep pulseaudio || pulseaudio --start) &
-(pgrep pulseaudio || /usr/bin/start-pulseaudio-x11) &
-(pgrep xscreensaver || xscreensaver) &
-(pgrep xmodmap || xmodmap ~/.Xmodmap) &
-(pgrep xbindkeys || xbindkeys) &
-(pgrep knetworkmanager || knetworkmanager) &
+(pgrep nm-applet || nm-applet) &
+(pgrep gnome-settings-manager || gnome-settings-manager) &
+(pgrep seahorse-daemon || seahorse-daemon)&
+(pgrep seahorse-agent || seahorse-agent)&
 
 # Configuration Variables
 MODKEY=Mod1
@@ -21,15 +18,16 @@ WMII_NORMCOLORS='#888888 #222222 #333333'
 WMII_FOCUSCOLORS='#ffffff #285577 #4c7899'
 
 WMII_BACKGROUND='#333333'
-WMII_FONT='-*-fixed-medium-r-*-*-13-*-*-*-*-*-*-*'
+WMII_FONT='fixed'
 
 set -- $(echo $WMII_NORMCOLORS $WMII_FOCUSCOLORS)
-WMII_MENU="dmenu -fn '$WMII_FONT' -nf '$1' -nb '$2' -sf '$4' -sb '$5'"
+WMII_MENU="dmenu -b -fn '$WMII_FONT' -nf '$1' -nb '$2' -sf '$4' -sb '$5'"
 WMII_9MENU="wmii9menu -font '$WMII_FONT' -nf '$1' -nb '$2' -sf '$4' -sb '$5' -br '$6'"
-WMII_TERM="xterm"
+WMII_TERM="x-terminal-emulator"
 
 # Column Rules
 wmiir write /colrules <<!
+/(8|chat)/ -> 20+80
 /.*/ -> 58+42
 !
 
@@ -37,19 +35,23 @@ wmiir write /colrules <<!
 wmiir write /tagrules <<!
 /XMMS.*/ -> ~
 /MPlayer.*/ -> ~
-/Designer.*/ -> ~
-/Pidgin.Buddy List/ -> 8
-/Amarok.*/ -> 9
-/KNetworkManager.*/ -> ~
-/KNetworkManager.*/ -> 0
+/Firefox.*/ -> sel+browser
+/Opera.*/ -> sel+browser
+/XChat.*/ -> 7+chat
+/Pidgin.*/ -> 8+chat
+/Exaile.*/ -> 9+music
 /.*/ -> sel
 /.*/ -> 1
 !
 
 # Status Bar Info
 status() {
-	#echo -n $(uptime | sed 's/.*://; s/,//g') '|' $(date)
-	echo -n $(uptime | sed 's/.*://; s/,//g') '|' $(date "+%a %b %d %r %Z %Y")
+	echo -n $(music_status.py) '|'
+	echo -n ' Wlan0:' $(iwconfig wlan0 | sed 's/ /\n/g' | grep Quality | sed 's_\([0-9]\+\)/[0-9]\+_\1_' ) '| '
+	echo -n $(acpi | cut -d' ' -f8-) '| '
+	echo -n 'MHz:' $(cat /proc/cpuinfo | grep 'cpu MHz' | sed 's/.*: //g; s/\..*//g;') '| '
+	echo -n $(uptime | sed 's/.*://; s/,//g') '| '
+	echo -n $(date +%c)
 }
 
 # Event processing
@@ -211,8 +213,7 @@ progsfile="$WMII_NS_DIR/.proglist"
 Action status &
 proglist $PATH >$progsfile &
 
-# xsetroot -solid "$WMII_BACKGROUND" &
-xloadimage -onroot $HOME/Pictures/2007/12/12/Flow.png &
+xsetroot -solid "$WMII_BACKGROUND" &
 
 # Setup Tag Bar
 seltag="$(wmiir read /tag/sel/ctl 2>/dev/null)"
