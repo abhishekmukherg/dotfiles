@@ -2,6 +2,8 @@
 #bindkey -e
 bindkey -v
 
+[[ $ZSHENV_LOADED == "1" ]] || source ~/.zshenv
+
 autoload -U compinit colors
 compinit
 colors
@@ -49,6 +51,7 @@ zstyle -e ':completion:*:(ssh|scp):*' hosts 'reply=(
       )'
 
 
+
 # Uses Cache
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
@@ -74,10 +77,10 @@ zstyle ':completion:*:rm:*' ignore-line yes
 ## Load the completion module.
 zstyle :compinstall filename '/home/master/.zshrc'
 
-alias ls='ls --color=auto'
+alias ls='ls --color=auto --hide=\*.pyc'
 alias sl='sl -al'
 alias ll='ls -l'
-alias grep='ack'
+#alias grep='ack'
 alias jobs='jobs -dlp'
 
 alias apt='sudo aptitude'
@@ -86,6 +89,7 @@ alias aptc='apt-cache'
 alias aptcs='apt-cache search'
 
 alias paludis='sudo nice paludis'
+alias pacman='sudo pacman -y'
 
 #exec 2>>(while read line; do
 	#print "${fg[red]}${(q)line}${reset_color}" > /dev/tty; print -n $'\0'; done)
@@ -106,7 +110,7 @@ source ~/.zkbd/$TERM-${DISPLAY:-$VENDOR-$OSTYPE}
 bindkey  ";5D"    backward-word
 bindkey  ";5C"   forward-word
 
-[[ -f /etc/zsh_command_not_found ]] && source /etc/zsh_command_not_found
+#[[ -f /etc/zsh_command_not_found ]] && source /etc/zsh_command_not_found
 [[ -f ~/.dir_colors ]] && eval "`dircolors ~/.dir_colors -b`"
 
 #eval "`keychain --agents ssh --quiet --eval id_rsa`"
@@ -115,13 +119,29 @@ bindkey  ";5C"   forward-word
 	#. $HOME/.keychain/$HOSTNAME-sh
 #[ -f $HOME/.keychain/$HOSTNAME-sh-gpg ] && \
 	#. $HOME/.keychain/$HOSTNAME-sh-gpg
+	
+autoload -Uz vcs_info
 
-autoload -U promptinit
-promptinit
-#prompt fire white blue cyan white blue blue
-prompt elite2 green cyan
-export PS2="%{$fg_no_bold[grey]%}%_%{$reset_color%}- "
-export RPS1="%{$fg_no_bold[cyan]%}(%1(j,%{$fg_bold[blue]%},%{$reset_color%})%j %(?,%{$reset_color%},%{$fg[red]%})%?%{$reset_color%}"
+local prompt_color
+if [[ $SSH_CLIENT == "" ]]; then
+	local prompt_color=cyan
+else
+	local prompt_color=green
+fi
+if [[ $UID == 0 ]]; then
+	local prompt_color=red
+fi
+local bgc="%B%F{black}"
+local fgc="%b%F{$prompt_color}"
+local reset="%b%f"
+export PS1="$bgc($fgc%m$bgc|$fgc%h$bgc @$fgc%t$bgc){$fgc%~$bgc}$reset"
+export PS1="${PS1}
+$bgc-$fgc%#$reset "
+export RPS1="$bgc(%b%1(j,%F{blue},%f)%j %(?,%f,%F{red})%?$reset"
+
+local bgc=${bgc//[%]b/%%b}
+local fgc=${fgc//[%]b/%%b}
+local reset=${reset//[%]b/%%b}
 
 fortune -s
 
