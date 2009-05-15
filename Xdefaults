@@ -5,3 +5,12 @@ XTerm*selectToClipboard: true
 XTerm*scrollBar: true
 XTerm*scrollKey: true
 XTerm*scrollTtyOutput: false
+
+urxvt*font: xft:DejaVu Sans Mono:size=7:antialias=true:hinting=true
+urxvt*boldFont: xft:DejaVu Sans Mono:size=7:antialias=true:bold:hinting=true
+urxvt*italicFont: xft:DejaVu Sans Mono:size=7:antialias=true:italic:autohint=true:hinting=true
+urxvt*bolditalicFont: xft:DejaVu Sans Mono:size=7:antialias=true:bold:italic:autohint=true:hinting=true
+urxvt*reverseVideo: true
+urxvt*transparent: true
+urxvt*shading: 40
+urxvt*tintColor: grey
