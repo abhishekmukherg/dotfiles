@@ -2,9 +2,13 @@
 # Configure wmii
 
 (pgrep nm-applet || nm-applet) &
-(pgrep gnome-settings-manager || gnome-settings-manager) &
+(pgrep gnome-settings-daemon || gnome-settings-daemon) &
 (pgrep seahorse-daemon || seahorse-daemon)&
 (pgrep seahorse-agent || seahorse-agent)&
+CB_PID=$(ps ax | grep change_background.py | grep -v ack | grep -v grep | awk '{print $1}')
+
+kill $(ps aux|grep change_background.py|awk '{print $2}')
+change_background.py -s 300 &
 
 # Configuration Variables
 MODKEY=Mod1
@@ -23,7 +27,7 @@ WMII_FONT='fixed'
 set -- $(echo $WMII_NORMCOLORS $WMII_FOCUSCOLORS)
 WMII_MENU="dmenu -b -fn '$WMII_FONT' -nf '$1' -nb '$2' -sf '$4' -sb '$5'"
 WMII_9MENU="wmii9menu -font '$WMII_FONT' -nf '$1' -nb '$2' -sf '$4' -sb '$5' -br '$6'"
-WMII_TERM="x-terminal-emulator"
+WMII_TERM="urxvt"
 
 # Column Rules
 wmiir write /colrules <<!
@@ -35,8 +39,9 @@ wmiir write /colrules <<!
 wmiir write /tagrules <<!
 /XMMS.*/ -> ~
 /MPlayer.*/ -> ~
-/Firefox.*/ -> sel+browser
-/Opera.*/ -> sel+browser
+/urxvt.*/ -> sel+term
+/Mozilla Firefox.*/ -> sel+web
+/Opera.*/ -> sel+web
 /XChat.*/ -> 7+chat
 /Pidgin.*/ -> 8+chat
 /Exaile.*/ -> 9+music
@@ -92,6 +97,8 @@ eventstuff() {
 		wmiir xwrite /ctl exec "$@"
 	Action rehash
 		proglist $PATH >$progsfile
+	Action tweet
+		twidge update "$*"
 	Action status
 		set +xv
 		if wmiir remove /rbar/status 2>/dev/null; then
