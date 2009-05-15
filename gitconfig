@@ -6,6 +6,8 @@
 	ui = true
 [alias]
 	ci = commit
+	st = status
+	sb = show-branch
 [giggle]
 	compact-mode = false
 	main-window-maximized = false
