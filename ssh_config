@@ -18,10 +18,10 @@ Host *.cs.rpi.edu
 	compression no
 
 Host pratipm.accessmyoffice.net
-	User master
+	User papag
 
 Host 192.168.1.*
-	User master
+	User papag
 	compression no
 
 Host lp*.ccni.rpi.edu
@@ -30,5 +30,6 @@ Host lp*.ccni.rpi.edu
 Host area51
 	User mukhea2
 
-Host silver
+Host aria.rh.uchicago.edu
 	User gbrius
+

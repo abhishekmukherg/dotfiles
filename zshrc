@@ -80,13 +80,17 @@ zstyle :compinstall filename '/home/master/.zshrc'
 alias ls='ls --color=auto --hide=\*.pyc'
 alias sl='sl -al'
 alias ll='ls -l'
-#alias grep='ack'
+which ack > /dev/null && alias grep='ack'
 alias jobs='jobs -dlp'
+
+which pigz > /dev/null && alias gzip='pigz'
+which pbzip2 > /dev/null && alias bzip2='pbzip2'
 
 alias apt='sudo aptitude'
 alias apti='apt install'
 alias aptc='apt-cache'
 alias aptcs='apt-cache search'
+which diff > /dev/null && alias diff='colordiff'
 
 alias paludis='sudo nice paludis'
 alias pacman='sudo pacman -y'
