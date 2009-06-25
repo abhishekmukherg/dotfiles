@@ -148,7 +148,7 @@ fi
 export PS1="$bgc($fgc%m$bgc|$fgc%h$bgc @$fgc%t$bgc){$fgc%~$bgc}$reset"
 export PS1="${PS1}
 $bgc-$fgc%#$reset "
-export RPS1="$bgc(%b%1(j,%F{blue},%f)%j %(?,%f,$error)%?$reset"
+export RPS1="$bgc(%b%1(j,$jobcolor,$reset)%j %(?,$reset,$error)%?$reset"
 
 local bgc=${bgc//[%]b/%%b}
 local fgc=${fgc//[%]b/%%b}
