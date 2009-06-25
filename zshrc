@@ -83,7 +83,7 @@ alias ll='ls -l'
 #alias grep='ack'
 alias jobs='jobs -dlp'
 
-alias apt='sudo aptitude'
+which aptitude >/dev/null && alias apt='sudo aptitude' || alias apt='sudo apt-get'
 alias apti='apt install'
 alias aptc='apt-cache'
 alias aptcs='apt-cache search'
@@ -143,7 +143,7 @@ local bgc=${bgc//[%]b/%%b}
 local fgc=${fgc//[%]b/%%b}
 local reset=${reset//[%]b/%%b}
 
-fortune -s
+which fortune && fortune -s
 
 # zmodload zsh/zftp
 # autoload -U zfinit
