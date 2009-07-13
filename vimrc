@@ -11,10 +11,6 @@ if has("autocmd")
   autocmd Filetype python set expandtab
   autocmd Filetype python set softtabstop=0
   autocmd Filetype python set autoindent
-
-  autocmd BufRead ~/Packages/adrastos/* set tabstop=4
-  autocmd BufRead ~/Packages/adrastos/* set shiftwidth=4
-  autocmd BufRead ~/Packages/adrastos/* set expandtab
   
   autocmd BufEnter *   execute ":lcd " . expand("%:p:h") 
 endif
