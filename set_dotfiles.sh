@@ -9,7 +9,10 @@ ln -fs $FOLDER/gvimrc $HOME/.gvimrc
 ln -fs $FOLDER/htoprc $HOME/.htoprc 
 ln -fs $FOLDER/mrxvtrc $HOME/.mrxvtrc 
 ln -fs $FOLDER/screenrc $HOME/.screenrc 
-ln -fs $FOLDER/ssh_config $HOME/.ssh_config 
+
+mkdir -p $HOME/.ssh
+ln -fs $FOLDER/ssh_config $HOME/.ssh/config 
+
 ln -fs $FOLDER/vim $HOME/.vim 
 ln -fs $FOLDER/vimrc $HOME/.vimrc 
 ln -fs $FOLDER/wmiirc $HOME/.wmiirc 

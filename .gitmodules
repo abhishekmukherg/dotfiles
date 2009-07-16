@@ -1,0 +1,3 @@
+[submodule "inkpot"]
+	path = inkpot
+	url = git://github.com/ciaranm/inkpot.git
