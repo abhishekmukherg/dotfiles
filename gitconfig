@@ -8,6 +8,7 @@
 	ci = commit
 	st = status
 	sb = show-branch
+	co = checkout
 [giggle]
 	compact-mode = false
 	main-window-maximized = false
