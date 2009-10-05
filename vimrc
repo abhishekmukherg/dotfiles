@@ -14,6 +14,14 @@ if has("autocmd")
   autocmd Filetype python set autoindent
   autocmd Filetype python set enc=utf-8
 
+  autocmd Filetype ruby set tabstop=2
+  autocmd Filetype ruby set shiftwidth=2
+  autocmd Filetype ruby set smarttab
+  autocmd Filetype ruby set expandtab
+  autocmd Filetype ruby set softtabstop=2
+  autocmd Filetype ruby set autoindent
+  autocmd Filetype ruby set enc=utf-8
+
   autocmd BufRead ~/Packages/adrastos/* set tabstop=4
   autocmd BufRead ~/Packages/adrastos/* set shiftwidth=4
   autocmd BufRead ~/Packages/adrastos/* set expandtab
