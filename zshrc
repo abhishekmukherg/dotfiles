@@ -149,6 +149,12 @@ local bgc=${bgc//[%]b/%%b}
 local fgc=${fgc//[%]b/%%b}
 local reset=${reset//[%]b/%%b}
 
+vd()
+{
+	cd "$@"
+	ls --color=always --format=vertical | head
+}
+
 fortune -s
 
 # zmodload zsh/zftp
