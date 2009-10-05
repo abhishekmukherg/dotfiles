@@ -12,6 +12,7 @@ if has("autocmd")
   autocmd Filetype python set expandtab
   autocmd Filetype python set softtabstop=0
   autocmd Filetype python set autoindent
+  autocmd Filetype python set enc=utf-8
 
   autocmd BufRead ~/Packages/adrastos/* set tabstop=4
   autocmd BufRead ~/Packages/adrastos/* set shiftwidth=4
