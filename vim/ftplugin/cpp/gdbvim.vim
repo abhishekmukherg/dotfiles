@@ -13,6 +13,7 @@
 if exists("loaded_gdbvim")
 	finish
 endif
+let loaded_gdbvim=1
 
 " If you dont have signs and clientserver, complain.
 function Gdb_interf_init(fifo_name, pwd)
