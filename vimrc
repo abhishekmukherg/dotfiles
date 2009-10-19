@@ -13,6 +13,8 @@ if has("autocmd")
   autocmd Filetype python set softtabstop=0
   autocmd Filetype python set autoindent
   autocmd Filetype python set enc=utf-8
+  autocmd Filetype python set keywordprg=pydoc
+  autocmd Filetype python set iskeyword=a-z,A-Z,48-57,_,.
 
   autocmd Filetype ruby set tabstop=2
   autocmd Filetype ruby set shiftwidth=2
