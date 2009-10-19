@@ -90,7 +90,7 @@ which pigz > /dev/null && alias gzip='pigz'
 which pbzip2 > /dev/null && alias bzip2='pbzip2'
 
 alias apt='sudo aptitude'
-alias apti='apt install'
+alias apti='apt install --with-recommends'
 alias aptc='apt-cache'
 alias aptcs='apt-cache search'
 which colordiff > /dev/null && alias diff='colordiff'
