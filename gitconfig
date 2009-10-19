@@ -3,7 +3,10 @@
 	email = abhishek.mukher.g@gmail.com
 [color]
 	pager = true
-	ui = true
+	ui = always
+	diff = always
+	status = always
+	interactive = always
 [alias]
 	ci = commit
 	st = status

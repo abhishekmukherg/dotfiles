@@ -1,4 +1,4 @@
-URxvt*secondaryScroll: true
+urxvt*secondaryScroll: true
 XTerm*foreground: white
 XTerm*background: black
 XTerm*selectToClipboard: true
@@ -6,11 +6,31 @@ XTerm*scrollBar: true
 XTerm*scrollKey: true
 XTerm*scrollTtyOutput: false
 
-urxvt*font: xft:DejaVu Sans Mono:size=7:antialias=true:hinting=true
-urxvt*boldFont: xft:DejaVu Sans Mono:size=7:antialias=true:bold:hinting=true
-urxvt*italicFont: xft:DejaVu Sans Mono:size=7:antialias=true:italic:autohint=true:hinting=true
-urxvt*bolditalicFont: xft:DejaVu Sans Mono:size=7:antialias=true:bold:italic:autohint=true:hinting=true
+urxvt*font: xft:Terminus:size=7:antialias=true:hinting=true
+urxvt*boldFont: xft:Terminus:size=7:antialias=true:bold:hinting=true
+urxvt*italicFont: xft:Terminus:size=7:antialias=true:italic:autohint=true:hinting=true
+urxvt*bolditalicFont: xft:Terminus:size=7:antialias=true:bold:italic:autohint=true:hinting=true
+urxvt*fading: 20
 urxvt*reverseVideo: true
-urxvt*transparent: true
-urxvt*shading: 40
-urxvt*tintColor: grey
+#urxvt*transparent: true
+#urxvt*shading: 70
+#urxvt*tintColor: grey
+urxvt*scrollBar_right: true
+urxvt*depth: 32
+URxvt*color0:  rgb:2e2e/3434/3636
+URxvt*color1:  rgb:cccc/0000/0000
+URxvt*color2:  rgb:4e4e/9a9a/0606
+URxvt*color3:  rgb:c4c4/a0a0/0000
+URxvt*color4:  rgb:3434/6565/a4a4
+URxvt*color5:  rgb:7575/5050/7b7b
+URxvt*color6:  rgb:0606/9820/9a9a
+URxvt*color7:  rgb:d3d3/d7d7/cfcf
+URxvt*color8:  rgb:5555/5757/5353
+URxvt*color9:  rgb:efef/2929/2929
+URxvt*color10: rgb:8a8a/e2e2/3434
+URxvt*color11: rgb:fcfc/e9e9/4f4f
+URxvt*color12: rgb:7272/9f9f/cfcf
+URxvt*color13: rgb:adad/7f7f/a8a8
+URxvt*color14: rgb:3434/e2e2/e2e2
+URxvt*color15: rgb:eeee/eeee/ecec
+
