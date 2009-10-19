@@ -119,7 +119,7 @@ source ~/.zkbd/$TERM-${DISPLAY:-$VENDOR-$OSTYPE}
 bindkey  ";5D"    backward-word
 bindkey  ";5C"   forward-word
 
-#[[ -f /etc/zsh_command_not_found ]] && source /etc/zsh_command_not_found
+[[ -f /etc/zsh_command_not_found ]] && source /etc/zsh_command_not_found
 [[ -f ~/.dir_colors ]] && eval "`dircolors ~/.dir_colors -b`"
 
 #eval "`keychain --agents ssh --quiet --eval id_rsa`"
