@@ -73,6 +73,13 @@ nnoremap <silent><C-F7> :cclose<CR>
 
 set backspace=indent,eol,start 
 
+" Taglist
+nnoremap <silent> <F12> :TlistToggle<CR><C-w>h
+let Tlist_Inc_Winwidth=0
+let Tlist_Exit_OnlyWindow=1
+let Tlist_Close_On_Select=1
+let Tlist_Highlight_Tag_On_BufEnter=1
+
 " OmniCPPComplete
 nnoremap <C-F11> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 let OmniCpp_DefaultNamespaces = ["std"]
@@ -86,3 +93,6 @@ let g:pylint_onwrite = 0
 
 " VCS
 let g:VCSCommandCommitOnWrite = 0
+
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%81v.*/
