@@ -96,6 +96,8 @@ alias aptcs='apt-cache search'
 which colordiff > /dev/null && alias diff='colordiff'
 
 alias paludis='sudo nice paludis'
+alias ip='paludis --install --continue-on-failure if-satisfied'
+alias ipu='ip --dl-reinstall if-use-changed'
 alias pacman='sudo pacman -y'
 
 #exec 2>>(while read line; do
