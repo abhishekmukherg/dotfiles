@@ -154,8 +154,7 @@ local reset=${reset//[%]b/%%b}
 
 vd()
 {
-	cd "$@"
-	ls --color=always --format=vertical | head
+	cd "$@" && ls --color=always --format=vertical | head
 }
 
 fortune -s
