@@ -62,12 +62,14 @@ zstyle ':completion::complete:*' use-cache 1
 setopt nohup
 
 unsetopt clobber
-setopt extended_history auto_pushd inc_append_history hist_ignore_dups hist_verify auto_continue multios interactive_comments autocd extended_glob notify list_ambiguous
+setopt extended_history auto_pushd inc_append_history hist_ignore_dups
+setopt hist_verify auto_continue multios interactive_comments autocd
+setopt extended_glob notify list_ambiguous
 DIRSTACKSIZE=50
 limit coredumpsize 10m
 
 HISTSIZE=10000
-HISTFILE=~/.zsh_history
+HISTFILE=~/.zsh/history
 SAVEHIST=10000
 
 ## With commands like `rm' it's annoying if one gets offered the same filename
@@ -154,7 +156,7 @@ if [[ $(echo $ZSH_VERSION | cut -d. -f3) < 9 ]]; then
 	local jobcolor="%{$fg[blue]%}"
 	local reset="%{$reset_color%}"
 fi
-export PS1="$bgc($fgc%m$bgc|$fgc%h$bgc @$fgc%t$bgc){$fgc%~$bgc}$reset"
+export PS1="$bgc($fgc%n$bgc@$fgc%m$bgc|$fgc%h$bgc @$fgc%t$bgc){$fgc%~$bgc}$reset"
 export PS1="${PS1}
 $bgc-$fgc%#$reset "
 export RPS1="$bgc(%b%1(j,$jobcolor,$reset)%j %(?,$reset,$error)%?$reset"
