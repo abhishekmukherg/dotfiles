@@ -1,6 +1,6 @@
 # [[ $SHLVL -eq 1 ]] && screen && exit
 #bindkey -e
-which keychain > /dev/null && keychain -q
+#which keychain > /dev/null && keychain -q
 bindkey -v
 
 [[ $ZSHENV_LOADED == "1" ]] || source ~/.zshenv
