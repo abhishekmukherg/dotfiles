@@ -80,7 +80,7 @@ zstyle ':completion:*:rm:*' ignore-line yes
 ## Load the completion module.
 zstyle :compinstall filename '/home/master/.zshrc'
 
-alias ls='ls --color=auto --hide=\*.pyc'
+alias ls="ls --color=auto --hide='*.py[co]'"
 alias sl='sl -al'
 alias ll='ls -l'
 alias ga="gitk --all &|"
