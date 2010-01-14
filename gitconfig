@@ -1,12 +1,14 @@
 [user]
 	name = Abhishek Mukherjee
 	email = abhishek.mukher.g@gmail.com
+[core]
+	pager = less
 [color]
 	pager = true
-	ui = always
-	diff = always
-	status = always
-	interactive = always
+	ui = auto
+	diff = auto
+	status = auto
+	interactive = auto
 [alias]
 	ci = commit
 	st = status
