@@ -178,3 +178,6 @@ which fortune > /dev/null && fortune -s
 zle_highlight=(region:underline
                special:bold
               )
+
+which pip >/dev/null && eval `pip completion --zsh`
+which virtualenvwrapper_bashrc > /dev/null && source =virtualenvwrapper_bashrc
