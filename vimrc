@@ -89,6 +89,12 @@ let g:explVertical=1
 let g:netrw_list_hide="\.pyc,\.swp"
 nnoremap <F3> :Explore<CR>
 
+" miniBufExplorer
+let g:miniBufExplMapWindowNavVim = 1 
+let g:miniBufExplMapWindowNavArrows = 1 
+let g:miniBufExplMapCTabSwitchBufs = 1 
+let g:miniBufExplModSelTarget = 1 
+
 let g:pylint_onwrite = 0
 
 " VCS
