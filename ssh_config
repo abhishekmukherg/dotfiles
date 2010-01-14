@@ -33,3 +33,5 @@ Host area51
 Host aria.rh.uchicago.edu
 	User gbrius
 
+Host *.aghq.net
+	User abhishek
