@@ -27,16 +27,22 @@ if has("autocmd")
   autocmd BufRead ~/Packages/adrastos/* set tabstop=4
   autocmd BufRead ~/Packages/adrastos/* set shiftwidth=4
   autocmd BufRead ~/Packages/adrastos/* set expandtab
+
+	" Eclim
+	autocmd Filetype java nnoremap <silent> <buffer> <leader>i :JavaImport<cr>
+	autocmd Filetype java nnoremap <silent> <buffer> <leader>d :JavaDocSearch -x declarations<cr>
+	autocmd Filetype java nnoremap <silent> <buffer> <cr> :JavaSearchContext<cr>
   
   autocmd BufEnter *   execute ":lcd " . expand("%:p:h") 
 endif
 augroup filetypedetect
+  autocmd BufRead,BufNewFile psql.edit.* setfiletype sql
   autocmd BufRead,BufNewFile *.wiki setfiletype wikipedia
   autocmd BufRead,BufNewFile *.wikipedia.org.* setfiletype wikipedia
   autocmd BufRead,BufNewFile *.gentoo-wiki.com.* setfiletype wikipedia
 augroup END
-let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
-let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+"let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
+"let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 
 if has("autocmd")
 	autocmd FileType python set complete+=k/home/master/bin/pydiction-0.5/pydiction isk+=.,(
@@ -70,6 +76,8 @@ nnoremap Q gq
 nnoremap <silent><F8> :make<CR><CR>
 nnoremap <silent><F7> :copen<CR>
 nnoremap <silent><C-F7> :cclose<CR>
+nnoremap <silent><F6> :lopen<CR>
+nnoremap <silent><C-F6> :lclose<CR>
 
 set backspace=indent,eol,start 
 
@@ -99,6 +107,9 @@ let g:pylint_onwrite = 0
 
 " VCS
 let g:VCSCommandCommitOnWrite = 0
+
+" VisIncr
+vnoremap <c-a> :I<CR>
 
 " Set tabstop, softtabstop and shiftwidth to the same value
 command! -nargs=* Stab call Stab()

@@ -1,1 +1,2 @@
 camelcasemotion.vba: call delete('/home/papag/.vim/autoload/camelcasemotion.vim')|call delete('/home/papag/.vim/plugin/camelcasemotion.vim')|call delete('/home/papag/.vim/doc/camelcasemotion.txt')
+visincr.vba: call delete('/Users/amukherjee/.vim/plugin/visincrPlugin.vim')|call delete('/Users/amukherjee/.vim/autoload/visincr.vim')|call delete('/Users/amukherjee/.vim/doc/visincr.txt')|call delete('/Users/amukherjee/.vim/autoload/calutil.vim')
