@@ -111,6 +111,13 @@ let g:VCSCommandCommitOnWrite = 0
 " VisIncr
 vnoremap <c-a> :I<CR>
 
+" invisible characters
+set list
+nmap <leader>l :set list!<CR>
+set listchars=tab:▸\ ,eol:¬
+highlight NonText ctermfg=0
+highlight SpecialKey ctermfg=0
+
 " Set tabstop, softtabstop and shiftwidth to the same value
 command! -nargs=* Stab call Stab()
 function! Stab()
