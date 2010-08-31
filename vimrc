@@ -24,6 +24,14 @@ if has("autocmd")
   autocmd Filetype ruby set autoindent
   autocmd Filetype ruby set enc=utf-8
 
+  autocmd Filetype java set tabstop=4
+  autocmd Filetype java set shiftwidth=4
+  autocmd Filetype java set smarttab
+  autocmd Filetype java set expandtab
+  autocmd Filetype java set softtabstop=4
+  autocmd Filetype java set autoindent
+  autocmd Filetype java set enc=utf-8
+
   autocmd BufRead ~/Packages/adrastos/* set tabstop=4
   autocmd BufRead ~/Packages/adrastos/* set shiftwidth=4
   autocmd BufRead ~/Packages/adrastos/* set expandtab
@@ -35,8 +43,8 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile *.wikipedia.org.* setfiletype wikipedia
   autocmd BufRead,BufNewFile *.gentoo-wiki.com.* setfiletype wikipedia
 augroup END
-let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
-let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+"let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
+"let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 
 if has("autocmd")
 	autocmd FileType python set complete+=k/home/master/bin/pydiction-0.5/pydiction isk+=.,(
