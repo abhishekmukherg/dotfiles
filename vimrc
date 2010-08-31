@@ -111,6 +111,8 @@ let g:miniBufExplModSelTarget = 1
 
 let g:pylint_onwrite = 0
 
+nnoremap <leader>l :set list!<CR>
+
 " VCS
 let g:VCSCommandCommitOnWrite = 0
 
