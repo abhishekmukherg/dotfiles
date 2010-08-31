@@ -3,7 +3,7 @@ export PATH=$HOME/bin:/usr/lib/ccache:/opt/cxgames/bin:/opt/eclipse:${PATH}
 export EDITOR="vim"
 export LESS="--ignore-case -R"
 export DEBFULLNAME="Abhishek Mukherjee"
-which vimmanpager > /dev/null && export MANPAGER="vimmanpager"
+which vimmanpager > /dev/null 2>&1 && export MANPAGER="vimmanpager"
 export DEBEMAIL="linkinpark342@gmail.com"
 
 export CC="gcc"
