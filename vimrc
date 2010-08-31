@@ -27,6 +27,19 @@ if has("autocmd")
   autocmd BufRead ~/Packages/adrastos/* set tabstop=4
   autocmd BufRead ~/Packages/adrastos/* set shiftwidth=4
   autocmd BufRead ~/Packages/adrastos/* set expandtab
+
+  autocmd Filetype java set tabstop=4
+  autocmd Filetype java set shiftwidth=4
+  autocmd Filetype java set smarttab
+  autocmd Filetype java set expandtab
+  autocmd Filetype java set softtabstop=4
+  autocmd Filetype java set autoindent
+  autocmd Filetype java set enc=utf-8
+
+
+  autocmd Filetype java nnoremap <silent> <buffer> <leader>i :JavaImport<cr>
+  autocmd Filetype java nnoremap <silent> <buffer> <leader>d :JavaDocSearch -x declarations<cr>
+  autocmd Filetype java nnoremap <silent> <buffer> <cr> :JavaSearchContext<cr>
   
   autocmd BufEnter *   execute ":lcd " . expand("%:p:h") 
 endif
