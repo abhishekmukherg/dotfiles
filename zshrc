@@ -86,14 +86,14 @@ alias ll='ls -l'
 which gitview > /dev/null && alias gitk='gitview'
 alias ga="gitk --all &|"
 alias v="vim"
-which ack > /dev/null && alias grep='ack'
-which xdg-open > /dev/null && alias xo='xdg-open'
+which ack > /dev/null 2>&1 && alias grep='ack'
+which xdg-open > /dev/null 2>&1 && alias xo='xdg-open'
 alias jobs='jobs -dlp'
 
-which pigz > /dev/null && alias gzip='pigz'
-which pbzip2 > /dev/null && alias bzip2='pbzip2'
+which pigz > /dev/null 2>&1 && alias gzip='pigz'
+which pbzip2 > /dev/null 2>&1 && alias bzip2='pbzip2'
 
-which aptitude >/dev/null && alias apt='sudo aptitude' || alias apt='sudo apt-get'
+which aptitude >/dev/null 2>&1 && alias apt='sudo aptitude' || alias apt='sudo apt-get'
 alias apti='apt install --with-recommends'
 alias aptc='apt-cache'
 alias aptcs='apt-cache search'
@@ -101,7 +101,7 @@ grep_sl()
 {
 	egrep -v "^.{${1:-120},}"
 }
-which colordiff > /dev/null && alias diff='colordiff'
+which colordiff > /dev/null 2>&1 && alias diff='colordiff'
 
 alias paludis='sudo nice paludis'
 alias ip='paludis --install --continue-on-failure if-satisfied'
@@ -176,7 +176,7 @@ vd()
 	cd "$@" && ls --color=always --format=vertical | head
 }
 
-which fortune > /dev/null && fortune -s
+which fortune > /dev/null 2>&1 && fortune -s
 
 # zmodload zsh/zftp
 # autoload -U zfinit
@@ -185,6 +185,8 @@ zle_highlight=(region:underline
                special:bold
               )
 
-which pip >/dev/null && eval `pip completion --zsh`
-which virtualenvwrapper_bashrc > /dev/null && source =virtualenvwrapper_bashrc
+which pip >/dev/null 2>&1 && eval `pip completion --zsh`
+which virtualenvwrapper_bashrc > /dev/null 2>&1 && source =virtualenvwrapper_bashrc
+
+alias sbt="source ~/bin/set_trtop"
 true

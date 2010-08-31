@@ -24,6 +24,14 @@ if has("autocmd")
   autocmd Filetype ruby set autoindent
   autocmd Filetype ruby set enc=utf-8
 
+  autocmd Filetype java set tabstop=4
+  autocmd Filetype java set shiftwidth=4
+  autocmd Filetype java set smarttab
+  autocmd Filetype java set expandtab
+  autocmd Filetype java set softtabstop=4
+  autocmd Filetype java set autoindent
+  autocmd Filetype java set enc=utf-8
+
   autocmd BufRead ~/Packages/adrastos/* set tabstop=4
   autocmd BufRead ~/Packages/adrastos/* set shiftwidth=4
   autocmd BufRead ~/Packages/adrastos/* set expandtab
