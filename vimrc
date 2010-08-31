@@ -49,8 +49,8 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile *.wikipedia.org.* setfiletype wikipedia
   autocmd BufRead,BufNewFile *.gentoo-wiki.com.* setfiletype wikipedia
 augroup END
-let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
-let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+"let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
+"let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 
 if has("autocmd")
 	autocmd FileType python set complete+=k/home/master/bin/pydiction-0.5/pydiction isk+=.,(
