@@ -181,3 +181,5 @@ zle_highlight=(region:underline
 
 which pip >/dev/null 2>&1 && eval `pip completion --zsh`
 which virtualenvwrapper_bashrc > /dev/null 2>&1 && source =virtualenvwrapper_bashrc
+
+alias sbt="source ~/bin/set_trtop"
