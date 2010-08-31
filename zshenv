@@ -26,3 +26,6 @@ export QEMU_AUDIO_DRV=pa
 export PYTHONUSERBASE="$HOME/.local/lib/python2.6/"
 export PYTHONPATH="$HOME/.local/lib/python2.6/"
 export SDL_AUDIODRIVER="pulse"
+[[ -f ~/.trtop_env ]] && export TRTOP=$(cat ~/.trtop_env)
+export LANG="en_US.utf8"
+export LOCALE="$LANG"
