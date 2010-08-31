@@ -83,7 +83,9 @@ zstyle :compinstall filename '/home/master/.zshrc'
 alias ls="ls --color=auto --hide='*.py[co]'"
 alias sl='sl -al'
 alias ll='ls -l'
+which gitview > /dev/null && alias gitk='gitview'
 alias ga="gitk --all &|"
+alias v="vim"
 which ack > /dev/null && alias grep='ack'
 which xdg-open > /dev/null && alias xo='xdg-open'
 alias jobs='jobs -dlp'
@@ -95,6 +97,10 @@ which aptitude >/dev/null && alias apt='sudo aptitude' || alias apt='sudo apt-ge
 alias apti='apt install --with-recommends'
 alias aptc='apt-cache'
 alias aptcs='apt-cache search'
+grep_sl()
+{
+	egrep -v "^.{${1:-120},}"
+}
 which colordiff > /dev/null && alias diff='colordiff'
 
 alias paludis='sudo nice paludis'
@@ -181,3 +187,4 @@ zle_highlight=(region:underline
 
 which pip >/dev/null && eval `pip completion --zsh`
 which virtualenvwrapper_bashrc > /dev/null && source =virtualenvwrapper_bashrc
+true
