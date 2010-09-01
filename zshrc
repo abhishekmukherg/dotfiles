@@ -83,7 +83,7 @@ zstyle :compinstall filename '/home/master/.zshrc'
 alias ls="ls --color=auto --hide='*.py[co]'"
 alias sl='sl -al'
 alias ll='ls -l'
-which gitview > /dev/null && alias gitk='gitview'
+which gitview > /dev/null 2>&1 && alias gitk='gitview'
 alias ga="gitk --all &|"
 alias v="vim"
 which ack > /dev/null 2>&1 && alias grep='ack'
