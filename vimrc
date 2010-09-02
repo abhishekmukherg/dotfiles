@@ -102,6 +102,8 @@ nnoremap <silent><C-F7> :cclose<CR>
 
 set backspace=indent,eol,start 
 
+runtime macros/matchit.vim
+
 " Taglist
 nnoremap <silent> <F12> :TlistToggle<CR><C-w>h
 let Tlist_Inc_Winwidth=0
