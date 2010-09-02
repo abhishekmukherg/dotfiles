@@ -44,6 +44,14 @@ if has("autocmd")
   autocmd Filetype velocity set autoindent
   autocmd Filetype velocity set enc=utf-8
 
+  autocmd Filetype css set tabstop=2
+  autocmd Filetype css set shiftwidth=2
+  autocmd Filetype css set smarttab
+  autocmd Filetype css set expandtab
+  autocmd Filetype css set softtabstop=2
+  autocmd Filetype css set autoindent
+  autocmd Filetype css set enc=utf-8
+
 
   autocmd Filetype java nnoremap <silent> <buffer> <leader>i :JavaImport<cr>
   autocmd Filetype java nnoremap <silent> <buffer> <leader>d :JavaDocSearch -x declarations<cr>
