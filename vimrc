@@ -50,7 +50,6 @@ if has("autocmd")
   autocmd Filetype java nnoremap <silent> <buffer> <cr> :JavaSearchContext<cr>
   
   autocmd BufEnter *   execute ":lcd " . expand("%:p:h") 
-  autocmd BufRead,BufNewFile *.vm setfiletype velocity
 endif
 augroup filetypedetect
   autocmd BufRead,BufNewFile *.wiki setfiletype wikipedia
