@@ -36,13 +36,13 @@ if has("autocmd")
   autocmd BufRead ~/Packages/adrastos/* set shiftwidth=4
   autocmd BufRead ~/Packages/adrastos/* set expandtab
 
-  autocmd Filetype java set tabstop=4
-  autocmd Filetype java set shiftwidth=4
-  autocmd Filetype java set smarttab
-  autocmd Filetype java set expandtab
-  autocmd Filetype java set softtabstop=4
-  autocmd Filetype java set autoindent
-  autocmd Filetype java set enc=utf-8
+  autocmd Filetype velocity set tabstop=2
+  autocmd Filetype velocity set shiftwidth=2
+  autocmd Filetype velocity set smarttab
+  autocmd Filetype velocity set expandtab
+  autocmd Filetype velocity set softtabstop=2
+  autocmd Filetype velocity set autoindent
+  autocmd Filetype velocity set enc=utf-8
 
 
   autocmd Filetype java nnoremap <silent> <buffer> <leader>i :JavaImport<cr>
