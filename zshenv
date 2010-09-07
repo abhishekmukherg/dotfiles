@@ -3,7 +3,7 @@ export PATH=$HOME/bin:/usr/lib/ccache:/opt/cxgames/bin:/opt/eclipse:${PATH}
 export EDITOR="vim"
 export LESS="--ignore-case -R"
 export DEBFULLNAME="Abhishek Mukherjee"
-which vimmanpager > /dev/null && export MANPAGER="vimmanpager"
+which vimmanpager > /dev/null 2>&1 && export MANPAGER="vimmanpager"
 export DEBEMAIL="linkinpark342@gmail.com"
 
 export CC="gcc"
@@ -26,3 +26,23 @@ export QEMU_AUDIO_DRV=pa
 export PYTHONUSERBASE="$HOME/.local/lib/python2.6/"
 export PYTHONPATH="$HOME/.local/lib/python2.6/"
 export SDL_AUDIODRIVER="pulse"
+export LANG="en_US.utf8"
+export LOCALE="$LANG"
+
+export CVSROOT=":pserver:webadmin@source.tripadvisor.com:/home/CVS"
+export ANT_HOME=/usr/local/ant
+export JAVA_HOME=/usr/jdk1.6
+if [[ "$PATH" != *$JAVA_HOME/bin* ]]; then
+	export PATH=$PATH:$JAVA_HOME/bin
+fi
+
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
+export OSTYPE=linux
+
+if [[ -z $TRTOP ]] && [[ -f $HOME/.trtop_env ]]; then
+	export TRTOP=$(cat $HOME/.trtop_env)
+fi
+
+if [[ -e /usr/share/terminfo/x/xterm-256color ]]; then
+	export TERM="xterm-256color"
+fi

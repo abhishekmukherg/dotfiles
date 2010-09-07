@@ -1,1 +1,0 @@
-/home/master/Packages/vcscommand/plugin/vcssvk.vim

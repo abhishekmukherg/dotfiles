@@ -1,6 +1,6 @@
 syntax on
 set background=dark
-"colorscheme inkpot
+colorscheme desert256
 
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
@@ -24,14 +24,38 @@ if has("autocmd")
   autocmd Filetype ruby set autoindent
   autocmd Filetype ruby set enc=utf-8
 
+  autocmd Filetype java set tabstop=4
+  autocmd Filetype java set shiftwidth=4
+  autocmd Filetype java set smarttab
+  autocmd Filetype java set expandtab
+  autocmd Filetype java set softtabstop=4
+  autocmd Filetype java set autoindent
+  autocmd Filetype java set enc=utf-8
+
   autocmd BufRead ~/Packages/adrastos/* set tabstop=4
   autocmd BufRead ~/Packages/adrastos/* set shiftwidth=4
   autocmd BufRead ~/Packages/adrastos/* set expandtab
 
-	" Eclim
-	autocmd Filetype java nnoremap <silent> <buffer> <leader>i :JavaImport<cr>
-	autocmd Filetype java nnoremap <silent> <buffer> <leader>d :JavaDocSearch -x declarations<cr>
-	autocmd Filetype java nnoremap <silent> <buffer> <cr> :JavaSearchContext<cr>
+  autocmd Filetype velocity set tabstop=2
+  autocmd Filetype velocity set shiftwidth=2
+  autocmd Filetype velocity set smarttab
+  autocmd Filetype velocity set expandtab
+  autocmd Filetype velocity set softtabstop=2
+  autocmd Filetype velocity set autoindent
+  autocmd Filetype velocity set enc=utf-8
+
+  autocmd Filetype css set tabstop=2
+  autocmd Filetype css set shiftwidth=2
+  autocmd Filetype css set smarttab
+  autocmd Filetype css set expandtab
+  autocmd Filetype css set softtabstop=2
+  autocmd Filetype css set autoindent
+  autocmd Filetype css set enc=utf-8
+
+
+  autocmd Filetype java nnoremap <silent> <buffer> <leader>i :JavaImport<cr>
+  autocmd Filetype java nnoremap <silent> <buffer> <leader>d :JavaDocSearch -x declarations<cr>
+  autocmd Filetype java nnoremap <silent> <buffer> <cr> :JavaSearchContext<cr>
   
   autocmd BufEnter *   execute ":lcd " . expand("%:p:h") 
 endif
@@ -81,6 +105,8 @@ nnoremap <silent><C-F6> :lclose<CR>
 
 set backspace=indent,eol,start 
 
+runtime macros/matchit.vim
+
 " Taglist
 nnoremap <silent> <F12> :TlistToggle<CR><C-w>h
 let Tlist_Inc_Winwidth=0
@@ -104,6 +130,8 @@ let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1 
 
 let g:pylint_onwrite = 0
+
+nnoremap <leader>l :set list!<CR>
 
 " VCS
 let g:VCSCommandCommitOnWrite = 0

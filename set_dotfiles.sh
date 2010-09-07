@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 FOLDER=`pwd`
 DIR=$HOME
@@ -20,3 +20,9 @@ ln -fs $FOLDER/Xdefaults $HOME/.Xdefaults
 ln -fs $FOLDER/Xmodmap $HOME/.Xmodmap 
 ln -fs $FOLDER/zshenv $HOME/.zshenv 
 ln -fs $FOLDER/zshrc $HOME/.zshrc
+
+if [[ ! -d $FOLDER/inkpot/.git ]] && which git >/dev/null 2>&1; then
+	(cd $FOLDER && \
+	git submodule init && \
+	git submodule update)
+fi
