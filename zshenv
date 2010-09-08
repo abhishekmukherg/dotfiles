@@ -43,6 +43,6 @@ if [[ -z $TRTOP ]] && [[ -f $HOME/.trtop_env ]]; then
 	export TRTOP=$(cat $HOME/.trtop_env)
 fi
 
-if [[ -e /usr/share/terminfo/x/xterm-256color ]]; then
+if find /usr/share/terminfo -name xterm-256color | head -n 1 | grep -q xterm; then
 	export TERM="xterm-256color"
 fi
