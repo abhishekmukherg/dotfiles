@@ -80,18 +80,32 @@ zstyle ':completion:*:rm:*' ignore-line yes
 ## Load the completion module.
 zstyle :compinstall filename '/home/master/.zshrc'
 
-alias ls="ls --color=auto --hide='*.py[co]'"
+try_alias() {
+  cmd=$1
+  shift
+  "$@" >/dev/null 2>&1 && alias $cmd="$*"
+}
+
+try_which() {
+  new_cmd=$1
+  shift
+  which "$@" >/dev/null 2>&1 && echo alias $cmd="$@"
+}
+
+try_alias ls ls --color=auto
+try_alias ls ls -G
+try_alias ls ls --hide='*.py[co]'
 alias sl='sl -al'
 alias ll='ls -l'
-which gitview > /dev/null 2>&1 && alias gitk='gitview'
+try_which gitk gitview
 alias ga="gitk --all &|"
 alias v="vim"
-which ack > /dev/null 2>&1 && alias grep='ack'
-which xdg-open > /dev/null 2>&1 && alias xo='xdg-open'
+try_which grep ack
+try_which xo xdg-open
 alias jobs='jobs -dlp'
 
-which pigz > /dev/null 2>&1 && alias gzip='pigz'
-which pbzip2 > /dev/null 2>&1 && alias bzip2='pbzip2'
+try_which gzip pigz
+try_which bzip2 pbzip2
 
 which aptitude >/dev/null 2>&1 && alias apt='sudo aptitude' || alias apt='sudo apt-get'
 alias apti='apt install --with-recommends'
@@ -99,9 +113,9 @@ alias aptc='apt-cache'
 alias aptcs='apt-cache search'
 grep_sl()
 {
-	egrep -v "^.{${1:-120},}"
+  egrep -v "^.{${1:-120},}"
 }
-which colordiff > /dev/null 2>&1 && alias diff='colordiff'
+try_which diff colordiff
 
 alias paludis='sudo nice paludis'
 alias ip='paludis --install --continue-on-failure if-satisfied'
@@ -109,12 +123,12 @@ alias ipu='ip --dl-reinstall if-use-changed'
 alias pacman='sudo pacman -y'
 
 #exec 2>>(while read line; do
-	#print "${fg[red]}${(q)line}${reset_color}" > /dev/tty; print -n $'\0'; done)
+  #print "${fg[red]}${(q)line}${reset_color}" > /dev/tty; print -n $'\0'; done)
 
 autoload zkbd
-[[ ! -d ~/.zkbd ]] && mkdir ~/.zkbd
-[[ ! -f ~/.zkbd/$TERM-${DISPLAY:-$VENDOR-$OSTYPE} ]] && zkbd
-source ~/.zkbd/$TERM-${DISPLAY:-$VENDOR-$OSTYPE}
+#[[ ! -d ~/.zkbd ]] && mkdir ~/.zkbd
+#[[ ! -f ~/.zkbd/$TERM-${DISPLAY:-$VENDOR-$OSTYPE} ]] && zkbd
+#source ~/.zkbd/$TERM-${DISPLAY:-$VENDOR-$OSTYPE}
 
 # setup key accordingly
 [[ -n "${key[Home]}"    ]]  && bindkey  "${key[Home]}"    beginning-of-line
@@ -128,26 +142,26 @@ bindkey  ";5D"    backward-word
 bindkey  ";5C"   forward-word
 
 [[ -f /etc/zsh_command_not_found ]] && source /etc/zsh_command_not_found
-[[ -f ~/.dir_colors ]] && eval "`dircolors ~/.dir_colors -b`"
+[[ -f ~/.dir_colors ]] && which dircolors >/dev/null 2>&1 && eval "`dircolors ~/.dir_colors -b`"
 
 #eval "`keychain --agents ssh --quiet --eval id_rsa`"
 #[ -z "$HOSTNAME" ] && HOSTNAME=`uname -n`
 #[ -f $HOME/.keychain/$HOSTNAME-sh ] && \
-	#. $HOME/.keychain/$HOSTNAME-sh
+  #. $HOME/.keychain/$HOSTNAME-sh
 #[ -f $HOME/.keychain/$HOSTNAME-sh-gpg ] && \
-	#. $HOME/.keychain/$HOSTNAME-sh-gpg
-	
+  #. $HOME/.keychain/$HOSTNAME-sh-gpg
+  
 autoload -Uz vcs_info
 
 local prompt_color
 if [[ $SSH_CLIENT == "" ]]; then
-	local prompt_color=cyan
+  local prompt_color=cyan
 else
-	local prompt_color=green
+  local prompt_color=green
 fi
 
 if [[ $UID == 0 ]]; then
-	local prompt_color=red
+  local prompt_color=red
 fi
 
 local bgc="%B%F{black}"
@@ -156,11 +170,11 @@ local error="%F{red}"
 local jobcolor="%F{blue}"
 local reset="%b%f"
 if [[ $(echo $ZSH_VERSION | cut -d. -f3) < 9 ]]; then
-	local bgc="%{$fg_bold[black]%}"
-	local fgc="%{$fg_no_bold[$prompt_color]%}"
-	local error="%{$fg[red]%}"
-	local jobcolor="%{$fg[blue]%}"
-	local reset="%{$reset_color%}"
+  local bgc="%{$fg_bold[black]%}"
+  local fgc="%{$fg_no_bold[$prompt_color]%}"
+  local error="%{$fg[red]%}"
+  local jobcolor="%{$fg[blue]%}"
+  local reset="%{$reset_color%}"
 fi
 export PS1="$bgc($fgc%n$bgc@$fgc%m$bgc|$fgc%h$bgc @$fgc%t$bgc){$fgc%~$bgc}$reset"
 export PS1="${PS1}
@@ -173,7 +187,7 @@ local reset=${reset//[%]b/%%b}
 
 vd()
 {
-	cd "$@" && ls --color=always --format=vertical | head
+  cd "$@" && ls --color=always --format=vertical | head
 }
 
 which fortune > /dev/null 2>&1 && fortune -s
