@@ -92,9 +92,11 @@ try_which() {
   which "$@" >/dev/null 2>&1 && echo alias $cmd="$@"
 }
 
-try_alias ls ls --color=auto
-try_alias ls ls -G
-try_alias ls ls --hide='*.py[co]'
+try_alias ls ls --color=auto || try_alias ls ls -G
+
+alias mkdir='noglob mkdir'
+alias bugz_patch='noglob ~/bin/bugz_patch'
+
 alias sl='sl -al'
 alias ll='ls -l'
 try_which gitk gitview
