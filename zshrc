@@ -96,6 +96,9 @@ try_alias ls ls --color=auto || try_alias ls ls -G
 
 alias mkdir='noglob mkdir'
 alias bugz_patch='noglob ~/bin/bugz_patch'
+alias slog='svntr login amukherjee'
+alias tr='cd $TRTOP'
+alias tab='tr; sudo ./scripts/tabuild -rf'
 
 alias sl='sl -al'
 alias ll='ls -l'
@@ -105,6 +108,7 @@ alias v="vim"
 try_which grep ack
 try_which xo xdg-open
 alias jobs='jobs -dlp'
+alias logdir='cd /etc/httpd-MAINLINE/logs'
 
 try_which gzip pigz
 try_which bzip2 pbzip2
