@@ -1,6 +1,6 @@
 syntax on
 set background=dark
-colorscheme desert256
+colorscheme Dark2
 
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
@@ -94,6 +94,7 @@ set nocp
 set completeopt=menu
 set nohlsearch
 set wildignore=*.o,*.pyc,*.pyo
+set ruler
 
 nnoremap Q gq
 
