@@ -31,6 +31,7 @@ if has("autocmd")
   autocmd Filetype java set softtabstop=4
   autocmd Filetype java set autoindent
   autocmd Filetype java set enc=utf-8
+  autocmd Filetype java setlocal omnifunc=javacomplete#Complete
 
   autocmd BufRead ~/Packages/adrastos/* set tabstop=4
   autocmd BufRead ~/Packages/adrastos/* set shiftwidth=4
