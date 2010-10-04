@@ -87,9 +87,9 @@ try_alias() {
 }
 
 try_which() {
-  new_cmd=$1
+  cmd=$1
   shift
-  which "$@" >/dev/null 2>&1 && echo alias $cmd="$@"
+  which "$@" >/dev/null 2>&1 && alias $cmd="$*"
 }
 
 try_alias ls ls --color=auto
@@ -102,6 +102,7 @@ alias ga="gitk --all &|"
 alias v="vim"
 try_which grep ack
 try_which xo xdg-open
+try_which xo open
 alias jobs='jobs -dlp'
 
 try_which gzip pigz
