@@ -1,6 +1,6 @@
 syntax on
 set background=dark
-colorscheme desert256
+colorscheme Dark2
 
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
@@ -31,6 +31,7 @@ if has("autocmd")
   autocmd Filetype java set softtabstop=4
   autocmd Filetype java set autoindent
   autocmd Filetype java set enc=utf-8
+  autocmd Filetype java setlocal omnifunc=javacomplete#Complete
 
   autocmd BufRead ~/Packages/adrastos/* set tabstop=4
   autocmd BufRead ~/Packages/adrastos/* set shiftwidth=4
@@ -60,6 +61,7 @@ if has("autocmd")
   autocmd BufEnter *   execute ":lcd " . expand("%:p:h") 
 endif
 augroup filetypedetect
+  autocmd BufRead,BufNewFile psql.edit.* setfiletype sql
   autocmd BufRead,BufNewFile *.wiki setfiletype wikipedia
   autocmd BufRead,BufNewFile *.wikipedia.org.* setfiletype wikipedia
   autocmd BufRead,BufNewFile *.gentoo-wiki.com.* setfiletype wikipedia
@@ -93,12 +95,15 @@ set nocp
 set completeopt=menu
 set nohlsearch
 set wildignore=*.o,*.pyc,*.pyo
+set ruler
 
 nnoremap Q gq
 
 nnoremap <silent><F8> :make<CR><CR>
 nnoremap <silent><F7> :copen<CR>
 nnoremap <silent><C-F7> :cclose<CR>
+nnoremap <silent><F6> :lopen<CR>
+nnoremap <silent><C-F6> :lclose<CR>
 
 set backspace=indent,eol,start 
 
@@ -132,6 +137,16 @@ nnoremap <leader>l :set list!<CR>
 
 " VCS
 let g:VCSCommandCommitOnWrite = 0
+
+" VisIncr
+vnoremap <c-a> :I<CR>
+
+" invisible characters
+set list
+nmap <leader>l :set list!<CR>
+set listchars=tab:▸\ ,eol:¬
+highlight NonText ctermfg=0
+highlight SpecialKey ctermfg=0
 
 " Set tabstop, softtabstop and shiftwidth to the same value
 command! -nargs=* Stab call Stab()
