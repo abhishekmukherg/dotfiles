@@ -97,7 +97,7 @@ try_alias ls ls --color=auto || try_alias ls ls -G
 alias mkdir='noglob mkdir'
 alias bugz_patch='noglob ~/bin/bugz_patch'
 alias slog='svntr login amukherjee'
-alias tr='cd $TRTOP'
+alias ctr='cd $TRTOP'
 alias tab='tr; sudo ./scripts/tabuild -rf'
 
 alias sl='sl -al'
