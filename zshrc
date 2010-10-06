@@ -98,7 +98,7 @@ alias mkdir='noglob mkdir'
 alias bugz_patch='noglob ~/bin/bugz_patch'
 alias slog='svntr login amukherjee'
 alias ctr='cd $TRTOP'
-alias tab='tr; sudo ./scripts/tabuild -rf'
+alias tab='ctr && sudo ./scripts/tabuild -rf'
 
 alias sl='sl -al'
 alias ll='ls -l'
