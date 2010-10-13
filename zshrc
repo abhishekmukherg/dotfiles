@@ -210,5 +210,28 @@ which pip >/dev/null 2>&1 && eval `pip completion --zsh`
 which virtualenvwrapper_bashrc > /dev/null 2>&1 && source =virtualenvwrapper_bashrc
 
 alias sbt="source ~/bin/set_trtop"
-alias st='export TRTOP=`pwd`'
+alias japp="sudo ant jar-applications"
+alias jtr="sudo ant jar-tr"
+function st()
+{
+	local curdir=`pwd`
+	while true; do
+		case $(basename $(pwd)) in
+		trsrc-*)
+			export TRTOP=`pwd`
+			cd "$curdir"
+			return 0
+			;;
+		/)
+			echo "Could not find TRTOP"
+			cd "$curdir"
+			return 2
+			;;
+		*)
+			cd ..
+			;;
+		esac
+	done
+}
+
 true
