@@ -95,9 +95,6 @@ try_which() {
 try_alias ls ls --color=auto || try_alias ls ls -G
 
 alias mkdir='noglob mkdir'
-alias bugz_patch='noglob ~/bin/bugz_patch'
-alias slog='svntr login amukherjee'
-alias tab='ctr && sudo ./scripts/tabuild -rf'
 
 alias sl='sl -al'
 alias ll='ls -l'
@@ -208,17 +205,15 @@ zle_highlight=(region:underline
 which pip >/dev/null 2>&1 && eval `pip completion --zsh`
 which virtualenvwrapper_bashrc > /dev/null 2>&1 && source =virtualenvwrapper_bashrc
 
-alias sbt="source ~/bin/set_trtop"
+alias cdtop='cd $TRTOP'
+alias cdjs='cd $TRTOP/site/js2'
+alias cdcss='cd $TRTOP/site/cs2'
+alias cdvm='cd $TRTOP/site/velocity_redesign'
 
-alias japp="ant jar-applications"
-alias jtr="ant jar-tr"
-alias jjs="make -C $TRTOP/site/js2"
-alias jcss="make -C $TRTOP/site/css2"
-
-alias cdtop="cd $TRTOP"
-alias cdjs="cd $TRTOP/site/js2"
-alias cdcss="cd $TRTOP/site/cs2"
-alias cdvm="cd $TRTOP/site/velocity_redesign"
+alias japp="(cdtop && ant jar-applications)"
+alias jtr="(cdtop && ant jar-tr)"
+alias jjs='make -C $TRTOP/site/js2'
+alias jcss='make -C $TRTOP/site/css2'
 
 function st()
 {
@@ -241,5 +236,10 @@ function st()
 		esac
 	done
 }
+
+alias sbt="st && (cdtop && source ~/bin/set_trtop)"
+alias bugz_patch='noglob ~/bin/bugz_patch'
+alias slog='svntr login amukherjee'
+alias tab='(cdtop && sudo ./scripts/tabuild -rf)'
 
 true
