@@ -97,7 +97,6 @@ try_alias ls ls --color=auto || try_alias ls ls -G
 alias mkdir='noglob mkdir'
 alias bugz_patch='noglob ~/bin/bugz_patch'
 alias slog='svntr login amukherjee'
-alias ctr='cd $TRTOP'
 alias tab='ctr && sudo ./scripts/tabuild -rf'
 
 alias sl='sl -al'
@@ -210,8 +209,17 @@ which pip >/dev/null 2>&1 && eval `pip completion --zsh`
 which virtualenvwrapper_bashrc > /dev/null 2>&1 && source =virtualenvwrapper_bashrc
 
 alias sbt="source ~/bin/set_trtop"
-alias japp="sudo ant jar-applications"
-alias jtr="sudo ant jar-tr"
+
+alias japp="ant jar-applications"
+alias jtr="ant jar-tr"
+alias jjs="make -C $TRTOP/site/js2"
+alias jcss="make -C $TRTOP/site/css2"
+
+alias cdtop="cd $TRTOP"
+alias cdjs="cd $TRTOP/site/js2"
+alias cdcss="cd $TRTOP/site/cs2"
+alias cdvm="cd $TRTOP/site/velocity_redesign"
+
 function st()
 {
 	local curdir=`pwd`
