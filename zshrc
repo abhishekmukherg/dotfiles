@@ -210,8 +210,10 @@ alias cdjs='cd $TRTOP/site/js2'
 alias cdcss='cd $TRTOP/site/css2'
 alias cdvm='cd $TRTOP/site/velocity_redesign'
 
+alias vc='vim $TRTOP/config/hosts/$(hostname -s).ini'
 alias japp="(cdtop && ant jar-applications)"
 alias jtr="(cdtop && ant jar-tr)"
+alias ja='make -C $TRTOP'
 alias jj='make -C $TRTOP java'
 alias jjs='make -C $TRTOP/site/js2 -j5'
 alias jcss='make -C $TRTOP/site/css2 -j5'
