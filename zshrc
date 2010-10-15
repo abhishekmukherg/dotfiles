@@ -207,7 +207,7 @@ which virtualenvwrapper_bashrc > /dev/null 2>&1 && source =virtualenvwrapper_bas
 
 alias cdtop='cd $TRTOP'
 alias cdjs='cd $TRTOP/site/js2'
-alias cdcss='cd $TRTOP/site/cs2'
+alias cdcss='cd $TRTOP/site/css2'
 alias cdvm='cd $TRTOP/site/velocity_redesign'
 
 alias japp="(cdtop && ant jar-applications)"
