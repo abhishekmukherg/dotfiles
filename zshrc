@@ -205,10 +205,10 @@ zle_highlight=(region:underline
 which pip >/dev/null 2>&1 && eval `pip completion --zsh`
 which virtualenvwrapper_bashrc > /dev/null 2>&1 && source =virtualenvwrapper_bashrc
 
-alias cdtop='cd $TRTOP'
-alias cdjs='cd $TRTOP/site/js2'
-alias cdcss='cd $TRTOP/site/css2'
-alias cdvm='cd $TRTOP/site/velocity_redesign'
+function cdtop() { cd $TRTOP/$@ }
+function cdjs() { cdtop site/js2/$@ }
+function cdcss() { cdtop site/css2/$@ }
+function cdvm() { cdtop site/velocity_redesign/$@ }
 
 alias vc='vim $TRTOP/config/hosts/$(hostname -s).ini'
 alias japp="(cdtop && ant jar-applications)"
