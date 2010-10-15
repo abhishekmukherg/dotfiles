@@ -212,8 +212,9 @@ alias cdvm='cd $TRTOP/site/velocity_redesign'
 
 alias japp="(cdtop && ant jar-applications)"
 alias jtr="(cdtop && ant jar-tr)"
-alias jjs='make -C $TRTOP/site/js2'
-alias jcss='make -C $TRTOP/site/css2'
+alias jj='make -C $TRTOP java'
+alias jjs='make -C $TRTOP/site/js2 -j5'
+alias jcss='make -C $TRTOP/site/css2 -j5'
 
 function st()
 {
