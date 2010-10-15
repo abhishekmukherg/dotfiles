@@ -243,6 +243,15 @@ function st()
 alias sbt="st && (cdtop && source ~/bin/set_trtop)"
 alias bugz_patch='noglob ~/bin/bugz_patch'
 alias slog='svntr login amukherjee'
-alias tab='(cdtop && sudo ./scripts/tabuild -rf)'
+function tab()
+{
+	cd $TRTOP
+	if [[ $# -gt 0 ]]; then
+		./scripts/tabuild "$@"
+	else
+		./scripts/tabuild -rf
+	fi
+	cd -
+}
 
 true
