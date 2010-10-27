@@ -116,6 +116,11 @@ let Tlist_Exit_OnlyWindow=1
 let Tlist_Close_On_Select=1
 let Tlist_Highlight_Tag_On_BufEnter=1
 
+" NERD tree
+nnoremap <silent> <leader>n :NERDTreeToggle<CR>
+let NERDTreeQuitOnOpen = 1
+
+
 " OmniCPPComplete
 nnoremap <C-F11> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 let OmniCpp_DefaultNamespaces = ["std"]
