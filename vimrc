@@ -133,6 +133,9 @@ let g:miniBufExplModSelTarget = 1
 
 let g:pylint_onwrite = 0
 
+let g:alternateExtensions_m = "h"
+let g:alternateExtensions_h = "m"
+
 nnoremap <leader>l :set list!<CR>
 
 " VCS
