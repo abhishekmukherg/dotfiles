@@ -247,13 +247,16 @@ alias bugz_patch='noglob ~/bin/bugz_patch'
 alias slog='svntr login amukherjee'
 function tab()
 {
-	cd $TRTOP
-	if [[ $# -gt 0 ]]; then
-		./scripts/tabuild "$@"
-	else
-		./scripts/tabuild -rf
-	fi
-	cd -
+	(
+		cd $TRTOP
+		if [[ $# -gt 0 ]]; then
+			echo ./scripts/tabuild "$@"
+			sudo ./scripts/tabuild "$@"
+		else
+			echo ./scripts/tabuild -rf
+			sudo ./scripts/tabuild -rf
+		fi
+	)
 }
 
 true
