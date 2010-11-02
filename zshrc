@@ -208,6 +208,7 @@ which virtualenvwrapper_bashrc > /dev/null 2>&1 && source =virtualenvwrapper_bas
 function cdtop() { cd $TRTOP/$@ }
 function cdjs() { cdtop site/js2/$@ }
 function cdcss() { cdtop site/css2/$@ }
+function cdimg() { cdtop site/img2/$@ }
 function cdvm() { cdtop site/velocity_redesign/$@ }
 
 alias vc='vim $TRTOP/config/hosts/$(hostname -s).ini'
