@@ -211,6 +211,7 @@ function cdcss() { cdtop site/css2/$@ }
 function cdvm() { cdtop site/velocity_redesign/$@ }
 
 alias vc='vim $TRTOP/config/hosts/$(hostname -s).ini'
+alias fs='$TRTOP/scripts/find-string'
 alias japp="(cdtop && ant jar-applications)"
 alias jtr="(cdtop && ant jar-tr)"
 alias ja='make -C $TRTOP'
