@@ -209,9 +209,11 @@ function cdtop() { cd $TRTOP/$@ }
 function cdjs() { cdtop site/js2/$@ }
 function cdimg() { cdtop site/img2/$@ }
 function cdcss() { cdtop site/css2/$@ }
+function cdimg() { cdtop site/img2/$@ }
 function cdvm() { cdtop site/velocity_redesign/$@ }
 
 alias vc='vim $TRTOP/config/hosts/$(hostname -s).ini'
+alias fs='$TRTOP/scripts/find-string'
 alias japp="(cdtop && ant jar-applications)"
 alias jtr="(cdtop && ant jar-tr)"
 alias ja='make -C $TRTOP'
@@ -246,13 +248,16 @@ alias bugz_patch='noglob ~/bin/bugz_patch'
 alias slog='svntr login amukherjee'
 function tab()
 {
-	cd $TRTOP
-	if [[ $# -gt 0 ]]; then
-		./scripts/tabuild "$@"
-	else
-		./scripts/tabuild -rf
-	fi
-	cd -
+	(
+		cd $TRTOP
+		if [[ $# -gt 0 ]]; then
+			echo ./scripts/tabuild "$@"
+			sudo ./scripts/tabuild "$@"
+		else
+			echo ./scripts/tabuild -rf
+			sudo ./scripts/tabuild -rf
+		fi
+	)
 }
 
 true
