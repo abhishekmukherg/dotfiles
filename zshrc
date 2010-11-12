@@ -223,24 +223,24 @@ alias jcss='make -C $TRTOP/site/css2 -j5'
 
 function st()
 {
-	local curdir=`pwd`
-	while true; do
-		case $(basename $(pwd)) in
-		trsrc-*)
-			export TRTOP=`pwd`
-			cd "$curdir"
-			return 0
-			;;
-		/)
-			echo "Could not find TRTOP"
-			cd "$curdir"
-			return 2
-			;;
-		*)
-			cd ..
-			;;
-		esac
-	done
+    local curdir=`pwd`
+    while true; do
+        case $(basename $(pwd)) in
+        trsrc-*)
+            export TRTOP=`pwd`
+            cd "$curdir"
+            return 0
+            ;;
+        /)
+            echo "Could not find TRTOP"
+            cd "$curdir"
+            return 2
+            ;;
+        *)
+            cd ..
+            ;;
+        esac
+    done
 }
 
 alias sbt="st && (cdtop && source ~/bin/set_trtop)"
@@ -248,16 +248,16 @@ alias bugz_patch='noglob ~/bin/bugz_patch'
 alias slog='svntr login amukherjee'
 function tab()
 {
-	(
-		cd $TRTOP
-		if [[ $# -gt 0 ]]; then
-			echo ./scripts/tabuild "$@"
-			sudo ./scripts/tabuild "$@"
-		else
-			echo ./scripts/tabuild -rf
-			sudo ./scripts/tabuild -rf
-		fi
-	)
+    (
+        cd $TRTOP
+        if [[ $# -gt 0 ]]; then
+            echo ./scripts/tabuild "$@"
+            sudo ./scripts/tabuild "$@"
+        else
+            echo ./scripts/tabuild -rf
+            sudo ./scripts/tabuild -rf
+        fi
+    )
 }
 
 true
