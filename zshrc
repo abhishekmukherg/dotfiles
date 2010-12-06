@@ -243,6 +243,15 @@ function st()
     done
 }
 
+alias tripmonster='psql -U tripmonster -h tripmonster'
+
+function magic_svn_command()
+{
+    for x in `svntr pg -R svn:mergeinfo . | grep ' - ' | grep -v '^\.' | awk '{print $1}'`; do
+        svntr pd svn:mergeinfo $x
+    done
+}
+
 alias sbt="st && (cdtop && source ~/bin/set_trtop)"
 alias bugz_patch='noglob ~/bin/bugz_patch'
 alias slog='svntr login amukherjee'
