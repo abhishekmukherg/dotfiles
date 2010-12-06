@@ -1,3 +1,6 @@
 [submodule "inkpot"]
 	path = inkpot
 	url = git://github.com/ciaranm/inkpot.git
+[submodule "vim-surround"]
+	path = vim-surround
+	url = https://github.com/tpope/vim-surround.git
