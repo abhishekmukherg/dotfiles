@@ -190,6 +190,8 @@ camelcasemotion-todo	camelcasemotion.txt	/*camelcasemotion-todo*
 camelcasemotion-usage	camelcasemotion.txt	/*camelcasemotion-usage*
 camelcasemotion.txt	camelcasemotion.txt	/*camelcasemotion.txt*
 camelcasemotion.vim	camelcasemotion.txt	/*camelcasemotion.vim*
+cs	surround.txt	/*cs*
+ds	surround.txt	/*ds*
 ex-visincr-I	visincr.txt	/*ex-visincr-I*
 ex-visincr-IA	visincr.txt	/*ex-visincr-IA*
 ex-visincr-ID	visincr.txt	/*ex-visincr-ID*
@@ -199,6 +201,8 @@ ex-visincr-IM	visincr.txt	/*ex-visincr-IM*
 ex-visincr-IMDY	visincr.txt	/*ex-visincr-IMDY*
 ex-visincr-IYMD	visincr.txt	/*ex-visincr-IYMD*
 g:visincr_datedivset	visincr.txt	/*g:visincr_datedivset*
+i_CTRL-G_S	surround.txt	/*i_CTRL-G_S*
+i_CTRL-G_s	surround.txt	/*i_CTRL-G_s*
 java-parser-history	javacomplete.txt	/*java-parser-history*
 javacomplete-ast	javacomplete.txt	/*javacomplete-ast*
 javacomplete-commands	javacomplete.txt	/*javacomplete-commands*
@@ -236,6 +240,14 @@ omnicpp-popup	omnicppcomplete.txt	/*omnicpp-popup*
 omnicpp-thanks	omnicppcomplete.txt	/*omnicpp-thanks*
 omnicppcomplete	omnicppcomplete.txt	/*omnicppcomplete*
 omnicppcomplete.txt	omnicppcomplete.txt	/*omnicppcomplete.txt*
+surround	surround.txt	/*surround*
+surround-author	surround.txt	/*surround-author*
+surround-customizing	surround.txt	/*surround-customizing*
+surround-issues	surround.txt	/*surround-issues*
+surround-mappings	surround.txt	/*surround-mappings*
+surround-replacements	surround.txt	/*surround-replacements*
+surround-targets	surround.txt	/*surround-targets*
+surround.txt	surround.txt	/*surround.txt*
 taglist-commands	taglist.txt	/*taglist-commands*
 taglist-debug	taglist.txt	/*taglist-debug*
 taglist-extend	taglist.txt	/*taglist-extend*
@@ -253,6 +265,8 @@ taglist-session	taglist.txt	/*taglist-session*
 taglist-todo	taglist.txt	/*taglist-todo*
 taglist-using	taglist.txt	/*taglist-using*
 taglist.txt	taglist.txt	/*taglist.txt*
+vS	surround.txt	/*vS*
+vgS	surround.txt	/*vgS*
 viscinr-I	visincr.txt	/*viscinr-I*
 viscinr-contents	visincr.txt	/*viscinr-contents*
 visincr	visincr.txt	/*visincr*
@@ -294,3 +308,8 @@ visincr-raggedright	visincr.txt	/*visincr-raggedright*
 visincr-restrict	visincr.txt	/*visincr-restrict*
 visincr-usage	visincr.txt	/*visincr-usage*
 visincr.txt	visincr.txt	/*visincr.txt*
+vs	surround.txt	/*vs*
+yS	surround.txt	/*yS*
+ySS	surround.txt	/*ySS*
+ys	surround.txt	/*ys*
+yss	surround.txt	/*yss*
