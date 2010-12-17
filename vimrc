@@ -16,6 +16,22 @@ if has("autocmd")
   autocmd Filetype python set keywordprg=pydoc
   autocmd Filetype python set iskeyword=a-z,A-Z,48-57,_,.
 
+  autocmd Filetype objc set tabstop=4
+  autocmd Filetype objc set shiftwidth=4
+  autocmd Filetype objc set smarttab
+  autocmd Filetype objc set expandtab
+  autocmd Filetype objc set softtabstop=0
+  autocmd Filetype objc set autoindent
+  autocmd Filetype objc set enc=utf-8
+
+  autocmd Filetype javascript set tabstop=4
+  autocmd Filetype javascript set shiftwidth=4
+  autocmd Filetype javascript set smarttab
+  autocmd Filetype javascript set expandtab
+  autocmd Filetype javascript set softtabstop=0
+  autocmd Filetype javascript set autoindent
+  autocmd Filetype javascript set enc=utf-8
+
   autocmd Filetype ruby set tabstop=2
   autocmd Filetype ruby set shiftwidth=2
   autocmd Filetype ruby set smarttab
