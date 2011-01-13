@@ -255,6 +255,7 @@ function magic_svn_command()
 alias sbt="st && (cdtop && source ~/bin/set_trtop)"
 alias bugz_patch='noglob ~/bin/bugz_patch'
 alias slog='svntr login amukherjee'
+alias fix-eclipse='$TRTOP/scripts/fix-eclipse-tr.py $TRTOP'
 function tab()
 {
     (
