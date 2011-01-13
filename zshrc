@@ -202,7 +202,7 @@ zle_highlight=(region:underline
                special:bold
               )
 
-which pip >/dev/null 2>&1 && eval `pip completion --zsh`
+which pip >/dev/null 2>&1 && eval "`pip completion --zsh`"
 which virtualenvwrapper_bashrc > /dev/null 2>&1 && source =virtualenvwrapper_bashrc
 
 function cdtop() { cd $TRTOP/$@ }
