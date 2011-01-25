@@ -29,7 +29,7 @@ vim/inkpot.vim: inkpot/colors/inkpot.vim
 vim/doc/surround.txt: vim-surround/doc/surround.txt
 	ln -fs $(abspath $<) $@
 
-vim/plugin/surround.txt: vim-surround/plugin/surround.txt
+vim/plugin/surround.vim: vim-surround/plugin/surround.vim
 	ln -fs $(abspath $<) $@
 
 
