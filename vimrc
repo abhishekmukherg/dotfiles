@@ -73,8 +73,6 @@ if has("autocmd")
   autocmd Filetype java nnoremap <silent> <buffer> <leader>i :JavaImport<cr>
   autocmd Filetype java nnoremap <silent> <buffer> <leader>d :JavaDocSearch -x declarations<cr>
   autocmd Filetype java nnoremap <silent> <buffer> <cr> :JavaSearchContext<cr>
-  
-  autocmd BufEnter *   execute ":lcd " . expand("%:p:h") 
 endif
 augroup filetypedetect
   autocmd BufRead,BufNewFile psql.edit.* setfiletype sql
@@ -96,6 +94,7 @@ endif
 filetype plugin on
 set grepprg=grep\ -nH\ $*
 
+set autochdir
 set showcmd		" Show (partial) command in status line.
 set showmatch		" Show matching brackets.
 set ignorecase		" Do case insensitive matching
