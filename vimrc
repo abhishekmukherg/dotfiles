@@ -1,6 +1,6 @@
 syntax on
 set background=dark
-colorscheme Dark2
+colorscheme inkpot
 
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
