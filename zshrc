@@ -202,7 +202,7 @@ zle_highlight=(region:underline
                special:bold
               )
 
-which pip >/dev/null 2>&1 && eval `pip completion --zsh`
+which pip >/dev/null 2>&1 && eval "`pip completion --zsh`"
 which virtualenvwrapper_bashrc > /dev/null 2>&1 && source =virtualenvwrapper_bashrc
 
 function cdtop() { cd $TRTOP/$@ }
@@ -255,6 +255,7 @@ function magic_svn_command()
 alias sbt="st && (cdtop && source ~/bin/set_trtop)"
 alias bugz_patch='noglob ~/bin/bugz_patch'
 alias slog='svntr login amukherjee'
+alias fix-eclipse='$TRTOP/scripts/fix-eclipse-tr.py $TRTOP'
 function tab()
 {
     (

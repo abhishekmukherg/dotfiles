@@ -1,6 +1,6 @@
 syntax on
 set background=dark
-colorscheme Dark2
+colorscheme inkpot
 
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
@@ -172,13 +172,12 @@ highlight NonText ctermfg=0
 highlight SpecialKey ctermfg=0
 
 " Set tabstop, softtabstop and shiftwidth to the same value
-command! -nargs=* Stab call Stab()
-function! Stab()
-  let l:tabstop = 1 * input('set tabstop = softtabstop = shiftwidth = ')
-  if l:tabstop > 0
-    let &l:sts = l:tabstop
-    let &l:ts = l:tabstop
-    let &l:sw = l:tabstop
+command! -nargs=1 Stab call Stab(<args>)
+function! Stab(size)
+  if a:size > 0
+    let &l:sts = a:size
+    let &l:ts = a:size
+    let &l:sw = a:size
   endif
   call SummarizeTabs()
 endfunction
