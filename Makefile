@@ -24,7 +24,7 @@ $(HOME)/.ssh/config: ssh_config
 	mkdir -p $(HOME)/.ssh
 	ln -fs $(abspath $<) $@
 
-vim/inkpot.vim: inkpot/colors/inkpot.vim
+vim/colors/inkpot.vim: inkpot/colors/inkpot.vim
 	ln -fs $(abspath $<) $@
 
 vim/doc/surround.txt: vim-surround/doc/surround.txt

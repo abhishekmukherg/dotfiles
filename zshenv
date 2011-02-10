@@ -49,6 +49,12 @@ if [[ -z $TRTOP ]] && [[ -f $HOME/.trtop_env ]]; then
 	export TRTOP=$(cat $HOME/.trtop_env)
 fi
 
-if find /lib/terminfo/ /usr/share/terminfo -name 'xterm-256color' > /dev/null; then
-	export TERM="xterm-256color"
+find_directories=
+[[ -d /lib/terminfo ]] && find_directories="$find_directories /lib/terminfo"
+[[ -d /user/share/terminfo ]] && find_directories="$find_directories /user/share/terminfo"
+
+if [[ -n "$find_directories" ]]; then
+	if find $find_directories -name 'xterm-256color' > /dev/null; then
+		export TERM="xterm-256color"
+	fi
 fi
