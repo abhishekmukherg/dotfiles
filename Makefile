@@ -14,7 +14,8 @@ all: $(HOME)/.vim \
 	$(HOME)/.Xdefaults \
 	$(HOME)/.Xmodmap \
 	$(HOME)/.zshenv \
-	$(HOME)/.zshrc
+	$(HOME)/.zshrc \
+	vim/ruby/command-t/ext.bundle vim/ruby/command-t/ext.o vim/ruby/command-t/match.o vim/ruby/command-t/matcher.o
 
 $(HOME)/.%: %
 	ln -fs $(abspath $<) $@
@@ -33,6 +34,25 @@ vim/plugin/surround.vim: vim-surround/plugin/surround.vim
 	ln -fs $(abspath $<) $@
 
 
-vim-surround/doc/surround.txt vim-surround/plugin/surround.vim inkpot/colors/inkpot.vim:
+Command-T/Makefile vim-surround/doc/surround.txt vim-surround/plugin/surround.vim inkpot/colors/inkpot.vim:
 	git submodule init
 	git submodule update
+
+Command-T/command-t.vba: Command-T/Makefile
+	grep ../mkvimball Command-T/Makefile || sed -i '' 's:mkvimball:../mkvimball:g' Command-T/Makefile
+	$(MAKE) -C Command-T
+	cd Command-T && git checkout -- Makefile
+
+vim/ruby/command-t/Makefile: vim/ruby/command-t/extconf.rb
+	cd $(dir $^) && ruby $(notdir $^)
+
+vim/ruby/command-t/ext.bundle vim/ruby/command-t/ext.o vim/ruby/command-t/match.o vim/ruby/command-t/matcher.o: vim/ruby/command-t/Makefile
+	$(MAKE) -C $(dir $^)
+
+mkvimball:
+	rm -rf /tmp/MKVIMBALL
+	[[ -f /tmp/mkvimball.tar.gz ]] || curl -o /tmp/mkvimball.tar.gz 'http://mysite.verizon.net/astronaut/src/mkvimball.tar.gz'
+	tar -C /tmp/ -xf /tmp/mkvimball.tar.gz
+	$(MAKE) -C /tmp/MKVIMBALL
+	cp /tmp/MKVIMBALL/mkvimball .
+
