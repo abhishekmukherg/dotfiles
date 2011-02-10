@@ -100,7 +100,16 @@ alias sl='sl -al'
 alias ll='ls -l'
 try_which gitk gitview
 alias ga="gitk --all &|"
-try_which vim mvim
+
+mvim_remote()
+{
+    if [[ $# > 0 ]]; then
+        mvim --remote-silent "$@"
+    else
+        mvim "$@"
+    fi
+}
+which mvim >/dev/null 2>&1 && alias vim="mvim_remote"
 alias v="vim"
 try_which grep ack
 try_which xo xdg-open
