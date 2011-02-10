@@ -4,3 +4,6 @@
 [submodule "vim-surround"]
 	path = vim-surround
 	url = https://github.com/tpope/vim-surround.git
+[submodule "Command-T"]
+	path = Command-T
+	url = https://github.com/wincent/Command-T.git

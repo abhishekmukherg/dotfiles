@@ -100,6 +100,7 @@ alias sl='sl -al'
 alias ll='ls -l'
 try_which gitk gitview
 alias ga="gitk --all &|"
+which mvim >/dev/null 2>&1 && alias vim="mvim -f"
 alias v="vim"
 try_which grep ack
 try_which xo xdg-open
@@ -244,6 +245,8 @@ function st()
 }
 
 alias tripmonster='psql -U tripmonster -h tripmonster'
+alias dev-db='psql -h dev-db -U tripmaster'
+alias rivendell='psql -h rivendell -U tripmaster'
 
 function magic_svn_command()
 {
