@@ -74,7 +74,7 @@ if has("autocmd")
   autocmd Filetype java nnoremap <silent> <buffer> <leader>d :JavaDocSearch -x declarations<cr>
   autocmd Filetype java nnoremap <silent> <buffer> <cr> :JavaSearchContext<cr>
   
-  autocmd BufEnter *   execute ":lcd " . expand("%:p:h") 
+"  autocmd BufEnter *   execute \":lcd \" . expand(\"%:p:h\") 
 endif
 augroup filetypedetect
   autocmd BufRead,BufNewFile psql.edit.* setfiletype sql
@@ -164,6 +164,9 @@ let g:VCSCommandCommitOnWrite = 0
 
 " VisIncr
 vnoremap <c-a> :I<CR>
+
+" Command-T
+let g:CommandTMaxHeight = 10
 
 " invisible characters
 set list
