@@ -126,7 +126,7 @@ set backspace=indent,eol,start
 runtime macros/matchit.vim
 
 " Taglist
-nnoremap <silent> <leader>t :TlistToggle<CR><C-w>h
+"nnoremap <silent> <leader>t :TlistToggle<CR><C-w>h
 let Tlist_Inc_Winwidth=0
 let Tlist_Exit_OnlyWindow=1
 let Tlist_Close_On_Select=1
