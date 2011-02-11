@@ -7,7 +7,11 @@ if ls ~/.gem/ruby/* >/dev/null 2>&1; then
 	done
 fi
 export PATH=$HOME/bin:/usr/lib/ccache:/opt/cxgames/bin:/opt/eclipse:${PATH}
-export EDITOR="vim"
+if which mvim >/dev/null 2>&1; then
+	export EDITOR="mvim -f"
+else
+	export EDITOR="vim"
+fi
 export LESS="--ignore-case -R"
 export DEBFULLNAME="Abhishek Mukherjee"
 which vimmanpager > /dev/null 2>&1 && export MANPAGER="vimmanpager"
