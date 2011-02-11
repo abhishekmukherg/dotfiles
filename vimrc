@@ -111,6 +111,8 @@ set completeopt=menu
 set nohlsearch
 set wildignore=*.o,*.pyc,*.pyo
 set ruler
+set wildmode=longest,list,full
+set wildmenu
 
 nnoremap Q gq
 
