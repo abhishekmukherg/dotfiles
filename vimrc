@@ -84,10 +84,6 @@ augroup END
 "let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 
 if has("autocmd")
-	autocmd FileType python set complete+=k/home/master/bin/pydiction-0.5/pydiction isk+=.,(
-endif
-
-if has("autocmd")
   filetype indent on
 endif
 
