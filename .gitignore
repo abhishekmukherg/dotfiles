@@ -1,5 +1,7 @@
 vim/.netrwhist
 vim/*/surround.*
 vim/colors/inkpot.vim
+python_vim
+vim/syntax/python.vim
 .*.sw*
 mkvimball
