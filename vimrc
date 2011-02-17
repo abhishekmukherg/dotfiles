@@ -118,6 +118,8 @@ nnoremap <silent><C-F7> :cclose<CR>
 nnoremap <silent><F6> :lopen<CR>
 nnoremap <silent><C-F6> :lclose<CR>
 
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+
 set backspace=indent,eol,start 
 
 runtime macros/matchit.vim
