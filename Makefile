@@ -3,6 +3,7 @@ all: $(HOME)/.vim \
 	vim/colors/inkpot.vim \
 	vim/doc/surround.txt \
 	vim/plugin/surround.vim \
+	vim/syntax/python.vim \
 	$(HOME)/.dir_colors \
 	$(HOME)/.gitconfig \
 	$(HOME)/.gvimrc \
@@ -55,4 +56,11 @@ mkvimball:
 	tar -C /tmp/ -xf /tmp/mkvimball.tar.gz
 	$(MAKE) -C /tmp/MKVIMBALL
 	cp /tmp/MKVIMBALL/mkvimball .
+
+python_vim/python.vim python_vim/vimrc:
+	svn checkout http://svn.python.org/projects/python/trunk/Misc/Vim python_vim
+
+vim/syntax/python.vim: python_vim/python.vim
+	ln -fs $(abspath $<) $@
+
 
