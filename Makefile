@@ -16,7 +16,10 @@ all: $(HOME)/.vim \
 	$(HOME)/.Xmodmap \
 	$(HOME)/.zshenv \
 	$(HOME)/.zshrc \
-	vim/ruby/command-t/ext.bundle vim/ruby/command-t/ext.o vim/ruby/command-t/match.o vim/ruby/command-t/matcher.o
+	vim/ruby/command-t/ext.bundle vim/ruby/command-t/ext.o \
+	vim/ruby/command-t/match.o vim/ruby/command-t/matcher.o \
+	vim/bundle/gundo \
+	vim/autoload/pathogen.vim
 
 $(HOME)/.%: %
 	ln -fs $(abspath $<) $@
@@ -35,7 +38,7 @@ vim/plugin/surround.vim: vim-surround/plugin/surround.vim
 	ln -fs $(abspath $<) $@
 
 
-Command-T/Makefile vim-surround/doc/surround.txt vim-surround/plugin/surround.vim inkpot/colors/inkpot.vim:
+gundo.vim/README.markdown Command-T/Makefile vim-surround/doc/surround.txt vim-surround/plugin/surround.vim inkpot/colors/inkpot.vim vim-pathogen/autoload/pathogen.vim:
 	git submodule init
 	git submodule update
 
@@ -64,3 +67,9 @@ vim/syntax/python.vim: python_vim/python.vim
 	ln -fs $(abspath $<) $@
 
 
+vim/bundle/gundo: gundo.vim/README.markdown
+	mkdir -p vim/bundle
+	ln -fs $(abspath gundo.vim) $@
+
+vim/autoload/pathogen.vim: vim-pathogen/autoload/pathogen.vim
+	ln -fs $(abspath $<) $@

@@ -157,6 +157,7 @@ let g:alternateExtensions_m = "h"
 let g:alternateExtensions_h = "m"
 
 nnoremap <leader>l :set list!<CR>
+nnoremap <leader>u :GundoToggle<CR>
 
 " VCS
 let g:VCSCommandCommitOnWrite = 0
@@ -166,6 +167,8 @@ vnoremap <c-a> :I<CR>
 
 " Command-T
 let g:CommandTMaxHeight = 10
+
+call pathogen#runtime_append_all_bundles()
 
 " invisible characters
 set list

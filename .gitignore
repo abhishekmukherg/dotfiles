@@ -5,3 +5,5 @@ python_vim
 vim/syntax/python.vim
 .*.sw*
 mkvimball
+vim/autoload/pathogen.vim
+vim/bundle/gundo
