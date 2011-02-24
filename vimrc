@@ -104,7 +104,8 @@ set foldmethod=syntax
 set foldlevelstart=1
 set nocp
 set completeopt=menu
-set nohlsearch
+set hlsearch
+nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 set wildignore=*.o,*.pyc,*.pyo
 set ruler
 set wildmode=longest,list,full
