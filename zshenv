@@ -1,5 +1,5 @@
 export ZSHENV_LOADED=1
-if ls ~/.gem/ruby/* >/dev/null 2>&1; then
+if [[ -d ~/.gem/ruby/ ]] && ls ~/.gem/ruby/ >/dev/null 2>&1; then
 	for dir in ~/.gem/ruby/*; do
 		if [[ -d $dir/bin ]]; then
 			export PATH="$dir/bin:$PATH"

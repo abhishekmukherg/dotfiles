@@ -216,7 +216,8 @@ which pip >/dev/null 2>&1 && eval "`pip completion --zsh`"
 which virtualenvwrapper_bashrc > /dev/null 2>&1 && source =virtualenvwrapper_bashrc
 
 function cdtop() { cd $TRTOP/$@ }
-function cdjs() { cdtop site/js2/$@ }
+function cdjs() { cdtop site/js3/$@ }
+function cdjs2() { cdtop site/js2/$@ }
 function cdimg() { cdtop site/img2/$@ }
 function cdcss() { cdtop site/css2/$@ }
 function cdimg() { cdtop site/img2/$@ }

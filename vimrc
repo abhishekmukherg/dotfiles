@@ -158,7 +158,12 @@ let g:alternateExtensions_m = "h"
 let g:alternateExtensions_h = "m"
 
 nnoremap <leader>l :set list!<CR>
-nnoremap <leader>u :GundoToggle<CR>
+function! MyGundoToggle()
+  let g:gundo_width = &columns / 4
+  GundoToggle
+endfunction
+nnoremap <leader>u :call MyGundoToggle()<CR>
+let g:gundo_help = 0
 
 " VCS
 let g:VCSCommandCommitOnWrite = 0
