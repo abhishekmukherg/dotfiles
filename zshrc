@@ -266,6 +266,14 @@ function magic_svn_command()
     done
 }
 
+function allcompress()
+{
+    for i in {js,css}_{concat,compress}; do
+        $TRTOP/scripts/tweak_feature_$1.sh $i;
+    done
+}
+
+
 alias sbt="st && (cdtop && source ~/bin/set_trtop)"
 alias svn_conflicts="svntr st | egrep '^\s*C'"
 alias bugz_patch='noglob ~/bin/bugz_patch'
