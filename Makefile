@@ -17,6 +17,7 @@ all: $(HOME)/.vim \
 	$(HOME)/.zshenv \
 	$(HOME)/.zshrc \
 	$(HOME)/.pentadactylrc \
+	$(HOME)/.pylintrc \
 	vim/ruby/command-t/ext.bundle vim/ruby/command-t/ext.o \
 	vim/ruby/command-t/match.o vim/ruby/command-t/matcher.o \
 	vim/bundle/gundo \
