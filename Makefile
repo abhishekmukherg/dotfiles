@@ -16,6 +16,7 @@ all: $(HOME)/.vim \
 	$(HOME)/.Xmodmap \
 	$(HOME)/.zshenv \
 	$(HOME)/.zshrc \
+	$(HOME)/.pentadactylrc \
 	vim/ruby/command-t/ext.bundle vim/ruby/command-t/ext.o \
 	vim/ruby/command-t/match.o vim/ruby/command-t/matcher.o \
 	vim/bundle/gundo \
