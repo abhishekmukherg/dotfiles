@@ -14,7 +14,7 @@ if has("autocmd")
   autocmd Filetype python set autoindent
   autocmd Filetype python set enc=utf-8
   autocmd Filetype python set keywordprg=pydoc
-  autocmd Filetype python set iskeyword=a-z,A-Z,48-57,_,.
+  autocmd Filetype python set iskeyword=a-z,A-Z,48-57,_
 
   autocmd Filetype objc set tabstop=4
   autocmd Filetype objc set shiftwidth=4
