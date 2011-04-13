@@ -68,9 +68,10 @@ setopt extended_glob notify list_ambiguous
 DIRSTACKSIZE=50
 limit coredumpsize 10m
 
-HISTSIZE=10000
+HISTSIZE=20000
+mkdir -p ~/.zsh
 HISTFILE=~/.zsh/history
-SAVEHIST=10000
+SAVEHIST=20000
 
 ## With commands like `rm' it's annoying if one gets offered the same filename
 ## again even if it is already on the command line. To avoid that:
