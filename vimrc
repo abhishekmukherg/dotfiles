@@ -120,6 +120,13 @@ nnoremap <silent><F6> :lopen<CR>
 nnoremap <silent><C-F6> :lclose<CR>
 
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
+nnoremap <leader>bn :bn<CR>
+nnoremap <leader>bp :bp<CR>
+
+nnoremap [[ ?{<CR>w99[{
+nnoremap ][ /}<CR>b99]}
+nnoremap ]] j0[[%/{<CR>
+nnoremap [] k$][%?}<CR>
 
 set backspace=indent,eol,start 
 
@@ -170,6 +177,8 @@ let g:VCSCommandCommitOnWrite = 0
 
 " VisIncr
 vnoremap <c-a> :I<CR>
+
+runtime ftplugin/man.vim
 
 " Command-T
 let g:CommandTMaxHeight = 10
