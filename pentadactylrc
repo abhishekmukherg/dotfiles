@@ -8,5 +8,7 @@ nnoremap <silent> <leader>d :toolbartoggle Web Developer Toolbar<CR>
 nnoremap <leader>g og 
 nnoremap <leader>G tg 
 nnoremap <M-f> /
+nnoremap <M-g> n
+nnoremap <M-S-g> N
 
 " vim: set ft=pentadactyl:
