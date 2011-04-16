@@ -183,6 +183,7 @@ runtime ftplugin/man.vim
 " Command-T
 let g:CommandTMaxHeight = 10
 
+" Pathogen.do_magic()
 call pathogen#runtime_append_all_bundles()
 
 " invisible characters
