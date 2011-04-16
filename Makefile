@@ -39,8 +39,11 @@ vim/doc/surround.txt: vim-surround/doc/surround.txt
 vim/plugin/surround.vim: vim-surround/plugin/surround.vim
 	ln -fs $(abspath $<) $@
 
+vim/bundle/solarized: solarized/.git
+	ln -fs $(abspath solarized/vim-colors-solarized) $@
 
-gundo.vim/README.markdown Command-T/Makefile vim-surround/doc/surround.txt vim-surround/plugin/surround.vim inkpot/colors/inkpot.vim vim-pathogen/autoload/pathogen.vim:
+
+gundo.vim/README.markdown Command-T/Makefile vim-surround/doc/surround.txt vim-surround/plugin/surround.vim inkpot/colors/inkpot.vim vim-pathogen/autoload/pathogen.vim solarized/.git:
 	git submodule init
 	git submodule update
 

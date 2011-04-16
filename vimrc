@@ -1,6 +1,9 @@
+﻿" Pathogen.do_magic()
+call pathogen#runtime_append_all_bundles()
+
 syntax on
 set background=dark
-colorscheme inkpot
+colorscheme solarized
 
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
@@ -12,7 +15,6 @@ if has("autocmd")
   autocmd Filetype python set expandtab
   autocmd Filetype python set softtabstop=0
   autocmd Filetype python set autoindent
-  autocmd Filetype python set enc=utf-8
   autocmd Filetype python set keywordprg=pydoc
   autocmd Filetype python set iskeyword=a-z,A-Z,48-57,_
 
@@ -22,7 +24,6 @@ if has("autocmd")
   autocmd Filetype objc set expandtab
   autocmd Filetype objc set softtabstop=0
   autocmd Filetype objc set autoindent
-  autocmd Filetype objc set enc=utf-8
 
   autocmd Filetype javascript set tabstop=4
   autocmd Filetype javascript set shiftwidth=4
@@ -30,7 +31,6 @@ if has("autocmd")
   autocmd Filetype javascript set expandtab
   autocmd Filetype javascript set softtabstop=0
   autocmd Filetype javascript set autoindent
-  autocmd Filetype javascript set enc=utf-8
 
   autocmd Filetype ruby set tabstop=2
   autocmd Filetype ruby set shiftwidth=2
@@ -38,7 +38,6 @@ if has("autocmd")
   autocmd Filetype ruby set expandtab
   autocmd Filetype ruby set softtabstop=2
   autocmd Filetype ruby set autoindent
-  autocmd Filetype ruby set enc=utf-8
 
   autocmd Filetype java set tabstop=4
   autocmd Filetype java set shiftwidth=4
@@ -46,12 +45,7 @@ if has("autocmd")
   autocmd Filetype java set expandtab
   autocmd Filetype java set softtabstop=4
   autocmd Filetype java set autoindent
-  autocmd Filetype java set enc=utf-8
   autocmd Filetype java setlocal omnifunc=javacomplete#Complete
-
-  autocmd BufRead ~/Packages/adrastos/* set tabstop=4
-  autocmd BufRead ~/Packages/adrastos/* set shiftwidth=4
-  autocmd BufRead ~/Packages/adrastos/* set expandtab
 
   autocmd Filetype velocity set tabstop=2
   autocmd Filetype velocity set shiftwidth=2
@@ -59,7 +53,6 @@ if has("autocmd")
   autocmd Filetype velocity set expandtab
   autocmd Filetype velocity set softtabstop=2
   autocmd Filetype velocity set autoindent
-  autocmd Filetype velocity set enc=utf-8
 
   autocmd Filetype css set tabstop=2
   autocmd Filetype css set shiftwidth=2
@@ -67,7 +60,6 @@ if has("autocmd")
   autocmd Filetype css set expandtab
   autocmd Filetype css set softtabstop=2
   autocmd Filetype css set autoindent
-  autocmd Filetype css set enc=utf-8
 
 
   autocmd Filetype java nnoremap <silent> <buffer> <leader>i :JavaImport<cr>
@@ -87,7 +79,16 @@ if has("autocmd")
   filetype indent on
 endif
 
-filetype plugin on
+if has("multi_byte")
+  if &termencoding == ""
+    let &termencoding = &encoding
+  endif
+  set encoding=utf-8
+  set termencoding=utf-8
+  setglobal fileencoding=utf-8 
+  "setglobal bomb
+  set fileencodings=ucs-bom,utf-8,latin1
+endif
 set grepprg=grep\ -nH\ $*
 
 "set autochdir
@@ -118,6 +119,9 @@ nnoremap <silent><F7> :copen<CR>
 nnoremap <silent><C-F7> :cclose<CR>
 nnoremap <silent><F6> :lopen<CR>
 nnoremap <silent><C-F6> :lclose<CR>
+
+nnoremap <silent><C-j> gj
+nnoremap <silent><C-k> gk
 
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 nnoremap <leader>bn :bn<CR>
@@ -164,7 +168,6 @@ let g:pylint_onwrite = 0
 let g:alternateExtensions_m = "h"
 let g:alternateExtensions_h = "m"
 
-nnoremap <leader>l :set list!<CR>
 function! MyGundoToggle()
   let g:gundo_width = &columns / 4
   GundoToggle
@@ -183,15 +186,12 @@ runtime ftplugin/man.vim
 " Command-T
 let g:CommandTMaxHeight = 10
 
-" Pathogen.do_magic()
-call pathogen#runtime_append_all_bundles()
-
 " invisible characters
 set list
-nmap <leader>l :set list!<CR>
+nnoremap <leader>l :set list!<CR>
 set listchars=tab:▸\ ,eol:¬
-highlight NonText ctermfg=0
-highlight SpecialKey ctermfg=0
+highlight NonText ctermfg=darkgreen
+highlight SpecialKey ctermfg=darkgreen
 
 " Set tabstop, softtabstop and shiftwidth to the same value
 command! -nargs=1 Stab call Stab(<args>)
