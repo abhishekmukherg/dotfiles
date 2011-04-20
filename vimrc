@@ -124,8 +124,8 @@ nnoremap <silent><C-j> gj
 nnoremap <silent><C-k> gk
 
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
-nnoremap <leader>bn :bn<CR>
-nnoremap <leader>bp :bp<CR>
+nnoremap <leader>n :bn<CR>
+nnoremap <leader>p :bp<CR>
 
 nnoremap [[ ?{<CR>w99[{
 nnoremap ][ /}<CR>b99]}
@@ -144,7 +144,7 @@ let Tlist_Close_On_Select=1
 let Tlist_Highlight_Tag_On_BufEnter=1
 
 " NERD tree
-nnoremap <silent> <leader>n :NERDTreeToggle<CR>
+nnoremap <silent> <leader>e :NERDTreeToggle<CR>
 let NERDTreeQuitOnOpen = 1
 
 
