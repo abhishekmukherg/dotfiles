@@ -4,6 +4,7 @@ loadplugins '\.(js|penta)$'
 group user
 
 set passkeys+=^https?\://www\.google\.com/reader/:jAkmvr,ga,ge
+set passkeys+=^https?\://mail\.google\.com/:jk<CR>
 nnoremap <silent> <leader>d :toolbartoggle Web Developer Toolbar<CR>
 nnoremap <leader>g og 
 nnoremap <leader>G tg 
