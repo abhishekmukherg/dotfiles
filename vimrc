@@ -8,7 +8,7 @@ colorscheme solarized
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal g'\"" | endif
-  autocmd FileType python compiler pylint
+"  autocmd FileType python compiler pylint
   autocmd Filetype python set tabstop=4
   autocmd Filetype python set shiftwidth=4
   autocmd Filetype python set smarttab
