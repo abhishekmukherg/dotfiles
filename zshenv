@@ -36,7 +36,7 @@ export QEMU_AUDIO_DRV=pa
 export PYTHONUSERBASE="$HOME/.local/lib/python2.6/"
 export PYTHONPATH="$HOME/.local/lib/python2.6/"
 export SDL_AUDIODRIVER="pulse"
-export LANG="en_US.utf8"
+export LANG="en_US.UTF-8"
 export LOCALE="$LANG"
 
 export CVSROOT=":pserver:webadmin@source.tripadvisor.com:/home/CVS"
