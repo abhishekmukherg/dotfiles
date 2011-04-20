@@ -7,3 +7,4 @@ vim/syntax/python.vim
 mkvimball
 vim/autoload/pathogen.vim
 vim/bundle/gundo
+vim/bundle/solarized
