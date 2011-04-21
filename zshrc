@@ -78,9 +78,6 @@ SAVEHIST=20000
 #
 zstyle ':completion:*:rm:*' ignore-line yes
 
-## Load the completion module.
-zstyle :compinstall filename '/home/master/.zshrc'
-
 try_alias() {
   cmd=$1
   shift
@@ -110,7 +107,12 @@ mvim_remote()
         mvim "$@"
     fi
 }
-which mvim >/dev/null 2>&1 && alias vim="mvim_remote"
+if which mvim >/dev/null 2>&1; then
+    alias vim="mvim_remote"
+    alias V='\vim -'
+else
+    alias V='vim -'
+fi
 alias v="vim"
 try_which grep ack
 try_which xo xdg-open
