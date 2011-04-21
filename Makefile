@@ -21,6 +21,7 @@ all: $(HOME)/.vim \
 	vim/ruby/command-t/ext.bundle vim/ruby/command-t/ext.o \
 	vim/ruby/command-t/match.o vim/ruby/command-t/matcher.o \
 	vim/bundle/gundo \
+	vim/bundle/solarized \
 	vim/autoload/pathogen.vim
 
 $(HOME)/.%: %

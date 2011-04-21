@@ -232,7 +232,8 @@ alias japp="(cdtop && ant jar-applications)"
 alias jtr="(cdtop && ant jar-tr)"
 alias ja='make -C $TRTOP'
 alias jj='make -C $TRTOP java'
-alias jjs='make -C $TRTOP/site/js2 -j5'
+alias jjs='make -C $TRTOP/site/js3 -j5'
+alias jjs2='make -C $TRTOP/site/js2 -j5'
 alias jcss='make -C $TRTOP/site/css2 -j5'
 
 function st()
