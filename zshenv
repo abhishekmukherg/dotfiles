@@ -15,6 +15,7 @@ fi
 export LESS="--ignore-case -R"
 export DEBFULLNAME="Abhishek Mukherjee"
 which vimmanpager > /dev/null 2>&1 && export MANPAGER="vimmanpager"
+which vimpager >/dev/null 2>&1 && export PAGER="vimpager" && alias less=vimpager && alias zless=vimpager
 export DEBEMAIL="linkinpark342@gmail.com"
 
 export CC="gcc"

@@ -22,7 +22,8 @@ all: $(HOME)/.vim \
 	vim/ruby/command-t/match.o vim/ruby/command-t/matcher.o \
 	vim/bundle/gundo \
 	vim/bundle/solarized \
-	vim/autoload/pathogen.vim
+	vim/autoload/pathogen.vim \
+	$(HOME)/bin/vimpager
 
 $(HOME)/.%: %
 	ln -fs $(abspath $<) $@
@@ -44,7 +45,7 @@ vim/bundle/solarized: solarized/.git
 	ln -fs $(abspath solarized/vim-colors-solarized) $@
 
 
-gundo.vim/README.markdown Command-T/Makefile vim-surround/doc/surround.txt vim-surround/plugin/surround.vim inkpot/colors/inkpot.vim vim-pathogen/autoload/pathogen.vim solarized/.git:
+gundo.vim/README.markdown Command-T/Makefile vim-surround/doc/surround.txt vim-surround/plugin/surround.vim inkpot/colors/inkpot.vim vim-pathogen/autoload/pathogen.vim solarized/.git vimpager/vimpager:
 	git submodule init
 	git submodule update
 
@@ -79,3 +80,6 @@ vim/bundle/gundo: gundo.vim/README.markdown
 
 vim/autoload/pathogen.vim: vim-pathogen/autoload/pathogen.vim
 	ln -fs $(abspath $<) $@
+
+$(HOME)/bin/vimpager: vimpager/vimpager
+	ln -s $(abspath vimpager/vimpager) $@
