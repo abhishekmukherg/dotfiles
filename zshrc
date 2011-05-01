@@ -94,7 +94,7 @@ try_alias ls ls --color=auto || try_alias ls ls -G
 
 alias mkdir='noglob mkdir'
 
-alias sl='sl -al'
+try_alias sl sl -al || alias sl='ls'
 alias ll='ls -l'
 try_which gitk gitview
 alias ga="gitk --all &|"
@@ -294,6 +294,22 @@ function tab()
             sudo ./scripts/tabuild -rf
         fi
     )
+}
+
+function onoz()
+{
+    if [[ "$1" == "lb" ]] || [[ "$1" == "lookback" ]]; then
+        shift
+        $HOME/bin/curl -A iphone -s -o /dev/null $(hostname -f)
+        $HOME/bin/lookback_tail "$@"
+    elif [[ "$1" == "trip" ]]; then
+        highlight_tail /etc/httpd-MAINLINE/logs/tripadvisor.log
+    elif [[ "$1" == "access" ]]; then
+        highlight_tail /etc/httpd-MAINLINE/logs/access_log
+    else
+        echo "Try again? (lb|trip|access)" 1>&2
+        return 2
+    fi
 }
 
 true
