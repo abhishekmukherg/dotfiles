@@ -18,7 +18,7 @@
 	url = git://github.com/altercation/solarized.git
 [submodule "vimpager"]
 	path = vimpager
-	url = https://github.com/rkitover/vimpager.git
+	url = https://github.com/linkinpark342/vimpager.git
 [submodule "vim-easymotion"]
 	path = vim-easymotion
 	url = https://github.com/Lokaltog/vim-easymotion.git
