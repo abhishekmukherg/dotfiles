@@ -126,6 +126,8 @@ nnoremap <silent><C-k> gk
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 nnoremap <leader>n :bn<CR>
 nnoremap <leader>p :bp<CR>
+nnoremap <leader>w :bw<CR>
+nnoremap <leader>P :set paste!<CR>:set paste?<CR>
 
 nnoremap [[ ?{<CR>w99[{
 nnoremap ][ /}<CR>b99]}
