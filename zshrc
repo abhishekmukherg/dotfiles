@@ -258,6 +258,10 @@ function st()
     done
 }
 
+# CD Aliases
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
 alias tripmonster='psql -U tripmonster -h tripmonster'
 alias dev-db='psql -h dev-db -U tripmaster'
 alias rivendell='psql -h rivendell -U tripmaster'
