@@ -167,6 +167,7 @@ let g:pylint_onwrite = 0
 
 let g:alternateExtensions_m = "h"
 let g:alternateExtensions_h = "m"
+let g:EasyMotion_leader_key = '<Leader>m'
 
 function! MyGundoToggle()
   let g:gundo_width = &columns / 4

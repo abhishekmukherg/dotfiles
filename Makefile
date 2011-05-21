@@ -22,6 +22,7 @@ all: $(HOME)/.vim \
 	vim/ruby/command-t/match.o vim/ruby/command-t/matcher.o \
 	vim/bundle/gundo \
 	vim/bundle/solarized \
+	vim/bundle/easymotion \
 	vim/autoload/pathogen.vim \
 	$(HOME)/bin/vimpager
 
@@ -43,6 +44,9 @@ vim/plugin/surround.vim: vim-surround/plugin/surround.vim
 
 vim/bundle/solarized: solarized/.git
 	ln -fs $(abspath solarized/vim-colors-solarized) $@
+
+vim/bundle/easymotion: vim-easymotion/.git
+	ln -fs $(abspath vim-easymotion) $@
 
 
 gundo.vim/README.markdown Command-T/Makefile vim-surround/doc/surround.txt vim-surround/plugin/surround.vim inkpot/colors/inkpot.vim vim-pathogen/autoload/pathogen.vim solarized/.git vimpager/vimpager:

@@ -19,3 +19,6 @@
 [submodule "vimpager"]
 	path = vimpager
 	url = https://github.com/rkitover/vimpager.git
+[submodule "vim-easymotion"]
+	path = vim-easymotion
+	url = https://github.com/Lokaltog/vim-easymotion.git
