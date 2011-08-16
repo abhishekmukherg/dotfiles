@@ -4,12 +4,18 @@ loadplugins '\.(js|penta)$'
 group user
 
 set passkeys+=^https?\://www\.google\.com/reader/:jAkmvr,ga,ge
-set passkeys+=^https?\://mail\.google\.com/:jk<CR>
+set passkeys+=^https?\://mail\.google\.com/:jkucxarI\/,gi,gs,gt,gd,ga,gc,gb,gk,gl<CR>
+set passkeys+=^https?\://duckduckgo.com/:jkhvrsm!/<M-Enter>
+set defsearch=duckduckgo-ssl
+nnoremap <silent> J j
+nnoremap <silent> K k
 nnoremap <silent> <leader>d :toolbartoggle Web Developer Toolbar<CR>
 nnoremap <leader>g og 
 nnoremap <leader>G tg 
 nnoremap <M-f> /
 nnoremap <M-g> n
 nnoremap <M-S-g> N
+nnoremap <leader>e :emenu 
+nnoremap <leader>c :emenu Tools.Web Developer.Cookies.Clear Session Cookies<CR>:emenu Tools.Web Developer.Cookies.Delete Domain Cookies<CR>:emenu Tools.Web Developer.Cookies.Delete Path Cookies<CR>
 
 " vim: set ft=pentadactyl:
