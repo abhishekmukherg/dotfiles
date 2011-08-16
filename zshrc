@@ -68,7 +68,7 @@ setopt extended_glob notify list_ambiguous
 DIRSTACKSIZE=50
 limit coredumpsize 10m
 
-HISTSIZE=20000
+HISTSIZE=200000
 mkdir -p ~/.zsh
 HISTFILE=~/.zsh/history
 SAVEHIST=20000
@@ -223,10 +223,10 @@ function cdjs() { cdtop site/js3/$@ }
 function cdjs2() { cdtop site/js2/$@ }
 function cdimg() { cdtop site/img2/$@ }
 function cdcss() { cdtop site/css2/$@ }
-function cdimg() { cdtop site/img2/$@ }
 function cdvm() { cdtop site/velocity_redesign/$@ }
 
 alias vc='vim $TRTOP/config/hosts/$(hostname -s).ini'
+alias tweak='$TRTOP/scripts/tweak'
 alias fs='$TRTOP/scripts/find-string --relative'
 alias japp="(cdtop && ant jar-applications)"
 alias jtr="(cdtop && ant jar-tr)"
@@ -286,6 +286,7 @@ alias svn_conflicts="svntr st | egrep '^\s*C'"
 alias bugz_patch='noglob ~/bin/bugz_patch'
 alias slog='svntr login amukherjee'
 alias fix-eclipse='$TRTOP/scripts/fix-eclipse-tr.py $TRTOP'
+alias hoot='$TRTOP/scripts/hoot'
 function tab()
 {
     (
