@@ -112,6 +112,9 @@ set ruler
 set wildmode=longest,list,full
 set wildmenu
 
+" Make :w!! automatically write as sudo
+cnoremap w!! %!sudo tee > /dev/null %
+
 nnoremap Q gq
 
 nnoremap <silent><F8> :make<CR><CR>
@@ -120,8 +123,8 @@ nnoremap <silent><C-F7> :cclose<CR>
 nnoremap <silent><F6> :lopen<CR>
 nnoremap <silent><C-F6> :lclose<CR>
 
-nnoremap <silent><C-j> gj
-nnoremap <silent><C-k> gk
+"nnoremap <silent><C-j> gj
+"nnoremap <silent><C-k> gk
 
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 nnoremap <leader>n :bn<CR>
@@ -139,6 +142,7 @@ set backspace=indent,eol,start
 runtime macros/matchit.vim
 
 " Taglist
+command! T normal :TlistToggle<CR><C-w>h
 "nnoremap <silent> <leader>t :TlistToggle<CR><C-w>h
 let Tlist_Inc_Winwidth=0
 let Tlist_Exit_OnlyWindow=1
