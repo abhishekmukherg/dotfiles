@@ -23,6 +23,7 @@ all: $(HOME)/.vim \
 	vim/bundle/gundo \
 	vim/bundle/solarized \
 	vim/bundle/easymotion \
+	vim/bundle/snipmate \
 	vim/autoload/pathogen.vim \
 	$(HOME)/bin/vimpager
 
@@ -49,7 +50,7 @@ vim/bundle/easymotion: vim-easymotion/.git
 	ln -fs $(abspath vim-easymotion) $@
 
 
-gundo.vim/README.markdown Command-T/Makefile vim-surround/doc/surround.txt vim-surround/plugin/surround.vim inkpot/colors/inkpot.vim vim-pathogen/autoload/pathogen.vim solarized/.git vimpager/vimpager:
+gundo.vim/README.markdown Command-T/Makefile vim-surround/doc/surround.txt vim-surround/plugin/surround.vim inkpot/colors/inkpot.vim vim-pathogen/autoload/pathogen.vim solarized/.git vimpager/vimpager snipmate.vim/.git:
 	git submodule init
 	git submodule update
 
@@ -81,6 +82,10 @@ vim/syntax/python.vim: python_vim/python.vim
 vim/bundle/gundo: gundo.vim/README.markdown
 	mkdir -p vim/bundle
 	ln -fs $(abspath gundo.vim) $@
+
+vim/bundle/snipmate: snipmate.vim/.git
+	mkdir -p vim/bundle
+	ln -fs $(abspath snipmate.vim) $@
 
 vim/autoload/pathogen.vim: vim-pathogen/autoload/pathogen.vim
 	ln -fs $(abspath $<) $@
