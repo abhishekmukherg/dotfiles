@@ -1,5 +1,5 @@
 ﻿" Pathogen.do_magic()
-call pathogen#runtime_append_all_bundles()
+call pathogen#infect()
 
 syntax on
 set background=dark
@@ -199,6 +199,8 @@ nnoremap <leader>l :set list!<CR>
 set listchars=tab:▸\ ,eol:¬
 highlight NonText ctermfg=darkgreen
 highlight SpecialKey ctermfg=darkgreen
+
+let g:js_indent_log = 0
 
 " Set tabstop, softtabstop and shiftwidth to the same value
 command! -nargs=1 Stab call Stab(<args>)
