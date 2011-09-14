@@ -77,6 +77,7 @@ augroup END
 
 if has("autocmd")
   filetype indent on
+  filetype plugin on
 endif
 
 if has("multi_byte")
