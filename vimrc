@@ -53,6 +53,7 @@ if has("autocmd")
   autocmd Filetype velocity set expandtab
   autocmd Filetype velocity set softtabstop=2
   autocmd Filetype velocity set autoindent
+  autocmd BufWritePost *.vm !$TRTOP/scripts/tweak flush velocity >/dev/null 2>&1 &
 
   autocmd Filetype css set tabstop=2
   autocmd Filetype css set shiftwidth=2
