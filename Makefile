@@ -13,6 +13,7 @@ all: $(HOME)/.vim \
 	$(HOME)/.ssh/config\
 	$(HOME)/.wmiirc \
 	$(HOME)/.Xdefaults \
+	$(HOME)/.ackrc \
 	$(HOME)/.Xmodmap \
 	$(HOME)/.zshenv \
 	$(HOME)/.zshrc \
