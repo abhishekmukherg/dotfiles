@@ -57,9 +57,10 @@ fi
 find_directories=
 [[ -d /lib/terminfo ]] && find_directories="$find_directories /lib/terminfo"
 [[ -d /user/share/terminfo ]] && find_directories="$find_directories /user/share/terminfo"
+find_directories=$(echo $find_directories)
 
 if [[ -n "$find_directories" ]]; then
-	if find $find_directories -name 'xterm-256color' > /dev/null; then
+	if find $find_directories -name 'xterm-256color' > /dev/null 2>&1; then
 		export TERM="xterm-256color"
 	fi
 fi
