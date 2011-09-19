@@ -53,7 +53,7 @@ if has("autocmd")
   autocmd Filetype velocity set expandtab
   autocmd Filetype velocity set softtabstop=2
   autocmd Filetype velocity set autoindent
-  autocmd BufWritePost *.vm !$TRTOP/scripts/tweak flush velocity >/dev/null 2>&1 &
+  autocmd BufWritePost *.vm silent !$TRTOP/scripts/tweak flush velocity >/dev/null 2>&1 &
 
   autocmd Filetype css set tabstop=2
   autocmd Filetype css set shiftwidth=2
@@ -67,6 +67,7 @@ if has("autocmd")
   autocmd Filetype java nnoremap <silent> <buffer> <leader>d :JavaDocSearch -x declarations<cr>
   autocmd Filetype java nnoremap <silent> <buffer> <cr> :JavaSearchContext<cr>
 endif
+
 augroup filetypedetect
   autocmd BufRead,BufNewFile psql.edit.* setfiletype sql
   autocmd BufRead,BufNewFile *.wiki setfiletype wikipedia
