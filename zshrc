@@ -114,6 +114,7 @@ else
     alias V='vim -'
 fi
 alias v="vim"
+try_which grep ack-grep
 try_which grep ack
 try_which xo xdg-open
 try_which xo open
@@ -316,5 +317,7 @@ function onoz()
         return 2
     fi
 }
+
+[[ -e ~/.zsh_local ]] && source ~/.zsh_local
 
 true
