@@ -14,6 +14,7 @@
 	st = status
 	sb = show-branch
 	co = checkout
+	lol = log --pretty=oneline --abbrev-commit --graph --decorate
 [giggle]
 	compact-mode = false
 	main-window-maximized = false
@@ -23,3 +24,9 @@
 [github]
 	user = linkinpark342
 	token = 165fc21052f32c55d98333646c42455f
+
+[url "git://github.com/"]
+	insteadOf = gh:
+
+[url "git@github.com:linkinpark342/"]
+	insteadOf = wgh:
