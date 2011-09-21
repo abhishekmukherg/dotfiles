@@ -66,6 +66,8 @@ if has("autocmd")
   autocmd Filetype java nnoremap <silent> <buffer> <leader>i :JavaImport<cr>
   autocmd Filetype java nnoremap <silent> <buffer> <leader>d :JavaDocSearch -x declarations<cr>
   autocmd Filetype java nnoremap <silent> <buffer> <cr> :JavaSearchContext<cr>
+
+  autocmd Filetype rst nnoremap <silent> <buffer> <leader>h yypVr
 endif
 
 augroup filetypedetect
