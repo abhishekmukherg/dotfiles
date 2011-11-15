@@ -98,6 +98,7 @@ try_alias sl sl -al || alias sl='ls'
 alias ll='ls -l'
 try_which gitk gitview
 alias ga="gitk --all &|"
+alias less=/usr/bin/less
 
 mvim_remote()
 {
@@ -235,6 +236,23 @@ alias jj='make -C $TRTOP java'
 alias jjs='make -C $TRTOP/site/js3 -j5'
 alias jjs2='make -C $TRTOP/site/js2 -j5'
 alias jcss='make -C $TRTOP/site/css2 -j5'
+
+function _flocal()
+{
+    local dir=$1
+    shift
+    find $TRTOP/$dir -not -path '*/.svn/*' -iname '*'"$@"'*' -not -name .cvsignore -type f
+}
+
+function _elocal()
+{
+    local dir="$1"
+    shift
+    "$EDITOR" $(_flocal "$dir" "$@")
+}
+
+function ftr() { _flocal tr "$@" }
+function etr() { _elocal tr "$@" }
 
 function st()
 {
