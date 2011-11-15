@@ -220,6 +220,7 @@ which pip >/dev/null 2>&1 && eval "`pip completion --zsh`"
 which virtualenvwrapper.sh > /dev/null 2>&1 && source =virtualenvwrapper.sh
 
 function cdtop() { cd $TRTOP/$@ }
+function cdtr() { cd $TRTOP/tr/$@ }
 function cdjs() { cdtop site/js3/$@ }
 function cdjs2() { cdtop site/js2/$@ }
 function cdimg() { cdtop site/img2/$@ }
@@ -236,6 +237,17 @@ alias jj='make -C $TRTOP java'
 alias jjs='make -C $TRTOP/site/js3 -j5'
 alias jjs2='make -C $TRTOP/site/js2 -j5'
 alias jcss='make -C $TRTOP/site/css2 -j5'
+function ts()
+{
+    $TRTOP/scripts/$@
+}
+function sts()
+{
+    sudo $TRTOP/scripts/$@
+}
+
+alias dev='ssh g-dev.tripadvisor.com'
+alias odin='ssh odin.dhcp.tripadvisor.com'
 
 function st()
 {
