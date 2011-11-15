@@ -13,6 +13,7 @@ all: $(HOME)/.vim \
 	$(HOME)/.ssh/config\
 	$(HOME)/.wmiirc \
 	$(HOME)/.Xdefaults \
+	$(HOME)/.ackrc \
 	$(HOME)/.Xmodmap \
 	$(HOME)/.zshenv \
 	$(HOME)/.zshrc \
@@ -24,6 +25,7 @@ all: $(HOME)/.vim \
 	vim/bundle/solarized \
 	vim/bundle/easymotion \
 	vim/bundle/snipmate \
+	vim/bundle/nerdcommenter \
 	vim/autoload/pathogen.vim \
 	$(HOME)/bin/vimpager
 
@@ -50,7 +52,7 @@ vim/bundle/easymotion: vim-easymotion/.git
 	ln -fs $(abspath vim-easymotion) $@
 
 
-gundo.vim/README.markdown Command-T/Makefile vim-surround/doc/surround.txt vim-surround/plugin/surround.vim inkpot/colors/inkpot.vim vim-pathogen/autoload/pathogen.vim solarized/.git vimpager/vimpager snipmate.vim/.git:
+gundo.vim/README.markdown Command-T/Makefile vim-surround/doc/surround.txt vim-surround/plugin/surround.vim inkpot/colors/inkpot.vim vim-pathogen/autoload/pathogen.vim solarized/.git vimpager/vimpager snipmate.vim/.git nerdcommenter/.git:
 	git submodule init
 	git submodule update
 
@@ -86,6 +88,10 @@ vim/bundle/gundo: gundo.vim/README.markdown
 vim/bundle/snipmate: snipmate.vim/.git
 	mkdir -p vim/bundle
 	ln -fs $(abspath snipmate.vim) $@
+
+vim/bundle/nerdcommenter: nerdcommenter/.git
+	mkdir -p vim/bundle
+	ln -fs $(abspath nerdcommenter) $@
 
 vim/autoload/pathogen.vim: vim-pathogen/autoload/pathogen.vim
 	ln -fs $(abspath $<) $@

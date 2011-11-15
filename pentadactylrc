@@ -6,6 +6,7 @@ group user
 set passkeys+=^https?\://www\.google\.com/reader/:jAkmvr,ga,ge
 set passkeys+=^https?\://mail\.google\.com/:jkucxarI\/,gi,gs,gt,gd,ga,gc,gb,gk,gl<CR>
 set passkeys+=^https?\://duckduckgo.com/:jkhvrsm!/<M-Enter>
+set passkeys+=^https?\://www.google.com/voice/:r
 set defsearch=duckduckgo-ssl
 nnoremap <silent> J j
 nnoremap <silent> K k

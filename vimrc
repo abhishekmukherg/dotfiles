@@ -66,7 +66,10 @@ if has("autocmd")
   autocmd Filetype java nnoremap <silent> <buffer> <leader>i :JavaImport<cr>
   autocmd Filetype java nnoremap <silent> <buffer> <leader>d :JavaDocSearch -x declarations<cr>
   autocmd Filetype java nnoremap <silent> <buffer> <cr> :JavaSearchContext<cr>
+
+  autocmd Filetype rst nnoremap <silent> <buffer> <leader>h yypVr
 endif
+
 augroup filetypedetect
   autocmd BufRead,BufNewFile psql.edit.* setfiletype sql
   autocmd BufRead,BufNewFile *.wiki setfiletype wikipedia
@@ -78,6 +81,7 @@ augroup END
 
 if has("autocmd")
   filetype indent on
+  filetype plugin on
 endif
 
 if has("multi_byte")
