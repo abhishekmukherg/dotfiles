@@ -118,15 +118,19 @@ alias v="vim"
 try_which grep ack-grep
 try_which grep ack
 try_which xo xdg-open
-try_which xo open
 alias jobs='jobs -dlp'
 alias logdir='cd /etc/httpd-MAINLINE/logs'
 
 try_which gzip pigz
 try_which bzip2 pbzip2
 
-which aptitude >/dev/null 2>&1 && alias apt='sudo aptitude' || alias apt='sudo apt-get'
-alias apti='apt install --with-recommends'
+if which aptitude >/dev/null 2>&1; then
+    alias apt='sudo aptitude'
+    alias apti'apt install --with-recommends'
+else
+    alias apt='sudo apt-get'
+    alias apti='apt install'
+fi
 alias aptc='apt-cache'
 alias aptcs='apt-cache search'
 grep_sl()
@@ -142,22 +146,52 @@ alias pacman='sudo pacman -y'
 
 #exec 2>>(while read line; do
   #print "${fg[red]}${(q)line}${reset_color}" > /dev/tty; print -n $'\0'; done)
+function zkbd_file() {
+    local zkbddir="$1"
+    local t1="$zkbddir/${TERM}-${VENDOR}-${OSTYPE}"
+    local t2="$zkbddir/${TERM}-${DISPLAY}"
+    if [[ -f $t1 ]]; then
+        printf '%s' "$t1"
+    elif [[ -f $t2 ]]; then
+        printf '%s' "$t2"
+    else
+        return 1
+    fi
+}
 
-autoload zkbd
-#[[ ! -d ~/.zkbd ]] && mkdir ~/.zkbd
-#[[ ! -f ~/.zkbd/$TERM-${DISPLAY:-$VENDOR-$OSTYPE} ]] && zkbd
-#source ~/.zkbd/$TERM-${DISPLAY:-$VENDOR-$OSTYPE}
+function load_zkbd() {
+    autoload zkbd
+    local zkbddir=${ZDOTDIR:-$HOME}/.zkbd
+    [[ ! -d $zkbddir ]] && mkdir $zkbddir
+    local zkbdfile
+    zkbdfile=$(zkbd_file "$zkbddir")
+    local ret=$?
+    if [[ $ret -ne 0 ]]; then
+        zkbd
+        zkbdfile=$(zkbd_file "$zkbddir")
+        ret=$?
+    fi
+    if [[ $ret -eq 0 ]]; then
+        source "$zkbdfile"
+    else
+        echo 'Failed to setup keys using zkbd' 1>&2
+        return 1
+    fi
 
-# setup key accordingly
-[[ -n "${key[Home]}"    ]]  && bindkey  "${key[Home]}"    beginning-of-line
-[[ -n "${key[End]}"     ]]  && bindkey  "${key[End]}"     end-of-line
-[[ -n "${key[Insert]}"  ]]  && bindkey  "${key[Insert]}"  overwrite-mode
-[[ -n "${key[Delete]}"  ]]  && bindkey  "${key[Delete]}"  delete-char
-[[ -n "${key[Up]}"      ]]  && bindkey  "${key[Up]}"      up-line-or-history
-[[ -n "${key[Down]}"    ]]  && bindkey  "${key[Down]}"    down-line-or-history
-[[ -n "${key[Left]}"    ]]  && bindkey  "${key[Left]}"    backward-char
-bindkey  ";5D"    backward-word
-bindkey  ";5C"   forward-word
+    # setup key accordingly
+    [[ -n "${key[Home]}"    ]]  && bindkey  "${key[Home]}"    beginning-of-line
+    [[ -n "${key[End]}"     ]]  && bindkey  "${key[End]}"     end-of-line
+    [[ -n "${key[Insert]}"  ]]  && bindkey  "${key[Insert]}"  overwrite-mode
+    [[ -n "${key[Delete]}"  ]]  && bindkey  "${key[Delete]}"  delete-char
+    [[ -n "${key[Up]}"      ]]  && bindkey  "${key[Up]}"      up-line-or-history
+    [[ -n "${key[Down]}"    ]]  && bindkey  "${key[Down]}"    down-line-or-history
+    [[ -n "${key[Left]}"    ]]  && bindkey  "${key[Left]}"    backward-char
+    #bindkey  ";5D"    backward-word
+    #bindkey  ";5C"   forward-word
+}
+load_zkbd || true
+unfunction load_zkbd
+unfunction zkbd_file
 
 [[ -f /etc/zsh_command_not_found ]] && source /etc/zsh_command_not_found
 [[ -f ~/.dir_colors ]] && which dircolors >/dev/null 2>&1 && eval "`dircolors ~/.dir_colors -b`"
@@ -248,7 +282,8 @@ function sts()
 }
 
 alias dev='ssh g-dev.tripadvisor.com'
-alias odin='ssh odin.dhcp.tripadvisor.com'
+alias odin='ssh g@odin.dhcp.tripadvisor.com'
+alias lumberjack='cd /lumberjack/logs'
 
 function _flocal()
 {
@@ -348,6 +383,20 @@ function onoz()
     fi
 }
 
+function nzgrep()
+{
+    local num=$(find . -type f | wc -l | perl -pe '$_ /= 12; if($_ < 1) { $_ = 1 }; $_ = int($_)')
+    find . -print0 -type f | xargs -0 -n$num -P8 zgrep "$@"
+}
+
 [[ -e ~/.zsh_local ]] && source ~/.zsh_local
+
+## Some hadoop related aliases to start hadoop
+alias hfs="hadoop fs"
+alias hls="hfs -ls"
+alias hjar="hadoop jar /opt/hadoop/hadoop*examples*.jar"
+alias set_javahome="source /etc/profile.d/java_home.sh"
+alias uc_adhoc='set_javahome && cd /home/amukherjee/Documents/warehouse/clusters/adhoc/config && source env.bash /home/amukherjee/Documents/warehouse/clusters/adhoc && cd - && rehash'
+alias uc_prod='set_javahome && cd /home/amukherjee/Documents/warehouse/clusters/prod/config && source env.bash /home/amukherjee/Documents/warehouse/clusters/prod && cd - && rehash'
 
 true
