@@ -19,8 +19,7 @@ all: $(HOME)/.vim \
 	$(HOME)/.zshrc \
 	$(HOME)/.pentadactylrc \
 	$(HOME)/.pylintrc \
-	vim/ruby/command-t/ext.bundle vim/ruby/command-t/ext.o \
-	vim/ruby/command-t/match.o vim/ruby/command-t/matcher.o \
+	vim/bundle/command-t \
 	vim/bundle/gundo \
 	vim/bundle/solarized \
 	vim/bundle/easymotion \
@@ -50,6 +49,9 @@ vim/bundle/solarized: solarized/.git
 
 vim/bundle/easymotion: vim-easymotion/.git
 	ln -fs $(abspath vim-easymotion) $@
+
+vim/bundle/command-t: Command-T/.git
+	ln -fs $(abspath Command-T) $@
 
 
 gundo.vim/README.markdown Command-T/Makefile vim-surround/doc/surround.txt vim-surround/plugin/surround.vim inkpot/colors/inkpot.vim vim-pathogen/autoload/pathogen.vim solarized/.git vimpager/vimpager snipmate.vim/.git nerdcommenter/.git:
