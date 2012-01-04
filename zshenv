@@ -39,13 +39,11 @@ export PYTHONPATH="$HOME/.local/lib/python2.6/"
 export SDL_AUDIODRIVER="pulse"
 export LANG="en_US.UTF-8"
 export LOCALE="$LANG"
+export HADOOP_HOME=/opt/hadoop
+export PATH="$PATH:$HADOOP_HOME/bin"
 
 export CVSROOT=":pserver:webadmin@source.tripadvisor.com:/home/CVS"
 export ANT_HOME=/usr/local/ant
-[[ -e /usr/jdk1.6 ]] && export JAVA_HOME=/usr/jdk1.6
-if [[ "$PATH" != *$JAVA_HOME/bin* ]]; then
-	export PATH=$PATH:$JAVA_HOME/bin
-fi
 
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
 export OSTYPE=linux
