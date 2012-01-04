@@ -3,7 +3,7 @@ call pathogen#infect()
 
 syntax on
 set background=dark
-colorscheme solarized
+colorscheme desert
 
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
@@ -117,8 +117,20 @@ set ruler
 set wildmode=longest,list,full
 set wildmenu
 
+nnoremap ' `
+nnoremap ` '
+
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+
 " Make :w!! automatically write as sudo
-cnoremap w!! %!sudo tee > /dev/null %
+"cnoremap w!! %!sudo tee > /dev/null %
+"command! -nargs=0 w!! call Suwrite()
+function! Suwrite()
+	%!sudo tee >/dev/null %
+endfunction
 
 nnoremap Q gq
 
@@ -233,3 +245,33 @@ function! SummarizeTabs()
     echohl None
   endtry
 endfunction
+
+
+" Tim's magic
+"" Stuff below is to center the current buffer in the screen
+" This is good for going full screen and editing just one file
+" at a time.
+let g:centerinscreen_active = 0
+
+function! ToggleCenterInScreen(desired_width)
+  if g:centerinscreen_active == 0
+    let l:window_width = winwidth(winnr())
+    let l:sidepanel_width = (l:window_width - a:desired_width) / 2
+
+    exec("silent leftabove " . l:sidepanel_width . "vsplit new")
+    wincmd l
+    exec("silent rightbelow " . l:sidepanel_width . "vsplit new")
+    wincmd h
+    let g:centerinscreen_active = 1
+  else
+    wincmd h
+    close
+    wincmd l
+    close
+
+    let g:centerinscreen_active = 0
+  endif
+endfunction
+
+nnoremap <Leader>r :exec ToggleCenterInScreen(100)<CR>
+
