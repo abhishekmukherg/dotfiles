@@ -18,6 +18,7 @@ all: $(HOME)/.vim \
 	$(HOME)/.pentadactylrc \
 	$(HOME)/.pylintrc \
 	vim/bundle/surround \
+	vim/bundle/simplenote.vim \
 	vim/bundle/command-t \
 	vim/bundle/gundo \
 	vim/bundle/solarized \
@@ -44,8 +45,11 @@ vim/colors/inkpot.vim: inkpot/colors/inkpot.vim
 vim/bundle/surround: vim-surround/.git
 	$(symlink-folder)
 
-vim/bundle/solarized: solarized/.git
+vim/bundle/simplenote.vim: simplenote.vim/.git
 	$(symlink-folder)
+
+vim/bundle/solarized: solarized/.git
+	[[ -e $@ ]] && touch $@ || ln -fs $(abspath solarized/vim-colors-solarized/) $@
 
 vim/bundle/easymotion: vim-easymotion/.git
 	$(symlink-folder)
@@ -53,7 +57,7 @@ vim/bundle/easymotion: vim-easymotion/.git
 vim/bundle/command-t: Command-T/.git
 	$(symlink-folder)
 
-gundo.vim/README.markdown Command-T/Makefile vim-surround/doc/surround.txt vim-surround/plugin/surround.vim inkpot/colors/inkpot.vim vim-pathogen/autoload/pathogen.vim solarized/.git vimpager/vimpager snipmate.vim/.git nerdcommenter/.git:
+gundo.vim/README.markdown Command-T/Makefile vim-surround/doc/surround.txt vim-surround/plugin/surround.vim inkpot/colors/inkpot.vim vim-pathogen/autoload/pathogen.vim solarized/.git vimpager/vimpager snipmate.vim/.git nerdcommenter/.git simplenote.vim/.git:
 	git submodule init
 	git submodule update
 

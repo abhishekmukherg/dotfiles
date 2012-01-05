@@ -28,3 +28,6 @@
 [submodule "nerdcommenter"]
 	path = nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
+[submodule "simplenote.vim"]
+	path = simplenote.vim
+	url = git://github.com/mrtazz/simplenote.vim.git
