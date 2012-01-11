@@ -2,8 +2,8 @@
 call pathogen#infect()
 
 syntax on
+colorscheme solarized
 set background=dark
-colorscheme desert
 
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
