@@ -243,6 +243,10 @@ function! SummarizeTabs()
   endtry
 endfunction
 
+if (filereadable(expand('~/.simplenoterc')))
+  source ~/.simplenoterc
+endif
+
 
 " Tim's magic
 "" Stuff below is to center the current buffer in the screen
