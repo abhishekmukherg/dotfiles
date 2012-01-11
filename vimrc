@@ -110,6 +110,8 @@ set wildignore=*.o,*.pyc,*.pyo
 set ruler
 set wildmode=longest,list,full
 set wildmenu
+set undofile
+set undodir=~/.vim/undo
 
 nnoremap ' `
 nnoremap ` '

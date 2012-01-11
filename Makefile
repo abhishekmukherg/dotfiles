@@ -26,10 +26,14 @@ all: $(HOME)/.vim \
 	vim/bundle/snipmate \
 	vim/bundle/nerdcommenter \
 	vim/autoload/pathogen.vim \
+	vim/undo/ \
 	$(HOME)/bin/vimpager
 
 $(HOME)/.%: %
 	ln -fs $(abspath $<) $@
+
+vim/undo/:
+	mkdir -p vim/undo
 
 $(HOME)/.ssh/config: ssh_config
 	mkdir -p $(HOME)/.ssh
