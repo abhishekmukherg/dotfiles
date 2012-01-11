@@ -115,6 +115,7 @@ set undodir=~/.vim/undo
 
 nnoremap ' `
 nnoremap ` '
+nnoremap , za
 
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
