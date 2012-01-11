@@ -216,12 +216,12 @@ if [[ $UID == 0 ]]; then
   local prompt_color=red
 fi
 
-local bgc="%B%F{black}"
+local bgc="%B%F{grey}"
 local fgc="%b%F{$prompt_color}"
 local error="%F{red}"
 local jobcolor="%F{blue}"
 local reset="%b%f"
-if [[ $(echo $ZSH_VERSION | cut -d. -f3) < 9 ]]; then
+if [[ $(echo $ZSH_VERSION | cut -d. -f1) == 3 ]] && [[ $(echo $ZSH_VERSION | cut -d. -f3) < 9 ]]; then
   local bgc="%{$fg_bold[black]%}"
   local fgc="%{$fg_no_bold[$prompt_color]%}"
   local error="%{$fg[red]%}"
@@ -247,10 +247,6 @@ which fortune > /dev/null 2>&1 && fortune -s
 # zmodload zsh/zftp
 # autoload -U zfinit
 # zfinit
-zle_highlight=(region:underline
-               special:bold
-              )
-
 which pip >/dev/null 2>&1 && eval "`pip completion --zsh`"
 which virtualenvwrapper.sh > /dev/null 2>&1 && source =virtualenvwrapper.sh
 
