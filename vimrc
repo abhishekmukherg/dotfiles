@@ -70,12 +70,6 @@ if has("autocmd")
   autocmd Filetype rst nnoremap <silent> <buffer> <leader>h yypVr
 endif
 
-augroup filetypedetect
-  autocmd BufRead,BufNewFile psql.edit.* setfiletype sql
-  autocmd BufRead,BufNewFile *.wiki setfiletype wikipedia
-  autocmd BufRead,BufNewFile *.wikipedia.org.* setfiletype wikipedia
-  autocmd BufRead,BufNewFile *.gentoo-wiki.com.* setfiletype wikipedia
-augroup END
 "let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
 "let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 
