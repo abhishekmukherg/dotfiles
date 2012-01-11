@@ -110,9 +110,9 @@ mvim_remote()
 }
 if which mvim >/dev/null 2>&1; then
     alias vim="mvim_remote"
-    alias V='\vim -'
+    alias V='\vim -R -'
 else
-    alias V='vim -'
+    alias V='vim -R -'
 fi
 alias v="vim"
 try_which grep ack-grep
