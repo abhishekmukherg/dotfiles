@@ -343,6 +343,7 @@ function allcompress()
 }
 
 
+alias gtr="export TRTOP=$(cat ~/.trtop_env)"
 alias sbt="st && (cdtop && source ~/bin/set_trtop)"
 alias svn_conflicts="svntr st | egrep '^\s*C'"
 alias bugz_patch='noglob ~/bin/bugz_patch'
