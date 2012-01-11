@@ -11,5 +11,14 @@ vim/bundle/solarized
 vim/bundle/easymotion
 vim/bundle/nerdcommenter
 vim/bundle/snipmate
+vim/bundle/align/
+vim/bundle/command-t
+vim/bundle/eclim/
+vim/bundle/simplenote.vim
+vim/bundle/surround
+vim/bundle/ultisnips
+vim/bundle/vim-colors-solarized
 tags
 vim/.VimballRecord
+vim/undo/
+
