@@ -1,5 +1,22 @@
-﻿" Pathogen.do_magic()
-call pathogen#infect()
+﻿set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
+Bundle 'ciaranm/inkpot'
+Bundle 'tpope/vim-surround'
+Bundle 'wincent/Command-T'
+Bundle 'sjl/gundo.vim'
+Bundle 'tpope/vim-pathogen'
+Bundle 'linkinpark342/vimpager'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'msanders/snipmate.vim'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'mrtazz/simplenote.vim'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'gmarik/vundle'
+
+filetype plugin indent on
 
 syntax on
 colorscheme solarized
