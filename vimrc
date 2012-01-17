@@ -15,6 +15,10 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'mrtazz/simplenote.vim'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'gmarik/vundle'
+Bundle 'bufexplorer.zip'
+Bundle 'matchit.zip'
+Bundle 'taglist.vim'
+Bundle 'JavaScript-Indent'
 
 filetype plugin indent on
 
