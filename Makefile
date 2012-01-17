@@ -1,6 +1,5 @@
 all: $(HOME)/.vim \
 	$(HOME)/.vimrc \
-	vim/colors/inkpot.vim \
 	vim/syntax/python.vim \
 	$(HOME)/.dir_colors \
 	$(HOME)/.gitconfig \
@@ -17,17 +16,16 @@ all: $(HOME)/.vim \
 	$(HOME)/.zshrc \
 	$(HOME)/.pentadactylrc \
 	$(HOME)/.pylintrc \
-	vim/bundle/surround \
-	vim/bundle/simplenote.vim \
-	vim/bundle/command-t \
-	vim/bundle/gundo \
-	vim/bundle/vim-colors-solarized/ \
-	vim/bundle/easymotion \
-	vim/bundle/snipmate \
-	vim/bundle/nerdcommenter \
-	vim/autoload/pathogen.vim \
+	vim/bundle/vundle/.git \
 	vim/undo/ \
-	$(HOME)/bin/vimpager
+	.installed_vundles
+
+vim/bundle/vundle/.git:
+	git submodule init
+	git submodule update
+
+.installed_vundles: vimrc vim/bundle/vundle/.git
+	vim +BundleInstall +qall
 
 $(HOME)/.%: %
 	ln -fs $(abspath $<) $@
@@ -39,49 +37,10 @@ $(HOME)/.ssh/config: ssh_config
 	mkdir -p $(HOME)/.ssh
 	ln -fs $(abspath $<) $@
 
-define symlink-folder
-[[ -e $@ ]] && touch $@ || ln -fs $(abspath $(dir $<)) $@
-endef
-
-vim/colors/inkpot.vim: inkpot/colors/inkpot.vim
-	ln -fs $(abspath $<) $@
-
-vim/bundle/surround: vim-surround/.git
-	$(symlink-folder)
-
-vim/bundle/simplenote.vim: simplenote.vim/.git
-	$(symlink-folder)
-
-vim/bundle/vim-colors-solarized: vim-colors-solarized/.git
-	$(symlink-folder)
-
-vim/bundle/easymotion: vim-easymotion/.git
-	$(symlink-folder)
-
-vim/bundle/command-t: Command-T/.git
-	$(symlink-folder)
-
-gundo.vim/README.markdown Command-T/Makefile vim-surround/doc/surround.txt vim-surround/plugin/surround.vim inkpot/colors/inkpot.vim vim-pathogen/autoload/pathogen.vim vim-colors-solarized/.git vimpager/vimpager snipmate.vim/.git nerdcommenter/.git simplenote.vim/.git:
-	git submodule init
-	git submodule update
-
 python_vim/python.vim python_vim/vimrc:
 	svn checkout http://svn.python.org/projects/python/trunk/Misc/Vim python_vim
 
 vim/syntax/python.vim: python_vim/python.vim
-	ln -fs $(abspath $<) $@
+	cd python_vim && svn up
+	ln -s $(abspath $<) $@
 
-vim/bundle/gundo: gundo.vim/README.markdown
-	$(symlink-folder)
-
-vim/bundle/snipmate: snipmate.vim/.git
-	$(symlink-folder)
-
-vim/bundle/nerdcommenter: nerdcommenter/.git
-	$(symlink-folder)
-
-vim/autoload/pathogen.vim: vim-pathogen/autoload/pathogen.vim
-	ln -fs $(abspath $<) $@
-
-$(HOME)/bin/vimpager: vimpager/vimpager
-	ln -fs $(abspath $<) $@

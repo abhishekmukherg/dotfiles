@@ -6,10 +6,14 @@ XTerm*scrollBar: true
 XTerm*scrollKey: true
 XTerm*scrollTtyOutput: false
 
+URxvt.perl-ext-common: matcher
+URxvt.urlLauncher:     /usr/bin/sensible-browser
+URxvt.matcher.button:  1
 urxvt*font: xft:Inconsolata:size=10:antialias=false:hinting=true
 urxvt*boldFont: xft:Inconsolata:size=10:antialias=false:bold:hinting=true
 urxvt*italicFont: xft:Inconsolata:size=10:antialias=false:italic:autohint=true:hinting=true
 urxvt*bolditalicFont: xft:Inconsolata:size=10:antialias=false:bold:italic:autohint=true:hinting=true
+Urxvt*scrollTTyOutput: false
 URxvt.letterSpace: -1
 !! urxvt*reverseVideo: true
 !! urxvt*transparent: true
