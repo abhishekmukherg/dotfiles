@@ -16,7 +16,7 @@ all: $(HOME)/.vim \
 	$(HOME)/.zshrc \
 	$(HOME)/.pentadactylrc \
 	$(HOME)/.pylintrc \
-	vim/bundle/vundle/.git
+	vim/bundle/vundle/.git \
 	vim/undo/ \
 	.installed_vundles
 
