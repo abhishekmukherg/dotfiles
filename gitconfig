@@ -23,7 +23,6 @@
 	fontdiff = -family \"DejaVu Sans Mono\" -size 10 -weight normal -slant roman -underline 0 -overstrike 0
 [github]
 	user = linkinpark342
-	token = 165fc21052f32c55d98333646c42455f
 
 [url "git://github.com/"]
 	insteadOf = gh:
