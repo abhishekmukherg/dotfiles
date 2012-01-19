@@ -31,7 +31,9 @@ export CC="gcc"
 export WANAL="-pedantic -Weffc++"
 export PALUDIS_OPTIONS="--log-level warning"
 export INQUISITIO_OPTIONS="--log-level warning"
-export BROWSER="/usr/bin/firefox-bin '%s' &"
+if [[ -x /usr/bin/firefox-bin ]]; then
+	export BROWSER="/usr/bin/firefox-bin '%s' &"
+fi
 export TZ='America/New_York'
 export QEMU_AUDIO_DRV=pa
 export PYTHONUSERBASE="$HOME/.local/lib/python2.6/"
