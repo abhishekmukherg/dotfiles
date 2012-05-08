@@ -1,6 +1,6 @@
 set background=dark
 set go+=c
-set guifont=DejaVu\ Sans\ Mono\ 8
+set guifont=Inconsolata
 "set guifont=Neep\ 8
 set guioptions+=ma
 set guioptions-=T

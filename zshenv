@@ -31,9 +31,7 @@ export CC="gcc"
 export WANAL="-pedantic -Weffc++"
 export PALUDIS_OPTIONS="--log-level warning"
 export INQUISITIO_OPTIONS="--log-level warning"
-if [[ -x /usr/bin/firefox-bin ]]; then
-	export BROWSER="/usr/bin/firefox-bin '%s' &"
-fi
+export BROWSER="/usr/bin/google-chrome"
 export TZ='America/New_York'
 export QEMU_AUDIO_DRV=pa
 export PYTHONUSERBASE="$HOME/.local/lib/python2.6/"
@@ -50,9 +48,22 @@ export ANT_HOME=/usr/local/ant
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
 export OSTYPE=linux
 
-if [[ -z $TRTOP ]] && [[ -f $HOME/.trtop_env ]]; then
+parent_urxvt()
+{
+	proc=$(ps -o cmd= -p $(ps -o ppid= -p $$))
+	if [[ $proc = urxvtd* ]]; then
+		unset proc
+		return 0
+	else
+		unset proc
+		return 1
+	fi
+}
+
+if parent_urxvt && [[ -z $TRTOP ]] && [[ -f $HOME/.trtop_env ]]; then
 	export TRTOP=$(cat $HOME/.trtop_env)
 fi
+unset parent_urxvt
 
 find_directories=
 [[ -d /lib/terminfo ]] && find_directories="$find_directories /lib/terminfo"
@@ -63,4 +74,8 @@ if [[ $TERM != *256* ]] && [[ -n "$find_directories" ]]; then
 	if find $find_directories -name 'xterm-256color' > /dev/null 2>&1; then
 		export TERM="xterm-256color"
 	fi
+fi
+
+if [[ -f $HOME/.zshenv.local ]]; then
+	source ~/.zshenv.local
 fi

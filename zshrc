@@ -99,6 +99,7 @@ alias ll='ls -l'
 try_which gitk gitview
 alias ga="gitk --all &|"
 alias less=/usr/bin/less
+alias mt=multitail
 
 mvim_remote()
 {
@@ -250,13 +251,22 @@ which fortune > /dev/null 2>&1 && fortune -s
 which pip >/dev/null 2>&1 && eval "`pip completion --zsh`"
 which virtualenvwrapper.sh > /dev/null 2>&1 && source =virtualenvwrapper.sh
 
-function cdtop() { cd $TRTOP/$@ }
-function cdtr() { cd $TRTOP/tr/$@ }
-function cdjs() { cdtop site/js3/$@ }
-function cdjs2() { cdtop site/js2/$@ }
-function cdimg() { cdtop site/img2/$@ }
-function cdcss() { cdtop site/css2/$@ }
-function cdvm() { cdtop site/velocity_redesign/$@ }
+alias G="export TRTOP=$(cat ~/.trtop_env)"
+function cdtop() {G; cdtop@ "$@"}
+function cdtr() {G; cdtr@ "$@"}
+function cdjs() {G; cdjs@ "$@"}
+function cdjs2() {G; cdjs2@ "$@"}
+function cdimg() {G; cdimg@ "$@"}
+function cdcss() {G; cdcss@ "$@"}
+function cdvm() {G; cdvm@ "$@"}
+
+function cdtop@() { cd $TRTOP/$@ }
+function cdtr@() { cd $TRTOP/tr/$@ }
+function cdjs@() { cdtop site/js3/$@ }
+function cdjs2@() { cdtop site/js2/$@ }
+function cdimg@() { cdtop site/img2/$@ }
+function cdcss@() { cdtop site/css2/$@ }
+function cdvm@() { cdtop site/velocity_redesign/$@ }
 
 alias vc='vim $TRTOP/config/hosts/$(hostname -s).ini'
 alias tweak='$TRTOP/scripts/tweak'
@@ -324,9 +334,9 @@ function st()
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-alias tripmonster='psql -U tripmonster -h tripmonster'
-alias dev-db='psql -h dev-db -U tripmaster'
-alias rivendell='psql -h rivendell -U tripmaster'
+alias tripmonster='psql --cluster 8.4/main -U tripmonster -h tripmonster -p 5432'
+alias dev-db='psql --cluster 8.4/main -h dev-db -U tripmaster -p 5432'
+alias rivendell='psql --cluster 8.4/main -h rivendell -U tripmaster -p 5432'
 
 function magic_svn_command()
 {
@@ -338,18 +348,19 @@ function magic_svn_command()
 function allcompress()
 {
     for i in {js,css}_{concat,compress}; do
-        $TRTOP/scripts/tweak_feature_$1.sh $i;
+        $TRTOP/scripts/tweak feature $1 $i;
     done
 }
 
 
-alias gtr="export TRTOP=$(cat ~/.trtop_env)"
-alias sbt="st && (cdtop && source ~/bin/set_trtop)"
+alias ssh='env TERM=xterm-256color ssh'
+alias sbt="st && (cdtop@ && source ~/bin/set_trtop)"
 alias svn_conflicts="svntr st | egrep '^\s*C'"
 alias bugz_patch='noglob ~/bin/bugz_patch'
 alias slog='svntr login amukherjee'
 alias fix-eclipse='$TRTOP/scripts/fix-eclipse-tr.py $TRTOP'
 alias hoot='$TRTOP/scripts/hoot'
+alias svnci='$TRTOP/scripts/commit'
 function tab()
 {
     (
@@ -382,8 +393,9 @@ function onoz()
 
 function nzgrep()
 {
-    local num=$(find . -type f | wc -l | perl -pe '$_ /= 12; if($_ < 1) { $_ = 1 }; $_ = int($_)')
-    find . -print0 -type f | xargs -0 -n$num -P8 zgrep "$@"
+    local query="$1"
+    shift
+    echo "find "$@" -print0 -type f | xargs -0 -n16 -P8 -I{} "$query""
 }
 
 [[ -e ~/.zsh_local ]] && source ~/.zsh_local
@@ -395,5 +407,4 @@ alias hjar="hadoop jar /opt/hadoop/hadoop*examples*.jar"
 alias set_javahome="source /etc/profile.d/java_home.sh"
 alias uc_adhoc='set_javahome && cd /home/amukherjee/Documents/warehouse/clusters/adhoc/config && source env.bash /home/amukherjee/Documents/warehouse/clusters/adhoc && cd - && rehash'
 alias uc_prod='set_javahome && cd /home/amukherjee/Documents/warehouse/clusters/prod/config && source env.bash /home/amukherjee/Documents/warehouse/clusters/prod && cd - && rehash'
-
 true

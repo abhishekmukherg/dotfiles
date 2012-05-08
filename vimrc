@@ -5,7 +5,8 @@ set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 Bundle 'ciaranm/inkpot'
 Bundle 'tpope/vim-surround'
-Bundle 'wincent/Command-T'
+Bundle 'L9'
+Bundle 'FuzzyFinder'
 Bundle 'sjl/gundo.vim'
 Bundle 'tpope/vim-pathogen'
 Bundle 'linkinpark342/vimpager'
@@ -19,6 +20,13 @@ Bundle 'bufexplorer.zip'
 Bundle 'matchit.zip'
 Bundle 'taglist.vim'
 Bundle 'JavaScript-Indent'
+Bundle 'Align'
+Bundle 'VisIncr'
+Bundle 'scrooloose/nerdtree'
+Bundle 'rson/vim-conque'
+Bundle 'ivanov/vim-ipython'
+Bundle 'tomtom/quickfixsigns_vim'
+Bundle 'tomtom/checksyntax_vim'
 
 filetype plugin indent on
 
@@ -60,6 +68,19 @@ if has("autocmd")
   autocmd Filetype ruby set softtabstop=2
   autocmd Filetype ruby set autoindent
 
+  autocmd Filetype html set tabstop=2
+  autocmd Filetype html set shiftwidth=2
+  autocmd Filetype html set smarttab
+  autocmd Filetype html set expandtab
+  autocmd Filetype html set softtabstop=2
+  autocmd Filetype html set autoindent
+  autocmd Filetype htmldjango set tabstop=2
+  autocmd Filetype htmldjango set shiftwidth=2
+  autocmd Filetype htmldjango set smarttab
+  autocmd Filetype htmldjango set expandtab
+  autocmd Filetype htmldjango set softtabstop=2
+  autocmd Filetype htmldjango set autoindent
+
   autocmd Filetype java set tabstop=4
   autocmd Filetype java set shiftwidth=4
   autocmd Filetype java set smarttab
@@ -82,7 +103,6 @@ if has("autocmd")
   autocmd Filetype css set expandtab
   autocmd Filetype css set softtabstop=2
   autocmd Filetype css set autoindent
-
 
   autocmd Filetype java nnoremap <silent> <buffer> <leader>i :JavaImport<cr>
   autocmd Filetype java nnoremap <silent> <buffer> <leader>d :JavaDocSearch -x declarations<cr>
@@ -111,6 +131,8 @@ if has("multi_byte")
 endif
 set grepprg=grep\ -nH\ $*
 
+let maplocalleader = ","
+
 "set autochdir
 set showcmd		" Show (partial) command in status line.
 set showmatch		" Show matching brackets.
@@ -133,10 +155,12 @@ set wildmode=longest,list,full
 set wildmenu
 set undofile
 set undodir=~/.vim/undo
+set scrolloff=4
 
 nnoremap ' `
 nnoremap ` '
-nnoremap , za
+nnoremap 0 ^
+nnoremap ^ 0
 
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
@@ -157,6 +181,7 @@ nnoremap <silent><F7> :copen<CR>
 nnoremap <silent><C-F7> :cclose<CR>
 nnoremap <silent><F6> :lopen<CR>
 nnoremap <silent><C-F6> :lclose<CR>
+nnoremap <C-q> :CheckSyntax<CR>
 
 "nnoremap <silent><C-j> gj
 "nnoremap <silent><C-k> gk
@@ -167,10 +192,17 @@ nnoremap <leader>p :bp<CR>
 nnoremap <leader>w :bw<CR>
 nnoremap <leader>P :set paste!<CR>:set paste?<CR>
 
+nnoremap <leader>c :ConqueTermVSplit zsh<CR>
+nnoremap <leader>C :ConqueTermSplit zsh<CR>
+
+nnoremap <leader>r :w<CR>:!%:p<CR>
+
 nnoremap [[ ?{<CR>w99[{
 nnoremap ][ /}<CR>b99]}
 nnoremap ]] j0[[%/{<CR>
 nnoremap [] k$][%?}<CR>
+
+inoremap <C-R><Delete> <C-R>+
 
 set backspace=indent,eol,start 
 
@@ -208,7 +240,7 @@ let g:pylint_onwrite = 0
 
 let g:alternateExtensions_m = "h"
 let g:alternateExtensions_h = "m"
-let g:EasyMotion_leader_key = '<Leader>m'
+let g:EasyMotion_leader_key = ','
 
 function! MyGundoToggle()
   let g:gundo_width = &columns / 4
@@ -268,34 +300,7 @@ if (filereadable(expand('~/.simplenoterc')))
   source ~/.simplenoterc
 endif
 
-
-" Tim's magic
-"" Stuff below is to center the current buffer in the screen
-" This is good for going full screen and editing just one file
-" at a time.
-let g:centerinscreen_active = 0
-
-function! ToggleCenterInScreen(desired_width)
-  if g:centerinscreen_active == 0
-    let l:window_width = winwidth(winnr())
-    let l:sidepanel_width = (l:window_width - a:desired_width) / 2
-
-    exec("silent leftabove " . l:sidepanel_width . "vsplit new")
-    wincmd l
-    exec("silent rightbelow " . l:sidepanel_width . "vsplit new")
-    wincmd h
-    let g:centerinscreen_active = 1
-  else
-    wincmd h
-    close
-    wincmd l
-    close
-
-    let g:centerinscreen_active = 0
-  endif
-endfunction
-
-nnoremap <Leader>r :exec ToggleCenterInScreen(100)<CR>
+nnoremap <leader>f :FufFile<CR>
 
 " Ultisnips
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -305,3 +310,4 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " Eclim
 let g:EclimJavaSearchSingleResult="edit"
 let g:EclimValidateSortResults="severity"
+let g:EclimXmlValidate=0
