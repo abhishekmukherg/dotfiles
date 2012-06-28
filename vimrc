@@ -6,7 +6,6 @@ call vundle#rc()
 Bundle 'ciaranm/inkpot'
 Bundle 'tpope/vim-surround'
 Bundle 'L9'
-Bundle 'FuzzyFinder'
 Bundle 'sjl/gundo.vim'
 Bundle 'tpope/vim-pathogen'
 Bundle 'linkinpark342/vimpager'
@@ -25,8 +24,11 @@ Bundle 'VisIncr'
 Bundle 'scrooloose/nerdtree'
 Bundle 'rson/vim-conque'
 Bundle 'ivanov/vim-ipython'
-Bundle 'tomtom/quickfixsigns_vim'
-Bundle 'tomtom/checksyntax_vim'
+"Bundle 'tomtom/quickfixsigns_vim'
+"Bundle 'tomtom/checksyntax_vim'
+Bundle 'scrooloose/syntastic'
+Bundle 'git://repo.or.cz/vcscommand'
+Bundle 'ShowMarks'
 
 filetype plugin indent on
 
@@ -211,10 +213,12 @@ runtime macros/matchit.vim
 " Taglist
 command! T normal :TlistToggle<CR><C-w>h
 "nnoremap <silent> <leader>t :TlistToggle<CR><C-w>h
+let Tlist_Auto_Open=1
 let Tlist_Inc_Winwidth=0
 let Tlist_Exit_OnlyWindow=1
-let Tlist_Close_On_Select=1
+"let Tlist_Close_On_Select=0
 let Tlist_Highlight_Tag_On_BufEnter=1
+let Tlist_Use_Right_Window=1
 
 " NERD tree
 nnoremap <silent> <leader>e :NERDTreeToggle<CR>
@@ -248,6 +252,8 @@ function! MyGundoToggle()
 endfunction
 nnoremap <leader>u :call MyGundoToggle()<CR>
 let g:gundo_help = 0
+
+nnoremap <leader>q :r!trans value <C-R><C-W><CR>I## <ESC>kJ
 
 " VCS
 let g:VCSCommandCommitOnWrite = 0
@@ -311,3 +317,7 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:EclimJavaSearchSingleResult="edit"
 let g:EclimValidateSortResults="severity"
 let g:EclimXmlValidate=0
+
+highlight ShowMarksHLl ctermfg=Black ctermbg=241
+highlight ShowMarksHLo ctermfg=Black ctermbg=241
+let showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.'`^<>[]\""
