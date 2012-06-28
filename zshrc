@@ -251,145 +251,11 @@ which fortune > /dev/null 2>&1 && fortune -s
 which pip >/dev/null 2>&1 && eval "`pip completion --zsh`"
 which virtualenvwrapper.sh > /dev/null 2>&1 && source =virtualenvwrapper.sh
 
-alias G="export TRTOP=$(cat ~/.trtop_env)"
-function cdtop() {G; cdtop@ "$@"}
-function cdtr() {G; cdtr@ "$@"}
-function cdjs() {G; cdjs@ "$@"}
-function cdjs2() {G; cdjs2@ "$@"}
-function cdimg() {G; cdimg@ "$@"}
-function cdcss() {G; cdcss@ "$@"}
-function cdvm() {G; cdvm@ "$@"}
-
-function cdtop@() { cd $TRTOP/$@ }
-function cdtr@() { cd $TRTOP/tr/$@ }
-function cdjs@() { cdtop site/js3/$@ }
-function cdjs2@() { cdtop site/js2/$@ }
-function cdimg@() { cdtop site/img2/$@ }
-function cdcss@() { cdtop site/css2/$@ }
-function cdvm@() { cdtop site/velocity_redesign/$@ }
-
-alias vc='vim $TRTOP/config/hosts/$(hostname -s).ini'
-alias tweak='$TRTOP/scripts/tweak'
-alias fs='$TRTOP/scripts/find-string --relative'
-alias japp="(cdtop && ant jar-applications)"
-alias jtr="(cdtop && ant jar-tr)"
-alias ja='make -C $TRTOP'
-alias jj='make -C $TRTOP java'
-alias jjs='make -C $TRTOP/site/js3 -j5'
-alias jjs2='make -C $TRTOP/site/js2 -j5'
-alias jcss='make -C $TRTOP/site/css2 -j5'
-function ts()
-{
-    $TRTOP/scripts/$@
-}
-function sts()
-{
-    sudo $TRTOP/scripts/$@
-}
-
-alias dev='ssh g-dev.tripadvisor.com'
-alias odin='ssh g@odin.dhcp.tripadvisor.com'
-alias lumberjack='cd /lumberjack/logs'
-
-function _flocal()
-{
-    local dir=$1
-    shift
-    find $TRTOP/$dir -not -path '*/.svn/*' -iname '*'"$@"'*' -not -name .cvsignore -type f
-}
-
-function _elocal()
-{
-    local dir="$1"
-    shift
-    "$EDITOR" $(_flocal "$dir" "$@")
-}
-
-function ftr() { _flocal tr "$@" }
-function etr() { _elocal tr "$@" }
-
-function st()
-{
-    local curdir=`pwd`
-    while true; do
-        case $(basename $(pwd)) in
-        trsrc-*)
-            export TRTOP=`pwd`
-            cd "$curdir"
-            return 0
-            ;;
-        /)
-            echo "Could not find TRTOP"
-            cd "$curdir"
-            return 2
-            ;;
-        *)
-            cd ..
-            ;;
-        esac
-    done
-}
-
 # CD Aliases
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-alias tripmonster='psql --cluster 8.4/main -U tripmonster -h tripmonster -p 5432'
-alias dev-db='psql --cluster 8.4/main -h dev-db -U tripmaster -p 5432'
-alias rivendell='psql --cluster 8.4/main -h rivendell -U tripmaster -p 5432'
-
-function magic_svn_command()
-{
-    for x in `svntr pg -R svn:mergeinfo . | grep ' - ' | grep -v '^\.' | awk '{print $1}'`; do
-        svntr pd svn:mergeinfo $x
-    done
-}
-
-function allcompress()
-{
-    for i in {js,css}_{concat,compress}; do
-        $TRTOP/scripts/tweak feature $1 $i;
-    done
-}
-
-
 alias ssh='env TERM=xterm-256color ssh'
-alias sbt="st && (cdtop@ && source ~/bin/set_trtop)"
-alias svn_conflicts="svntr st | egrep '^\s*C'"
-alias bugz_patch='noglob ~/bin/bugz_patch'
-alias slog='svntr login amukherjee'
-alias fix-eclipse='$TRTOP/scripts/fix-eclipse-tr.py $TRTOP'
-alias hoot='$TRTOP/scripts/hoot'
-alias svnci='$TRTOP/scripts/commit'
-function tab()
-{
-    (
-        cd $TRTOP
-        if [[ $# -gt 0 ]]; then
-            echo ./scripts/tabuild "$@"
-            sudo ./scripts/tabuild "$@"
-        else
-            echo ./scripts/tabuild -rf
-            sudo ./scripts/tabuild -rf
-        fi
-    )
-}
-
-function onoz()
-{
-    if [[ "$1" == "lb" ]] || [[ "$1" == "lookback" ]]; then
-        shift
-        $HOME/bin/curl -A iphone -s -o /dev/null $(hostname -f)
-        $HOME/bin/lookback_tail "$@"
-    elif [[ "$1" == "trip" ]]; then
-        highlight_tail /etc/httpd-MAINLINE/logs/tripadvisor.log
-    elif [[ "$1" == "access" ]]; then
-        highlight_tail /etc/httpd-MAINLINE/logs/access_log
-    else
-        echo "Try again? (lb|trip|access)" 1>&2
-        return 2
-    fi
-}
 
 function nzgrep()
 {
@@ -398,6 +264,7 @@ function nzgrep()
     echo "find "$@" -print0 -type f | xargs -0 -n16 -P8 -I{} "$query""
 }
 
+[[ -e ~/.wzshrc ]] && source ~/.wzshrc
 [[ -e ~/.zsh_local ]] && source ~/.zsh_local
 
 ## Some hadoop related aliases to start hadoop
@@ -405,6 +272,4 @@ alias hfs="hadoop fs"
 alias hls="hfs -ls"
 alias hjar="hadoop jar /opt/hadoop/hadoop*examples*.jar"
 alias set_javahome="source /etc/profile.d/java_home.sh"
-alias uc_adhoc='set_javahome && cd /home/amukherjee/Documents/warehouse/clusters/adhoc/config && source env.bash /home/amukherjee/Documents/warehouse/clusters/adhoc && cd - && rehash'
-alias uc_prod='set_javahome && cd /home/amukherjee/Documents/warehouse/clusters/prod/config && source env.bash /home/amukherjee/Documents/warehouse/clusters/prod && cd - && rehash'
 true
