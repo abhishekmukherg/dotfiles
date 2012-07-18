@@ -1,275 +1,40 @@
-# [[ $SHLVL -eq 1 ]] && screen && exit
-#bindkey -e
-#which keychain > /dev/null && keychain -q
-bindkey -v
+# Path to your oh-my-zsh configuration.
 
-[[ $ZSHENV_LOADED == "1" ]] || source ~/.zshenv
+zshhome=$(dirname $(readlink $HOME/.zshrc))/zsh
 
-autoload -U compinit colors
-compinit
-colors
+ZSH=$zshhome/oh-my-zsh/
+ZSH_CUSTOM=$zshhome/custom
 
-zstyle ':completion:*' completer _expand _complete _correct _approximate
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*:options' description 'yes'
-zstyle ':completion:*:options' auto-description '%d'
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+#ZSH_THEME="robbyrussell"
 
-# fuzzy completion
-zstyle ':completion:*' completer _complete _match _approximate
-zstyle ':completion:*:match:*' original only
-zstyle ':completion:*:approximate:*' max-errors 1 numeric
-zstyle -e ':completion:*:approximate:*' max-errors 'reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) numeric )'
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# kill shits
-zstyle ':completion:*:*:kill:*' menu yes select
-zstyle ':completion:*:kill:*' force-list always
-zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#)*=36=31"
+# Set to this to use case-sensitive completion
+# CASE_SENSITIVE="true"
 
-# ssh, scp, ping, host
-zstyle ':completion:*:scp:*' tag-order \
-      'hosts:-host hosts:-domain:domain hosts:-ipaddr:IP\ address *'
-zstyle ':completion:*:scp:*' group-order \
-      users files all-files hosts-domain hosts-host hosts-ipaddr
-zstyle ':completion:*:ssh:*' tag-order \
-      users 'hosts:-host hosts:-domain:domain hosts:-ipaddr:IP\ address *'
-zstyle ':completion:*:ssh:*' group-order \
-      hosts-domain hosts-host users hosts-ipaddr
+# Comment this out to disable weekly auto-update checks
+# DISABLE_AUTO_UPDATE="true"
 
-zstyle ':completion:*:(ssh|scp):*:hosts-host' ignored-patterns \
-      '*.*' loopback localhost
-zstyle ':completion:*:(ssh|scp):*:hosts-domain' ignored-patterns \
-      '<->.<->.<->.<->' '^*.*' '*@*'
-zstyle ':completion:*:(ssh|scp):*:hosts-ipaddr' ignored-patterns \
-      '^<->.<->.<->.<->' '127.0.0.<->'
-zstyle ':completion:*:(ssh|scp):*:users' ignored-patterns \
-      adm bin daemon halt lp named shutdown sync
+# Uncomment following line if you want to disable colors in ls
+# DISABLE_LS_COLORS="true"
 
-zstyle -e ':completion:*:(ssh|scp):*' hosts 'reply=(
-      ${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) \
-                      /dev/null)"}%%[# ]*}//,/ }
-      ${=${(f)"$(cat /etc/hosts(|)(N) <<(ypcat hosts 2>/dev/null))"}%%\#*}
-      ${=${${${${(@M)${(f)"$(<~/.ssh/config)"}:#Host *}#Host }:#*\**}:#*\?*}}
-      )'
+# Uncomment following line if you want to disable autosetting terminal title.
+# DISABLE_AUTO_TITLE="true"
 
+# Uncomment following line if you want red dots to be displayed while waiting for completion
+# COMPLETION_WAITING_DOTS="true"
 
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+plugins=(git)
 
-# Uses Cache
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path ~/.zsh/cache
-zstyle ':completion::complete:*' use-cache 1
+source $ZSH/oh-my-zsh.sh
 
-# make zsh not kill background jobs when it closes
-setopt nohup
-
-unsetopt clobber
-setopt extended_history auto_pushd inc_append_history hist_ignore_dups
-setopt hist_verify auto_continue multios interactive_comments autocd
-setopt extended_glob notify list_ambiguous
-DIRSTACKSIZE=50
-limit coredumpsize 10m
-
-HISTSIZE=200000
-mkdir -p ~/.zsh
-HISTFILE=~/.zsh/history
-SAVEHIST=20000
-
-## With commands like `rm' it's annoying if one gets offered the same filename
-## again even if it is already on the command line. To avoid that:
-#
-zstyle ':completion:*:rm:*' ignore-line yes
-
-try_alias() {
-  cmd=$1
-  shift
-  "$@" >/dev/null 2>&1 && alias $cmd="$*"
-}
-
-try_which() {
-  cmd=$1
-  shift
-  which "$@" >/dev/null 2>&1 && alias $cmd="$*"
-}
-
-try_alias ls ls --color=auto || try_alias ls ls -G
-
-alias mkdir='noglob mkdir'
-
-try_alias sl sl -al || alias sl='ls'
-alias ll='ls -l'
-try_which gitk gitview
-alias ga="gitk --all &|"
-alias less=/usr/bin/less
-alias mt=multitail
-
-mvim_remote()
-{
-    if [[ $# > 0 ]]; then
-        mvim --remote-silent "$@"
-    else
-        mvim "$@"
-    fi
-}
-if which mvim >/dev/null 2>&1; then
-    alias vim="mvim_remote"
-    alias V='\vim -R -'
-else
-    alias V='vim -R -'
-fi
-alias v="vim"
-try_which grep ack-grep
-try_which grep ack
-try_which xo xdg-open
-alias jobs='jobs -dlp'
-alias logdir='cd /etc/httpd-MAINLINE/logs'
-
-try_which gzip pigz
-try_which bzip2 pbzip2
-
-if which aptitude >/dev/null 2>&1; then
-    alias apt='sudo aptitude'
-    alias apti'apt install --with-recommends'
-else
-    alias apt='sudo apt-get'
-    alias apti='apt install'
-fi
-alias aptc='apt-cache'
-alias aptcs='apt-cache search'
-grep_sl()
-{
-  egrep -v "^.{${1:-120},}"
-}
-try_which diff colordiff
-
-alias paludis='sudo nice paludis'
-alias ip='paludis --install --continue-on-failure if-satisfied'
-alias ipu='ip --dl-reinstall if-use-changed'
-alias pacman='sudo pacman -y'
-
-#exec 2>>(while read line; do
-  #print "${fg[red]}${(q)line}${reset_color}" > /dev/tty; print -n $'\0'; done)
-function zkbd_file() {
-    local zkbddir="$1"
-    local t1="$zkbddir/${TERM}-${VENDOR}-${OSTYPE}"
-    local t2="$zkbddir/${TERM}-${DISPLAY}"
-    if [[ -f $t1 ]]; then
-        printf '%s' "$t1"
-    elif [[ -f $t2 ]]; then
-        printf '%s' "$t2"
-    else
-        return 1
-    fi
-}
-
-function load_zkbd() {
-    autoload zkbd
-    local zkbddir=${ZDOTDIR:-$HOME}/.zkbd
-    [[ ! -d $zkbddir ]] && mkdir $zkbddir
-    local zkbdfile
-    zkbdfile=$(zkbd_file "$zkbddir")
-    local ret=$?
-    if [[ $ret -ne 0 ]]; then
-        zkbd
-        zkbdfile=$(zkbd_file "$zkbddir")
-        ret=$?
-    fi
-    if [[ $ret -eq 0 ]]; then
-        source "$zkbdfile"
-    else
-        echo 'Failed to setup keys using zkbd' 1>&2
-        return 1
-    fi
-
-    # setup key accordingly
-    [[ -n "${key[Home]}"    ]]  && bindkey  "${key[Home]}"    beginning-of-line
-    [[ -n "${key[End]}"     ]]  && bindkey  "${key[End]}"     end-of-line
-    [[ -n "${key[Insert]}"  ]]  && bindkey  "${key[Insert]}"  overwrite-mode
-    [[ -n "${key[Delete]}"  ]]  && bindkey  "${key[Delete]}"  delete-char
-    [[ -n "${key[Up]}"      ]]  && bindkey  "${key[Up]}"      up-line-or-history
-    [[ -n "${key[Down]}"    ]]  && bindkey  "${key[Down]}"    down-line-or-history
-    [[ -n "${key[Left]}"    ]]  && bindkey  "${key[Left]}"    backward-char
-    #bindkey  ";5D"    backward-word
-    #bindkey  ";5C"   forward-word
-}
-load_zkbd || true
-unfunction load_zkbd
-unfunction zkbd_file
-
-[[ -f /etc/zsh_command_not_found ]] && source /etc/zsh_command_not_found
-[[ -f ~/.dir_colors ]] && which dircolors >/dev/null 2>&1 && eval "`dircolors ~/.dir_colors -b`"
-
-#eval "`keychain --agents ssh --quiet --eval id_rsa`"
-#[ -z "$HOSTNAME" ] && HOSTNAME=`uname -n`
-#[ -f $HOME/.keychain/$HOSTNAME-sh ] && \
-  #. $HOME/.keychain/$HOSTNAME-sh
-#[ -f $HOME/.keychain/$HOSTNAME-sh-gpg ] && \
-  #. $HOME/.keychain/$HOSTNAME-sh-gpg
-  
-autoload -Uz vcs_info
-
-local prompt_color
-if [[ $SSH_CLIENT == "" ]]; then
-  local prompt_color=cyan
-else
-  local prompt_color=green
-fi
-
-if [[ $UID == 0 ]]; then
-  local prompt_color=red
-fi
-
-local bgc="%B%F{grey}"
-local fgc="%b%F{$prompt_color}"
-local error="%F{red}"
-local jobcolor="%F{blue}"
-local reset="%b%f"
-if [[ $(echo $ZSH_VERSION | cut -d. -f1) == 3 ]] && [[ $(echo $ZSH_VERSION | cut -d. -f3) < 9 ]]; then
-  local bgc="%{$fg_bold[black]%}"
-  local fgc="%{$fg_no_bold[$prompt_color]%}"
-  local error="%{$fg[red]%}"
-  local jobcolor="%{$fg[blue]%}"
-  local reset="%{$reset_color%}"
-fi
-export PS1="$bgc($fgc%n$bgc@$fgc%m$bgc|$fgc%h$bgc @$fgc%t$bgc){$fgc%~$bgc}$reset"
-export PS1="${PS1}
-$bgc-$fgc%#$reset "
-export RPS1="$bgc(%b%1(j,$jobcolor,$reset)%j %(?,$reset,$error)%?$reset"
-
-local bgc=${bgc//[%]b/%%b}
-local fgc=${fgc//[%]b/%%b}
-local reset=${reset//[%]b/%%b}
-
-vd()
-{
-  cd "$@" && ls --color=always --format=vertical | head
-}
-
-which fortune > /dev/null 2>&1 && fortune -s
-
-# zmodload zsh/zftp
-# autoload -U zfinit
-# zfinit
-which pip >/dev/null 2>&1 && eval "`pip completion --zsh`"
-which virtualenvwrapper.sh > /dev/null 2>&1 && source =virtualenvwrapper.sh
-
-# CD Aliases
-alias ...='cd ../..'
-alias ....='cd ../../..'
-
-alias ssh='env TERM=xterm-256color ssh'
-
-function nzgrep()
-{
-    local query="$1"
-    shift
-    echo "find "$@" -print0 -type f | xargs -0 -n16 -P8 -I{} "$query""
-}
-
-[[ -e ~/.wzshrc ]] && source ~/.wzshrc
-[[ -e ~/.zsh_local ]] && source ~/.zsh_local
-
-## Some hadoop related aliases to start hadoop
-alias hfs="hadoop fs"
-alias hls="hfs -ls"
-alias hjar="hadoop jar /opt/hadoop/hadoop*examples*.jar"
-alias set_javahome="source /etc/profile.d/java_home.sh"
-true
+# Customize to your needs...
