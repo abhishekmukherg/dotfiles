@@ -9,57 +9,15 @@ autoload -U compinit colors
 compinit
 colors
 
-zstyle ':completion:*' completer _expand _complete _correct _approximate
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*:options' description 'yes'
-zstyle ':completion:*:options' auto-description '%d'
-
 # fuzzy completion
 zstyle ':completion:*' completer _complete _match _approximate
 zstyle ':completion:*:match:*' original only
 zstyle ':completion:*:approximate:*' max-errors 1 numeric
 zstyle -e ':completion:*:approximate:*' max-errors 'reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) numeric )'
 
-# kill shits
-zstyle ':completion:*:*:kill:*' menu yes select
-zstyle ':completion:*:kill:*' force-list always
-zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#)*=36=31"
-
-# ssh, scp, ping, host
-zstyle ':completion:*:scp:*' tag-order \
-      'hosts:-host hosts:-domain:domain hosts:-ipaddr:IP\ address *'
-zstyle ':completion:*:scp:*' group-order \
-      users files all-files hosts-domain hosts-host hosts-ipaddr
-zstyle ':completion:*:ssh:*' tag-order \
-      users 'hosts:-host hosts:-domain:domain hosts:-ipaddr:IP\ address *'
-zstyle ':completion:*:ssh:*' group-order \
-      hosts-domain hosts-host users hosts-ipaddr
-
-zstyle ':completion:*:(ssh|scp):*:hosts-host' ignored-patterns \
-      '*.*' loopback localhost
-zstyle ':completion:*:(ssh|scp):*:hosts-domain' ignored-patterns \
-      '<->.<->.<->.<->' '^*.*' '*@*'
-zstyle ':completion:*:(ssh|scp):*:hosts-ipaddr' ignored-patterns \
-      '^<->.<->.<->.<->' '127.0.0.<->'
-zstyle ':completion:*:(ssh|scp):*:users' ignored-patterns \
-      adm bin daemon halt lp named shutdown sync
-
-zstyle -e ':completion:*:(ssh|scp):*' hosts 'reply=(
-      ${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) \
-                      /dev/null)"}%%[# ]*}//,/ }
-      ${=${(f)"$(cat /etc/hosts(|)(N) <<(ypcat hosts 2>/dev/null))"}%%\#*}
-      ${=${${${${(@M)${(f)"$(<~/.ssh/config)"}:#Host *}#Host }:#*\**}:#*\?*}}
-      )'
-
-
-
-# Uses Cache
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path ~/.zsh/cache
-zstyle ':completion::complete:*' use-cache 1
-
 # make zsh not kill background jobs when it closes
 setopt nohup
+unsetopt correct_all
 
 unsetopt clobber
 setopt extended_history auto_pushd inc_append_history hist_ignore_dups
@@ -72,11 +30,6 @@ HISTSIZE=200000
 mkdir -p ~/.zsh
 HISTFILE=~/.zsh/history
 SAVEHIST=20000
-
-## With commands like `rm' it's annoying if one gets offered the same filename
-## again even if it is already on the command line. To avoid that:
-#
-zstyle ':completion:*:rm:*' ignore-line yes
 
 try_alias() {
   cmd=$1
@@ -93,34 +46,15 @@ try_which() {
 try_alias ls ls --color=auto || try_alias ls ls -G
 
 alias mkdir='noglob mkdir'
-
-try_alias sl sl -al || alias sl='ls'
 alias ll='ls -l'
 try_which gitk gitview
 alias ga="gitk --all &|"
-alias less=/usr/bin/less
 alias mt=multitail
 
-mvim_remote()
-{
-    if [[ $# > 0 ]]; then
-        mvim --remote-silent "$@"
-    else
-        mvim "$@"
-    fi
-}
-if which mvim >/dev/null 2>&1; then
-    alias vim="mvim_remote"
-    alias V='\vim -R -'
-else
-    alias V='vim -R -'
-fi
+alias V='vim -R -'
 alias v="vim"
-try_which grep ack-grep
-try_which grep ack
 try_which xo xdg-open
 alias jobs='jobs -dlp'
-alias logdir='cd /etc/httpd-MAINLINE/logs'
 
 try_which gzip pigz
 try_which bzip2 pbzip2
@@ -134,11 +68,10 @@ else
 fi
 alias aptc='apt-cache'
 alias aptcs='apt-cache search'
-grep_sl()
-{
-  egrep -v "^.{${1:-120},}"
-}
+
 try_which diff colordiff
+
+try_which ack ack-grep
 
 alias paludis='sudo nice paludis'
 alias ip='paludis --install --continue-on-failure if-satisfied'
@@ -238,11 +171,6 @@ local bgc=${bgc//[%]b/%%b}
 local fgc=${fgc//[%]b/%%b}
 local reset=${reset//[%]b/%%b}
 
-vd()
-{
-  cd "$@" && ls --color=always --format=vertical | head
-}
-
 which fortune > /dev/null 2>&1 && fortune -s
 
 # zmodload zsh/zftp
@@ -251,18 +179,7 @@ which fortune > /dev/null 2>&1 && fortune -s
 which pip >/dev/null 2>&1 && eval "`pip completion --zsh`"
 which virtualenvwrapper.sh > /dev/null 2>&1 && source =virtualenvwrapper.sh
 
-# CD Aliases
-alias ...='cd ../..'
-alias ....='cd ../../..'
-
-alias ssh='env TERM=xterm-256color ssh'
-
-function nzgrep()
-{
-    local query="$1"
-    shift
-    echo "find "$@" -print0 -type f | xargs -0 -n16 -P8 -I{} "$query""
-}
+#alias ssh='env TERM=xterm-256color ssh'
 
 [[ -e ~/.wzshrc ]] && source ~/.wzshrc
 [[ -e ~/.zsh_local ]] && source ~/.zsh_local
@@ -272,4 +189,7 @@ alias hfs="hadoop fs"
 alias hls="hfs -ls"
 alias hjar="hadoop jar /opt/hadoop/hadoop*examples*.jar"
 alias set_javahome="source /etc/profile.d/java_home.sh"
+
+bindkey -M vicmd v edit-command-line
+
 true
