@@ -3,6 +3,7 @@ filetype off
 
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
+Bundle 'LargeFile'
 Bundle 'ciaranm/inkpot'
 Bundle 'tpope/vim-surround'
 Bundle 'L9'
@@ -29,6 +30,7 @@ Bundle 'ivanov/vim-ipython'
 Bundle 'scrooloose/syntastic'
 Bundle 'git://repo.or.cz/vcscommand'
 Bundle 'ShowMarks'
+Bundle 'Tab-Name'
 
 filetype plugin indent on
 
@@ -105,6 +107,7 @@ if has("autocmd")
   autocmd Filetype css set expandtab
   autocmd Filetype css set softtabstop=2
   autocmd Filetype css set autoindent
+  autocmd Filetype css nnoremap <leader>r :s/{\s*/{\r/:s/;\s*/;\r/g:set nohlskV'.>
 
   autocmd Filetype java nnoremap <silent> <buffer> <leader>i :JavaImport<cr>
   autocmd Filetype java nnoremap <silent> <buffer> <leader>d :JavaDocSearch -x declarations<cr>
@@ -194,10 +197,7 @@ nnoremap <leader>p :bp<CR>
 nnoremap <leader>w :bw<CR>
 nnoremap <leader>P :set paste!<CR>:set paste?<CR>
 
-nnoremap <leader>c :ConqueTermVSplit zsh<CR>
 nnoremap <leader>C :ConqueTermSplit zsh<CR>
-
-nnoremap <leader>r :w<CR>:!%:p<CR>
 
 nnoremap [[ ?{<CR>w99[{
 nnoremap ][ /}<CR>b99]}
@@ -223,6 +223,9 @@ let Tlist_Use_Right_Window=1
 " NERD tree
 nnoremap <silent> <leader>e :NERDTreeToggle<CR>
 let NERDTreeQuitOnOpen = 1
+
+" NERD Commenter
+vmap # <plug>NERDCommenterToggle
 
 
 " OmniCPPComplete
@@ -257,6 +260,7 @@ nnoremap <leader>q :r!trans value <C-R><C-W><CR>I## <ESC>kJ
 
 " VCS
 let g:VCSCommandCommitOnWrite = 0
+let g:VCSCommandSVNExec="svn.real --username webadmin --password webadmin --non-interactive"
 
 " VisIncr
 vnoremap <c-a> :I<CR>
@@ -276,15 +280,19 @@ highlight SpecialKey ctermfg=darkgreen
 let g:js_indent_log = 0
 
 " Set tabstop, softtabstop and shiftwidth to the same value
-command! -nargs=1 Stab call Stab(<args>)
-function! Stab(size)
+function! Stab(size, ...)
   if a:size > 0
     let &l:sts = a:size
     let &l:ts = a:size
     let &l:sw = a:size
   endif
+  if a:0 >= 1
+	Error 'foo'
+    exec('set ' + a:1)
+  endif
   call SummarizeTabs()
 endfunction
+command! -nargs=+ Stab call Stab(<q-args>)
 
 function! SummarizeTabs()
   try
@@ -321,3 +329,11 @@ let g:EclimXmlValidate=0
 highlight ShowMarksHLl ctermfg=Black ctermbg=241
 highlight ShowMarksHLo ctermfg=Black ctermbg=241
 let showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.'`^<>[]\""
+nnoremap mm :ShowMarksPlaceMark<CR>
+
+au FileType qf call AdjustWindowHeight(3, 10)
+function! AdjustWindowHeight(minheight, maxheight)
+  exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
+  exe "wincmd J"
+endfunction
+autocmd QuickFixCmdPost [^l]* nested cwindow
