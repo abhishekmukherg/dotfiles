@@ -1,9 +1,42 @@
-﻿" Pathogen.do_magic()
-call pathogen#infect()
+﻿set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
+Bundle 'LargeFile'
+Bundle 'ciaranm/inkpot'
+Bundle 'tpope/vim-surround'
+Bundle 'L9'
+Bundle 'sjl/gundo.vim'
+Bundle 'tpope/vim-pathogen'
+Bundle 'linkinpark342/vimpager'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'msanders/snipmate.vim'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'mrtazz/simplenote.vim'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'gmarik/vundle'
+Bundle 'bufexplorer.zip'
+Bundle 'matchit.zip'
+Bundle 'taglist.vim'
+Bundle 'JavaScript-Indent'
+Bundle 'Align'
+Bundle 'VisIncr'
+Bundle 'scrooloose/nerdtree'
+Bundle 'rson/vim-conque'
+Bundle 'ivanov/vim-ipython'
+"Bundle 'tomtom/quickfixsigns_vim'
+"Bundle 'tomtom/checksyntax_vim'
+Bundle 'scrooloose/syntastic'
+Bundle 'git://repo.or.cz/vcscommand'
+Bundle 'ShowMarks'
+Bundle 'Tab-Name'
+
+filetype plugin indent on
 
 syntax on
-set background=dark
 colorscheme solarized
+set background=dark
 
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
@@ -39,6 +72,19 @@ if has("autocmd")
   autocmd Filetype ruby set softtabstop=2
   autocmd Filetype ruby set autoindent
 
+  autocmd Filetype html set tabstop=2
+  autocmd Filetype html set shiftwidth=2
+  autocmd Filetype html set smarttab
+  autocmd Filetype html set expandtab
+  autocmd Filetype html set softtabstop=2
+  autocmd Filetype html set autoindent
+  autocmd Filetype htmldjango set tabstop=2
+  autocmd Filetype htmldjango set shiftwidth=2
+  autocmd Filetype htmldjango set smarttab
+  autocmd Filetype htmldjango set expandtab
+  autocmd Filetype htmldjango set softtabstop=2
+  autocmd Filetype htmldjango set autoindent
+
   autocmd Filetype java set tabstop=4
   autocmd Filetype java set shiftwidth=4
   autocmd Filetype java set smarttab
@@ -61,7 +107,7 @@ if has("autocmd")
   autocmd Filetype css set expandtab
   autocmd Filetype css set softtabstop=2
   autocmd Filetype css set autoindent
-
+  autocmd Filetype css nnoremap <leader>r :s/{\s*/{\r/:s/;\s*/;\r/g:set nohlskV'.>
 
   autocmd Filetype java nnoremap <silent> <buffer> <leader>i :JavaImport<cr>
   autocmd Filetype java nnoremap <silent> <buffer> <leader>d :JavaDocSearch -x declarations<cr>
@@ -70,12 +116,6 @@ if has("autocmd")
   autocmd Filetype rst nnoremap <silent> <buffer> <leader>h yypVr
 endif
 
-augroup filetypedetect
-  autocmd BufRead,BufNewFile psql.edit.* setfiletype sql
-  autocmd BufRead,BufNewFile *.wiki setfiletype wikipedia
-  autocmd BufRead,BufNewFile *.wikipedia.org.* setfiletype wikipedia
-  autocmd BufRead,BufNewFile *.gentoo-wiki.com.* setfiletype wikipedia
-augroup END
 "let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
 "let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 
@@ -96,6 +136,8 @@ if has("multi_byte")
 endif
 set grepprg=grep\ -nH\ $*
 
+let maplocalleader = ","
+
 "set autochdir
 set showcmd		" Show (partial) command in status line.
 set showmatch		" Show matching brackets.
@@ -111,14 +153,31 @@ set foldlevelstart=1
 set nocp
 set completeopt=menu
 set hlsearch
-nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+nnoremap <silent> <Space> :nohlsearch<CR>
 set wildignore=*.o,*.pyc,*.pyo
 set ruler
 set wildmode=longest,list,full
 set wildmenu
+set undofile
+set undodir=~/.vim/undo
+set scrolloff=4
+
+nnoremap ' `
+nnoremap ` '
+nnoremap 0 ^
+nnoremap ^ 0
+
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
 
 " Make :w!! automatically write as sudo
-cnoremap w!! %!sudo tee > /dev/null %
+"cnoremap w!! %!sudo tee > /dev/null %
+"command! -nargs=0 w!! call Suwrite()
+function! Suwrite()
+	%!sudo tee >/dev/null %
+endfunction
 
 nnoremap Q gq
 
@@ -127,6 +186,7 @@ nnoremap <silent><F7> :copen<CR>
 nnoremap <silent><C-F7> :cclose<CR>
 nnoremap <silent><F6> :lopen<CR>
 nnoremap <silent><C-F6> :lclose<CR>
+nnoremap <C-q> :CheckSyntax<CR>
 
 "nnoremap <silent><C-j> gj
 "nnoremap <silent><C-k> gk
@@ -137,10 +197,14 @@ nnoremap <leader>p :bp<CR>
 nnoremap <leader>w :bw<CR>
 nnoremap <leader>P :set paste!<CR>:set paste?<CR>
 
+nnoremap <leader>C :ConqueTermSplit zsh<CR>
+
 nnoremap [[ ?{<CR>w99[{
 nnoremap ][ /}<CR>b99]}
 nnoremap ]] j0[[%/{<CR>
 nnoremap [] k$][%?}<CR>
+
+inoremap <C-R><Delete> <C-R>+
 
 set backspace=indent,eol,start 
 
@@ -149,14 +213,19 @@ runtime macros/matchit.vim
 " Taglist
 command! T normal :TlistToggle<CR><C-w>h
 "nnoremap <silent> <leader>t :TlistToggle<CR><C-w>h
+let Tlist_Auto_Open=1
 let Tlist_Inc_Winwidth=0
 let Tlist_Exit_OnlyWindow=1
-let Tlist_Close_On_Select=1
+"let Tlist_Close_On_Select=0
 let Tlist_Highlight_Tag_On_BufEnter=1
+let Tlist_Use_Right_Window=1
 
 " NERD tree
 nnoremap <silent> <leader>e :NERDTreeToggle<CR>
 let NERDTreeQuitOnOpen = 1
+
+" NERD Commenter
+vmap # <plug>NERDCommenterToggle
 
 
 " OmniCPPComplete
@@ -178,7 +247,7 @@ let g:pylint_onwrite = 0
 
 let g:alternateExtensions_m = "h"
 let g:alternateExtensions_h = "m"
-let g:EasyMotion_leader_key = '<Leader>m'
+let g:EasyMotion_leader_key = ','
 
 function! MyGundoToggle()
   let g:gundo_width = &columns / 4
@@ -187,8 +256,11 @@ endfunction
 nnoremap <leader>u :call MyGundoToggle()<CR>
 let g:gundo_help = 0
 
+nnoremap <leader>q :r!trans value <C-R><C-W><CR>I## <ESC>kJ
+
 " VCS
 let g:VCSCommandCommitOnWrite = 0
+let g:VCSCommandSVNExec="svn.real --username webadmin --password webadmin --non-interactive"
 
 " VisIncr
 vnoremap <c-a> :I<CR>
@@ -208,15 +280,19 @@ highlight SpecialKey ctermfg=darkgreen
 let g:js_indent_log = 0
 
 " Set tabstop, softtabstop and shiftwidth to the same value
-command! -nargs=1 Stab call Stab(<args>)
-function! Stab(size)
+function! Stab(size, ...)
   if a:size > 0
     let &l:sts = a:size
     let &l:ts = a:size
     let &l:sw = a:size
   endif
+  if a:0 >= 1
+	Error 'foo'
+    exec('set ' + a:1)
+  endif
   call SummarizeTabs()
 endfunction
+command! -nargs=+ Stab call Stab(<q-args>)
 
 function! SummarizeTabs()
   try
@@ -233,3 +309,31 @@ function! SummarizeTabs()
     echohl None
   endtry
 endfunction
+
+if (filereadable(expand('~/.simplenoterc')))
+  source ~/.simplenoterc
+endif
+
+nnoremap <leader>f :FufFile<CR>
+
+" Ultisnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+" Eclim
+let g:EclimJavaSearchSingleResult="edit"
+let g:EclimValidateSortResults="severity"
+let g:EclimXmlValidate=0
+
+highlight ShowMarksHLl ctermfg=Black ctermbg=241
+highlight ShowMarksHLo ctermfg=Black ctermbg=241
+let showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.'`^<>[]\""
+nnoremap mm :ShowMarksPlaceMark<CR>
+
+au FileType qf call AdjustWindowHeight(3, 10)
+function! AdjustWindowHeight(minheight, maxheight)
+  exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
+  exe "wincmd J"
+endfunction
+autocmd QuickFixCmdPost [^l]* nested cwindow
