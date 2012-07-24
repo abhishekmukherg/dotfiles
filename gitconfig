@@ -17,6 +17,8 @@
 	lol = log --pretty=oneline --abbrev-commit --graph --decorate
 	stn = status -uno
 	diffc = diff --cached
+[log]
+	decorate = true
 [giggle]
 	compact-mode = false
 	main-window-maximized = false
