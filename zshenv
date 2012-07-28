@@ -50,6 +50,9 @@ export OSTYPE=linux
 
 parent_urxvt()
 {
+	if [[ $(uname) != "Linux" ]]; then
+		return 0
+	fi
 	proc=$(ps -o cmd= -p $(ps -o ppid= -p $$))
 	if [[ $proc = urxvtd* ]]; then
 		unset proc
