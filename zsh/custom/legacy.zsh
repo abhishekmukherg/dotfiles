@@ -23,6 +23,7 @@ unsetopt clobber
 setopt extended_history auto_pushd inc_append_history hist_ignore_dups
 setopt hist_verify auto_continue multios interactive_comments autocd
 setopt extended_glob notify list_ambiguous
+setopt noshare_history
 DIRSTACKSIZE=50
 limit coredumpsize 10m
 
@@ -46,7 +47,7 @@ try_which() {
 try_alias ls ls --color=auto || try_alias ls ls -G
 
 alias mkdir='noglob mkdir'
-alias ll='ls -l'
+alias ll='ls -lt'
 try_which gitk gitview
 alias ga="gitk --all &|"
 alias mt=multitail
@@ -192,4 +193,16 @@ alias set_javahome="source /etc/profile.d/java_home.sh"
 
 bindkey -M vicmd v edit-command-line
 
+function vz() {
+    (cd $zshhome; vim custom/legacy.zsh $HOME/.wzshrc)
+}
+function sz() {
+    source ~/.zshrc
+}
+
+function vv() {
+    (cd $(dirname $(readlink ~/.vimrc)); vim $(basename $(readlink ~/.vimrc)))
+}
+
 true
+# vim:ts=4 sts=4 sw=4 et:
