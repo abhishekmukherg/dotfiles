@@ -316,6 +316,9 @@ endif
 
 nnoremap <leader>f :FufFile<CR>
 
+" Syntastic
+let g:syntastic_javascript_checker="jshint"
+
 " Ultisnips
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
