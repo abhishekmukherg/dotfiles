@@ -166,6 +166,8 @@ nnoremap ' `
 nnoremap ` '
 nnoremap 0 ^
 nnoremap ^ 0
+nnoremap <C-]> g<C-]>
+nnoremap g<C-]> <C-]>
 
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
@@ -315,6 +317,9 @@ if (filereadable(expand('~/.simplenoterc')))
 endif
 
 nnoremap <leader>f :FufFile<CR>
+
+" Syntastic
+let g:syntastic_javascript_checker="jshint"
 
 " Ultisnips
 let g:UltiSnipsExpandTrigger="<tab>"

@@ -6,7 +6,7 @@ if [[ -d ~/.gem/ruby/ ]] && ls ~/.gem/ruby/ >/dev/null 2>&1; then
 		fi
 	done
 fi
-export PATH=$HOME/bin:/usr/lib/ccache:/opt/cxgames/bin:/opt/eclipse:${PATH}
+export PATH=$HOME/bin:/usr/lib/ccache:/opt/cxgames/bin:${PATH}
 if which mvim >/dev/null 2>&1; then
 	export EDITOR="mvim -f"
 else
