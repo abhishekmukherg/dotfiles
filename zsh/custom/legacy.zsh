@@ -192,6 +192,9 @@ alias hls="hfs -ls"
 alias hjar="hadoop jar /opt/hadoop/hadoop*examples*.jar"
 alias set_javahome="source /etc/profile.d/java_home.sh"
 
+TODO_DIR="$(dirname $zshhome)/todo"
+alias t="$TODO_DIR/todo.sh -d $TODO_DIR/todo.cfg"
+
 bindkey -M vicmd v edit-command-line
 
 function vz() {
