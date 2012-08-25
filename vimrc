@@ -166,6 +166,8 @@ nnoremap ' `
 nnoremap ` '
 nnoremap 0 ^
 nnoremap ^ 0
+nnoremap <C-]> g<C-]>
+nnoremap g<C-]> <C-]>
 
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
