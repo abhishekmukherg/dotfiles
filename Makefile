@@ -17,6 +17,7 @@ all: $(HOME)/.vim \
 	$(HOME)/.pentadactylrc \
 	$(HOME)/.pylintrc \
 	$(HOME)/.jshintrc \
+	$(HOME)/.tmux.conf \
 	vim/bundle/vundle/.git \
 	vim/undo/ \
 	.installed_vundles
