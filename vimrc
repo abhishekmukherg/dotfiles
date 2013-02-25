@@ -18,25 +18,35 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'gmarik/vundle'
 Bundle 'bufexplorer.zip'
 Bundle 'matchit.zip'
-Bundle 'taglist.vim'
 Bundle 'JavaScript-Indent'
 Bundle 'Align'
+Bundle 'tetsuo13/Vim-log4j'
 Bundle 'VisIncr'
 Bundle 'scrooloose/nerdtree'
 Bundle 'rson/vim-conque'
 Bundle 'ivanov/vim-ipython'
+Bundle 'hail2u/vim-css3-syntax'
+Bundle 'groenewege/vim-less'
 "Bundle 'tomtom/quickfixsigns_vim'
 "Bundle 'tomtom/checksyntax_vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'git://repo.or.cz/vcscommand'
 Bundle 'ShowMarks'
 Bundle 'Tab-Name'
+Bundle 'linkinpark342/vim-g'
+Bundle 'mileszs/ack.vim'
+Bundle 'kien/ctrlp.vim'
 
 filetype plugin indent on
 
 syntax on
 colorscheme solarized
 set background=dark
+
+set ts=4
+set sts=4
+set sw=4
+set et
 
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
@@ -90,6 +100,7 @@ if has("autocmd")
   autocmd Filetype java set smarttab
   autocmd Filetype java set expandtab
   autocmd Filetype java set softtabstop=4
+  autocmd Filetype java set makeprg=ant\ -emacs\ jar-tr
   autocmd Filetype java set autoindent
   autocmd Filetype java setlocal omnifunc=javacomplete#Complete
 
@@ -162,6 +173,8 @@ set wildmenu
 set undofile
 set undodir=~/.vim/undo
 set scrolloff=4
+set number
+set nostartofline
 
 nnoremap ' `
 nnoremap ` '
@@ -174,6 +187,8 @@ noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
+
+noremap <F1> <nop>
 
 " Make :w!! automatically write as sudo
 "cnoremap w!! %!sudo tee > /dev/null %
@@ -199,8 +214,11 @@ nnoremap <leader>n :bn<CR>
 nnoremap <leader>p :bp<CR>
 nnoremap <leader>w :bw<CR>
 nnoremap <leader>P :set paste!<CR>:set paste?<CR>
+nnoremap g* *#:s//
 
 nnoremap <leader>C :ConqueTermSplit zsh<CR>
+
+nnoremap sip gg/^import <CR>VG?^import <CR>!~/bin/eclipsepackagesort<CR>:nohls<CR>
 
 nnoremap [[ ?{<CR>w99[{
 nnoremap ][ /}<CR>b99]}
@@ -213,18 +231,9 @@ set backspace=indent,eol,start
 
 runtime macros/matchit.vim
 
-" Taglist
-command! T normal :TlistToggle<CR><C-w>h
-"nnoremap <silent> <leader>t :TlistToggle<CR><C-w>h
-let Tlist_Auto_Open=1
-let Tlist_Inc_Winwidth=0
-let Tlist_Exit_OnlyWindow=1
-"let Tlist_Close_On_Select=0
-let Tlist_Highlight_Tag_On_BufEnter=1
-let Tlist_Use_Right_Window=1
-
 " NERD tree
 nnoremap <silent> <leader>e :NERDTreeToggle<CR>
+nnoremap <silent> <leader>E :NERDTree %:h<CR>
 let NERDTreeQuitOnOpen = 1
 
 " NERD Commenter
@@ -259,7 +268,7 @@ endfunction
 nnoremap <leader>u :call MyGundoToggle()<CR>
 let g:gundo_help = 0
 
-nnoremap <leader>q :r!trans value <C-R><C-W><CR>I## <ESC>kJ
+nnoremap <leader>q ?['"]<CR>lv//s-1<CR>y:r!trans value <C-R>"<CR>I## <ESC>kJ:nohlsearch<CR>
 
 " VCS
 let g:VCSCommandCommitOnWrite = 0
@@ -321,6 +330,24 @@ nnoremap <leader>f :FufFile<CR>
 
 " Syntastic
 let g:syntastic_javascript_checker="jshint"
+set statusline=%<%f\ %h%m%r(%n)%#warningmsg#%{SyntasticStatuslineFlag()}%*%=%-14.(%l,%c%V%)\ %P 
+
+" CScope
+" add any cscope database in current directory
+if filereadable("cscope.out")
+    cs add cscope.out  
+" else add the database pointed to by environment variable 
+elseif $CSCOPE_DB != ""
+    cs add $CSCOPE_DB
+endif
+nnoremap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nnoremap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nnoremap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nnoremap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nnoremap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nnoremap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nnoremap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nnoremap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR> 
 
 " Ultisnips
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -343,3 +370,18 @@ function! AdjustWindowHeight(minheight, maxheight)
   exe "wincmd J"
 endfunction
 autocmd QuickFixCmdPost [^l]* nested cwindow
+
+"CTRL-P
+set wildignore+=_build
+let g:ctrlp_max_files = 300000
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_lazy_update=1
+nnoremap <C-B> :CtrlPBuffer<CR>
+
+if filereadable(".vimrc_local")
+  source .vimrc_local
+endif
+
+function! AutoCss()
+  autocmd BufWritePost *.css silent make -C $TRTOP/site/css2/mobile >/dev/null 2>&1 &
+endfunction
