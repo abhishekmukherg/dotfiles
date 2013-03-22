@@ -136,6 +136,9 @@ load_zkbd || true
 unfunction load_zkbd
 unfunction zkbd_file
 
+bindkey -M viins "^P" up-history
+bindkey -M viins "^N" down-history
+
 [[ -f /etc/zsh_command_not_found ]] && source /etc/zsh_command_not_found
 [[ -f ~/.dir_colors ]] && which dircolors >/dev/null 2>&1 && eval "`dircolors ~/.dir_colors -b`"
 

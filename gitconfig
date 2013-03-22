@@ -33,3 +33,5 @@
 
 [url "git@github.com:linkinpark342/"]
 	insteadOf = wgh:
+[push]
+	default = matching
