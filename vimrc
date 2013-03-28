@@ -125,6 +125,9 @@ if has("autocmd")
   autocmd Filetype java nnoremap <silent> <buffer> <cr> :JavaSearchContext<cr>
 
   autocmd Filetype rst nnoremap <silent> <buffer> <leader>h yypVr
+
+  autocmd BufNewFile folding.vim 0r ~/.vim/skel/folding.vim
+
 endif
 
 "let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
@@ -205,6 +208,7 @@ nnoremap <silent><C-F7> :cclose<CR>
 nnoremap <silent><F6> :lopen<CR>
 nnoremap <silent><C-F6> :lclose<CR>
 nnoremap <C-q> :CheckSyntax<CR>
+cnoreabbrev Qa qa
 
 "nnoremap <silent><C-j> gj
 "nnoremap <silent><C-k> gk
