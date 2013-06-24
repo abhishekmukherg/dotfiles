@@ -7,6 +7,8 @@ if [[ -d ~/.gem/ruby/ ]] && ls ~/.gem/ruby/ >/dev/null 2>&1; then
 	done
 fi
 export PATH=$HOME/bin:/usr/lib/ccache:/opt/cxgames/bin:${PATH}
+export PATH=$PATH:/Library/Frameworks/Python.framework/Versions/3.3/bin/
+export PATH=$PATH:$HOME/.local/share/android-sdks/tools:$HOME/.local/share/android-sdks/platform-tools
 if which mvim >/dev/null 2>&1; then
 	export EDITOR="mvim -f"
 else
