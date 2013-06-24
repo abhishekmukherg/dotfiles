@@ -79,6 +79,7 @@ alias paludis='sudo nice paludis'
 alias ip='paludis --install --continue-on-failure if-satisfied'
 alias ipu='ip --dl-reinstall if-use-changed'
 alias pacman='sudo pacman -y'
+alias sql='cd ~/bin/sql'
 
 alias bugz='bugz --connection=default'
 
@@ -186,7 +187,7 @@ which fortune > /dev/null 2>&1 && fortune -s
 which pip >/dev/null 2>&1 && eval "`pip completion --zsh`"
 which virtualenvwrapper.sh > /dev/null 2>&1 && source =virtualenvwrapper.sh
 
-#alias ssh='env TERM=xterm-256color ssh'
+alias ssh='env TERM=xterm-256color ssh'
 
 [[ -e ~/.wzshrc ]] && source ~/.wzshrc
 [[ -e ~/.zsh_local ]] && source ~/.zsh_local
