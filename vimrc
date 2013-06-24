@@ -10,6 +10,7 @@ Bundle 'bufexplorer.zip'
 Bundle 'ciaranm/inkpot'
 Bundle 'git://repo.or.cz/vcscommand'
 Bundle 'gmarik/vundle'
+Bundle 'go.vim'
 Bundle 'groenewege/vim-less'
 Bundle 'hail2u/vim-css3-syntax'
 Bundle 'ivanov/vim-ipython'
@@ -24,7 +25,6 @@ Bundle 'matchit.zip'
 Bundle 'mileszs/ack.vim'
 Bundle 'mrtazz/simplenote.vim'
 Bundle 'msanders/snipmate.vim'
-Bundle 'rson/vim-conque'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
@@ -35,8 +35,11 @@ Bundle 'tetsuo13/Vim-log4j'
 "Bundle 'tomtom/checksyntax_vim'
 "Bundle 'tomtom/quickfixsigns_vim'
 Bundle 'tpope/vim-abolish'
+Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-pathogen'
+Bundle 'tpope/vim-repeat.git'
 Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-unimpaired'
 Bundle 'VisIncr'
 set rtp+=~/.local/lib/python2.6/lib/python2.7/site-packages/powerline/bindings/vim
 
@@ -64,6 +67,7 @@ if has("autocmd")
   autocmd Filetype python set autoindent
   autocmd Filetype python set keywordprg=pydoc
   autocmd Filetype python set iskeyword=a-z,A-Z,48-57,_
+
 
   autocmd Filetype objc set tabstop=4
   autocmd Filetype objc set shiftwidth=4
@@ -129,6 +133,9 @@ if has("autocmd")
   autocmd Filetype java nnoremap <silent> <buffer> <cr> :JavaSearchContext<cr>
 
   autocmd Filetype rst nnoremap <silent> <buffer> <leader>h yypVr
+
+  autocmd BufNewFile folding.vim 0r ~/.vim/skel/folding.vim
+
 endif
 
 "let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
@@ -178,7 +185,10 @@ set undofile
 set undodir=~/.vim/undo
 set scrolloff=4
 set number
+set relativenumber
 set nostartofline
+
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 nnoremap ' `
 nnoremap ` '
@@ -209,6 +219,7 @@ nnoremap <silent><C-F7> :cclose<CR>
 nnoremap <silent><F6> :lopen<CR>
 nnoremap <silent><C-F6> :lclose<CR>
 nnoremap <C-q> :CheckSyntax<CR>
+cnoreabbrev Qa qa
 
 "nnoremap <silent><C-j> gj
 "nnoremap <silent><C-k> gk

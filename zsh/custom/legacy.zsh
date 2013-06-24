@@ -53,6 +53,11 @@ try_which gitk gitview
 alias ga="gitk --all &|"
 alias mt=multitail
 
+function kill_monkey()
+{
+    adb shell ps | awk '/com\.android\.commands\.monkey/ { system("adb shell kill " $2) }'
+}
+
 alias V='vim -R -'
 alias v="vim"
 try_which xo xdg-open
@@ -212,6 +217,10 @@ function sz() {
 
 function vv() {
     (cd $(dirname $(readlink ~/.vimrc)); vim $(basename $(readlink ~/.vimrc)))
+}
+
+function get_android_v4() {
+    cp ~/.local/share/android-sdks/extras/android/support/v4/android-support-v4.jar .
 }
 
 true
