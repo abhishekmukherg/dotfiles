@@ -3,39 +3,42 @@ filetype off
 
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
-Bundle 'LargeFile'
+Bundle 'Align'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'ap/vim-css-color'
+Bundle 'bufexplorer.zip'
 Bundle 'ciaranm/inkpot'
-Bundle 'tpope/vim-surround'
+Bundle 'git://repo.or.cz/vcscommand'
+Bundle 'gmarik/vundle'
+Bundle 'groenewege/vim-less'
+Bundle 'hail2u/vim-css3-syntax'
+Bundle 'ivanov/vim-ipython'
+Bundle 'JavaScript-Indent'
+Bundle 'kien/ctrlp.vim'
 Bundle 'L9'
-Bundle 'sjl/gundo.vim'
-Bundle 'tpope/vim-pathogen'
+Bundle 'LargeFile'
+Bundle 'linkinpark342/vim-g'
 Bundle 'linkinpark342/vimpager'
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'msanders/snipmate.vim'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'mrtazz/simplenote.vim'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'gmarik/vundle'
-Bundle 'bufexplorer.zip'
 Bundle 'matchit.zip'
-Bundle 'JavaScript-Indent'
-Bundle 'Align'
-Bundle 'tetsuo13/Vim-log4j'
-Bundle 'VisIncr'
-Bundle 'scrooloose/nerdtree'
-Bundle 'rson/vim-conque'
-Bundle 'ivanov/vim-ipython'
-Bundle 'hail2u/vim-css3-syntax'
-Bundle 'groenewege/vim-less'
-"Bundle 'tomtom/quickfixsigns_vim'
-"Bundle 'tomtom/checksyntax_vim'
-Bundle 'scrooloose/syntastic'
-Bundle 'git://repo.or.cz/vcscommand'
-Bundle 'ShowMarks'
-Bundle 'Tab-Name'
-Bundle 'linkinpark342/vim-g'
 Bundle 'mileszs/ack.vim'
-Bundle 'kien/ctrlp.vim'
+Bundle 'mrtazz/simplenote.vim'
+Bundle 'msanders/snipmate.vim'
+Bundle 'rson/vim-conque'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
+Bundle 'ShowMarks'
+Bundle 'sjl/gundo.vim'
+Bundle 'Tab-Name'
+Bundle 'tetsuo13/Vim-log4j'
+"Bundle 'tomtom/checksyntax_vim'
+"Bundle 'tomtom/quickfixsigns_vim'
+Bundle 'tpope/vim-abolish'
+Bundle 'tpope/vim-pathogen'
+Bundle 'tpope/vim-surround'
+Bundle 'VisIncr'
+set rtp+=~/.local/lib/python2.6/lib/python2.7/site-packages/powerline/bindings/vim
 
 filetype plugin indent on
 
@@ -47,6 +50,7 @@ set ts=4
 set sts=4
 set sw=4
 set et
+set laststatus=2
 
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
