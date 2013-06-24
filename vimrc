@@ -9,6 +9,11 @@ Bundle 'tpope/vim-surround'
 Bundle 'L9'
 Bundle 'sjl/gundo.vim'
 Bundle 'tpope/vim-pathogen'
+Bundle 'tpope/vim-repeat.git'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'go.vim'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-abolish'
 Bundle 'linkinpark342/vimpager'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'msanders/snipmate.vim'
@@ -23,7 +28,6 @@ Bundle 'Align'
 Bundle 'tetsuo13/Vim-log4j'
 Bundle 'VisIncr'
 Bundle 'scrooloose/nerdtree'
-Bundle 'rson/vim-conque'
 Bundle 'ivanov/vim-ipython'
 Bundle 'hail2u/vim-css3-syntax'
 Bundle 'groenewege/vim-less'
@@ -60,6 +64,7 @@ if has("autocmd")
   autocmd Filetype python set autoindent
   autocmd Filetype python set keywordprg=pydoc
   autocmd Filetype python set iskeyword=a-z,A-Z,48-57,_
+
 
   autocmd Filetype objc set tabstop=4
   autocmd Filetype objc set shiftwidth=4
@@ -177,7 +182,10 @@ set undofile
 set undodir=~/.vim/undo
 set scrolloff=4
 set number
+set relativenumber
 set nostartofline
+
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 nnoremap ' `
 nnoremap ` '
