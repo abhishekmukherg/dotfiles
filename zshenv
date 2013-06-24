@@ -50,25 +50,20 @@ export ANT_HOME=/usr/local/ant
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
 export OSTYPE=linux
 
-parent_urxvt()
+should_set_trtop()
 {
-	if [[ $(uname) != "Linux" ]]; then
-		return 0
-	fi
-	proc=$(ps -o cmd= -p $(ps -o ppid= -p $$))
-	if [[ $proc = urxvtd* ]]; then
-		unset proc
+	local shellpid="$(echo $(ps -o ppid= -p $$))"
+	local proc="$(ps -o cmd= -p $shellpid)"
+	if [[ $proc == tmux* ]] && [[ $SHLVL -le 2 ]]; then
 		return 0
 	else
-		unset proc
 		return 1
 	fi
 }
 
-if parent_urxvt && [[ -z $TRTOP ]] && [[ -f $HOME/.trtop_env ]]; then
+if should_set_trtop && [[ -z $TRTOP ]] && [[ -f $HOME/.trtop_env ]]; then
 	export TRTOP=$(cat $HOME/.trtop_env)
 fi
-unset parent_urxvt
 
 find_directories=
 [[ -d /lib/terminfo ]] && find_directories="$find_directories /lib/terminfo"
