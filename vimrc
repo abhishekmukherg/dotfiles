@@ -3,6 +3,7 @@ filetype off
 
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
+
 Bundle 'Align'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'ap/vim-css-color'
@@ -41,6 +42,8 @@ Bundle 'tpope/vim-repeat.git'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'VisIncr'
+Bundle 'airblade/vim-gitgutter.git'
+
 set rtp+=~/.local/lib/python2.6/lib/python2.7/site-packages/powerline/bindings/vim
 
 filetype plugin indent on
