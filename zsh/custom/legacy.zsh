@@ -51,6 +51,7 @@ alias mkdir='noglob mkdir'
 alias ll='ls -lt'
 try_which gitk gitview
 alias ga="gitk --all &|"
+try_which ga stree
 alias mt=multitail
 
 function kill_monkey()
@@ -151,6 +152,16 @@ bindkey -M viins "^N" down-history
   #. $HOME/.keychain/$HOSTNAME-sh-gpg
   
 autoload -Uz vcs_info
+
+## Gitignore.io
+function gi() {
+    local output="$(curl -s http://gitignore.io/api/$@)"
+    if [[ $1 == "list" ]]; then
+        echo "$output" | tr ',' '\n' | sort | column | column | column -t
+    else
+        echo "$output"
+    fi
+}
 
 local prompt_color
 if [[ $SSH_CLIENT == "" ]]; then
