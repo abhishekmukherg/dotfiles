@@ -43,6 +43,8 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'VisIncr'
 Bundle 'airblade/vim-gitgutter.git'
+Bundle 'nelstrom/vim-qargs'
+Bundle 'mattn/zencoding-vim'
 
 set rtp+=~/.local/lib/python2.6/lib/python2.7/site-packages/powerline/bindings/vim
 
@@ -62,15 +64,7 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal g'\"" | endif
 "  autocmd FileType python compiler pylint
-  autocmd Filetype python set tabstop=4
-  autocmd Filetype python set shiftwidth=4
-  autocmd Filetype python set smarttab
-  autocmd Filetype python set expandtab
-  autocmd Filetype python set softtabstop=0
-  autocmd Filetype python set autoindent
-  autocmd Filetype python set keywordprg=pydoc
-  autocmd Filetype python set iskeyword=a-z,A-Z,48-57,_
-
+  autocmd Filetype python set ts=4 sw=4 sta et sts=4 ai kp=pydoc isk=a-z,A-Z,48-57,_ cc=+1 tw=79
 
   autocmd Filetype objc set tabstop=4
   autocmd Filetype objc set shiftwidth=4
@@ -180,14 +174,14 @@ set nocp
 set completeopt=menu
 set hlsearch
 nnoremap <silent> <Space> :nohlsearch<CR>
-set wildignore=*.o,*.pyc,*.pyo
+set wildignore=*.o,*.pyc,*.pyo,*/build/*
 set ruler
 set wildmode=longest,list,full
 set wildmenu
 set undofile
 set undodir=~/.vim/undo
 set scrolloff=4
-set number
+"set number
 set relativenumber
 set nostartofline
 
@@ -391,6 +385,9 @@ autocmd QuickFixCmdPost [^l]* nested cwindow
 
 "CTRL-P
 set wildignore+=_build
+set wildignore+=eggs
+set wildignore+=bin
+set wildignore+=build
 let g:ctrlp_max_files = 300000
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_lazy_update=1
