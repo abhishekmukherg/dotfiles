@@ -4,47 +4,52 @@ filetype off
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
-Bundle 'Align'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'ap/vim-css-color'
-Bundle 'bufexplorer.zip'
-Bundle 'ciaranm/inkpot'
-Bundle 'git://repo.or.cz/vcscommand'
 Bundle 'gmarik/vundle'
+
+" Utility
+Bundle 'L9'
+Bundle 'LargeFile'
+Bundle 'linkinpark342/vimpager'
+Bundle 'nelstrom/vim-qargs'
+Bundle 'tpope/vim-repeat.git'
+
+" color schemes
+Bundle 'altercation/vim-colors-solarized'
+
+" Navigation
+Bundle 'kien/ctrlp.vim'
+Bundle 'mileszs/ack.vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'tpope/vim-unimpaired'
+
+" Filetypes
 Bundle 'go.vim'
 Bundle 'groenewege/vim-less'
 Bundle 'hail2u/vim-css3-syntax'
-Bundle 'ivanov/vim-ipython'
 Bundle 'JavaScript-Indent'
-Bundle 'kien/ctrlp.vim'
-Bundle 'L9'
-Bundle 'LargeFile'
-Bundle 'linkinpark342/vim-g'
-Bundle 'linkinpark342/vimpager'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'matchit.zip'
-Bundle 'mileszs/ack.vim'
-Bundle 'mrtazz/simplenote.vim'
-Bundle 'msanders/snipmate.vim'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic'
-Bundle 'ShowMarks'
-Bundle 'sjl/gundo.vim'
-Bundle 'Tab-Name'
 Bundle 'tetsuo13/Vim-log4j'
-"Bundle 'tomtom/checksyntax_vim'
-"Bundle 'tomtom/quickfixsigns_vim'
-Bundle 'tpope/vim-abolish'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-pathogen'
-Bundle 'tpope/vim-repeat.git'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'VisIncr'
-Bundle 'airblade/vim-gitgutter.git'
-Bundle 'nelstrom/vim-qargs'
+
+" Text formatting
+Bundle 'Align'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'sjl/gundo.vim'
+Bundle 'msanders/snipmate.vim'
 Bundle 'mattn/zencoding-vim'
+Bundle 'VisIncr'
+Bundle 'tpope/vim-surround'
+
+" Visual formatting
+Bundle 'ap/vim-css-color'
+Bundle 'scrooloose/syntastic'
+Bundle 'matchit.zip'
+Bundle 'ShowMarks'
+Bundle 'tpope/vim-abolish'
+
+" Source control
+Bundle 'git://repo.or.cz/vcscommand'
+Bundle 'airblade/vim-gitgutter.git'
+Bundle 'tpope/vim-fugitive'
+
 
 set rtp+=~/.local/lib/python2.6/lib/python2.7/site-packages/powerline/bindings/vim
 
@@ -155,8 +160,6 @@ if has("multi_byte")
 endif
 set grepprg=grep\ -nH\ $*
 
-let maplocalleader = ","
-
 "set autochdir
 set showcmd		" Show (partial) command in status line.
 set showmatch		" Show matching brackets.
@@ -215,7 +218,6 @@ nnoremap <silent><F7> :copen<CR>
 nnoremap <silent><C-F7> :cclose<CR>
 nnoremap <silent><F6> :lopen<CR>
 nnoremap <silent><C-F6> :lclose<CR>
-nnoremap <C-q> :CheckSyntax<CR>
 cnoreabbrev Qa qa
 
 "nnoremap <silent><C-j> gj
@@ -228,8 +230,6 @@ nnoremap <leader>w :bw<CR>
 nnoremap <leader>P :set paste!<CR>:set paste?<CR>
 nnoremap g* *#:s//
 
-nnoremap <leader>C :ConqueTermSplit zsh<CR>
-
 nnoremap sip gg/^import <CR>VG?^import <CR>!~/bin/eclipsepackagesort<CR>:nohls<CR>
 
 nnoremap [[ ?{<CR>w99[{
@@ -240,8 +240,6 @@ nnoremap [] k$][%?}<CR>
 inoremap <C-R><Delete> <C-R>+
 
 set backspace=indent,eol,start 
-
-runtime macros/matchit.vim
 
 " NERD tree
 nnoremap <silent> <leader>e :NERDTreeToggle<CR>
@@ -267,12 +265,6 @@ nnoremap <F3> :Explore<CR>
 "let g:miniBufExplMapCTabSwitchBufs = 1 
 "let g:miniBufExplModSelTarget = 1 
 
-let g:pylint_onwrite = 0
-
-let g:alternateExtensions_m = "h"
-let g:alternateExtensions_h = "m"
-let g:EasyMotion_leader_key = ','
-
 function! MyGundoToggle()
   let g:gundo_width = &columns / 4
   GundoToggle
@@ -291,9 +283,6 @@ vnoremap <c-a> :I<CR>
 
 runtime ftplugin/man.vim
 
-" Command-T
-let g:CommandTMaxHeight = 10
-
 " invisible characters
 set list
 nnoremap <leader>l :set list!<CR>
@@ -309,10 +298,6 @@ function! Stab(size, ...)
     let &l:sts = a:size
     let &l:ts = a:size
     let &l:sw = a:size
-  endif
-  if a:0 >= 1
-	Error 'foo'
-    exec('set ' + a:1)
   endif
   call SummarizeTabs()
 endfunction
@@ -334,12 +319,6 @@ function! SummarizeTabs()
   endtry
 endfunction
 
-if (filereadable(expand('~/.simplenoterc')))
-  source ~/.simplenoterc
-endif
-
-nnoremap <leader>f :FufFile<CR>
-
 " Syntastic
 let g:syntastic_javascript_checker="jshint"
 set statusline=%<%f\ %h%m%r(%n)%#warningmsg#%{SyntasticStatuslineFlag()}%*%=%-14.(%l,%c%V%)\ %P 
@@ -360,16 +339,6 @@ nnoremap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
 nnoremap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nnoremap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nnoremap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR> 
-
-" Ultisnips
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-
-" Eclim
-let g:EclimJavaSearchSingleResult="edit"
-let g:EclimValidateSortResults="severity"
-let g:EclimXmlValidate=0
 
 highlight ShowMarksHLl ctermfg=Black ctermbg=241
 highlight ShowMarksHLo ctermfg=Black ctermbg=241
@@ -396,7 +365,3 @@ nnoremap <C-B> :CtrlPBuffer<CR>
 if filereadable(".vimrc_local")
   source .vimrc_local
 endif
-
-function! AutoCss()
-  autocmd BufWritePost *.css silent make -C $TRTOP/site/css2/mobile >/dev/null 2>&1 &
-endfunction
