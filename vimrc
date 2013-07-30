@@ -20,6 +20,7 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'kien/ctrlp.vim'
 Bundle 'mileszs/ack.vim'
 Bundle 'scrooloose/nerdtree'
+Bundle 'Shougo/unite.vim'
 Bundle 'tpope/vim-unimpaired'
 
 " Filetypes
@@ -28,6 +29,8 @@ Bundle 'groenewege/vim-less'
 Bundle 'hail2u/vim-css3-syntax'
 Bundle 'JavaScript-Indent'
 Bundle 'tetsuo13/Vim-log4j'
+Bundle 'jgb/django.vim'
+Bundle 'juvenn/mustache.vim'
 
 " Text formatting
 Bundle 'Align'
@@ -47,7 +50,7 @@ Bundle 'tpope/vim-abolish'
 
 " Source control
 Bundle 'git://repo.or.cz/vcscommand'
-Bundle 'airblade/vim-gitgutter.git'
+"Bundle 'airblade/vim-gitgutter.git'
 Bundle 'tpope/vim-fugitive'
 
 
@@ -70,6 +73,7 @@ if has("autocmd")
     \| exe "normal g'\"" | endif
 "  autocmd FileType python compiler pylint
   autocmd Filetype python set ts=4 sw=4 sta et sts=4 ai kp=pydoc isk=a-z,A-Z,48-57,_ cc=+1 tw=79
+  autocmd Filetype go set ts=8 sw=8 sta noet sts=8 ai 
 
   autocmd Filetype objc set tabstop=4
   autocmd Filetype objc set shiftwidth=4
@@ -172,7 +176,7 @@ set hidden             " Hide buffers when they are abandoned
 set mouse=a		" Enable mouse usage (all modes) in terminals
 set modelines=2
 set foldmethod=syntax
-set foldlevelstart=1
+set foldlevelstart=2
 set nocp
 set completeopt=menu
 set hlsearch
@@ -184,8 +188,8 @@ set wildmenu
 set undofile
 set undodir=~/.vim/undo
 set scrolloff=4
-"set number
-set relativenumber
+set number
+"set relativenumber
 set nostartofline
 
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
@@ -320,7 +324,6 @@ function! SummarizeTabs()
 endfunction
 
 " Syntastic
-let g:syntastic_javascript_checker="jshint"
 set statusline=%<%f\ %h%m%r(%n)%#warningmsg#%{SyntasticStatuslineFlag()}%*%=%-14.(%l,%c%V%)\ %P 
 
 " CScope
