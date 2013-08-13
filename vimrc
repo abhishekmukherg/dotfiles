@@ -12,6 +12,7 @@ Bundle 'LargeFile'
 Bundle 'linkinpark342/vimpager'
 Bundle 'nelstrom/vim-qargs'
 Bundle 'tpope/vim-repeat.git'
+Bundle 'tpope/vim-dispatch.git'
 
 " color schemes
 Bundle 'altercation/vim-colors-solarized'
