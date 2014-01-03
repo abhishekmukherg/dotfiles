@@ -48,13 +48,12 @@ export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
 export OSTYPE=linux
 export GRADLE_OPTS="-Dorg.gradle.daemon=true -Dorg.gradle.parallel=true"
 
-find_directories=
-[[ -d /lib/terminfo ]] && find_directories="$find_directories /lib/terminfo"
-[[ -d /user/share/terminfo ]] && find_directories="$find_directories /user/share/terminfo"
-find_directories=$(echo $find_directories)
+typeset -a find_directories
+[[ -d /lib/terminfo ]] && find_directories+=(/lib/terminfo)
+[[ -d /user/share/terminfo ]] && find_directories+=(/user/share/terminfo)
 
-if [[ $TERM != *256* ]] && [[ -n "$find_directories" ]]; then
-	if find $find_directories -name 'xterm-256color' > /dev/null 2>&1; then
+if [[ $TERM != *256* ]] && [[ ${#find_directories} -gt 0 ]]; then
+	if find ${find_directories[@]} -name 'xterm-256color' > /dev/null 2>&1; then
 		export TERM="xterm-256color"
 	fi
 fi
