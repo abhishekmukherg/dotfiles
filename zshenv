@@ -62,3 +62,6 @@ fi
 if [[ -f $HOME/.zshenv.local ]]; then
 	source ~/.zshenv.local
 fi
+
+export GOPATH="$HOME/gocode"
+export PATH="$HOME/gocode/bin:$PATH"
