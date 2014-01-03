@@ -9,11 +9,7 @@ fi
 export PATH=$HOME/bin:/usr/lib/ccache:/opt/cxgames/bin:${PATH}
 export PATH=$PATH:/Library/Frameworks/Python.framework/Versions/3.3/bin/
 export PATH=$PATH:$HOME/.local/share/android-sdks/tools:$HOME/.local/share/android-sdks/platform-tools
-if which mvim >/dev/null 2>&1; then
-	export EDITOR="mvim -f"
-else
-	export EDITOR="vim"
-fi
+export EDITOR="vim"
 export LESS="--ignore-case -R"
 export DEBFULLNAME="Abhishek Mukherjee"
 which vimmanpager > /dev/null 2>&1 && export MANPAGER="vimmanpager"
@@ -43,27 +39,14 @@ export LANG="en_US.UTF-8"
 export LOCALE="$LANG"
 export HADOOP_HOME=/opt/hadoop
 export PATH="$PATH:$HADOOP_HOME/bin"
+export RBENV_ROOT=/usr/local/var/rbenv
 
 export CVSROOT=":pserver:webadmin@source.tripadvisor.com:/home/CVS"
 export ANT_HOME=/usr/local/ant
 
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
 export OSTYPE=linux
-
-should_set_trtop()
-{
-	local shellpid="$(echo $(ps -o ppid= -p $$))"
-	local proc="$(ps -o cmd= -p $shellpid)"
-	if [[ $proc == tmux* ]] && [[ $SHLVL -le 2 ]]; then
-		return 0
-	else
-		return 1
-	fi
-}
-
-if should_set_trtop && [[ -z $TRTOP ]] && [[ -f $HOME/.trtop_env ]]; then
-	export TRTOP=$(cat $HOME/.trtop_env)
-fi
+export GRADLE_OPTS="-Dorg.gradle.daemon=true -Dorg.gradle.parallel=true"
 
 find_directories=
 [[ -d /lib/terminfo ]] && find_directories="$find_directories /lib/terminfo"
