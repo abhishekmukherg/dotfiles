@@ -234,5 +234,7 @@ function get_android_v4() {
     cp ~/.local/share/android-sdks/extras/android/support/v4/android-support-v4.jar .
 }
 
+alias tcpmon='sudo tcpdump -A "tcp port 80 and (((ip[2:2] - ((ip[0]&0xf)<<2)) - ((tcp[12]&0xf0)>>2)) != 0)"'
+
 true
 # vim:ts=4 sts=4 sw=4 et:
