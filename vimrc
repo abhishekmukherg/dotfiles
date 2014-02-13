@@ -73,7 +73,7 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal g'\"" | endif
 "  autocmd FileType python compiler pylint
-  autocmd Filetype python set ts=4 sw=4 sta et sts=4 ai kp=pydoc isk=a-z,A-Z,48-57,_ cc=+1 tw=79
+  autocmd Filetype python set ts=4 sw=4 sta et sts=4 ai kp=pydoc isk=a-z,A-Z,48-57,_ tw=79
   autocmd Filetype go set ts=8 sw=8 sta noet sts=8 ai 
 
   autocmd Filetype objc set tabstop=4
@@ -186,12 +186,15 @@ set wildignore=*.o,*.pyc,*.pyo,*/build/*
 set ruler
 set wildmode=longest,list,full
 set wildmenu
-set undofile
-set undodir=~/.vim/undo
 set scrolloff=4
 set number
 "set relativenumber
 set nostartofline
+
+if exists('+undofile')
+    set undofile
+    set undodir=~/.vim/undo
+endif
 
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
