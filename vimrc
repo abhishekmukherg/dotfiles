@@ -32,6 +32,7 @@ Bundle 'JavaScript-Indent'
 Bundle 'tetsuo13/Vim-log4j'
 Bundle 'jgb/django.vim'
 Bundle 'juvenn/mustache.vim'
+Bundle 'tfnico/vim-gradle'
 
 " Text formatting
 Bundle 'Align'
@@ -348,13 +349,6 @@ highlight ShowMarksHLl ctermfg=Black ctermbg=241
 highlight ShowMarksHLo ctermfg=Black ctermbg=241
 let showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.'`^<>[]\""
 nnoremap mm :ShowMarksPlaceMark<CR>
-
-au FileType qf call AdjustWindowHeight(3, 10)
-function! AdjustWindowHeight(minheight, maxheight)
-  exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
-  exe "wincmd J"
-endfunction
-autocmd QuickFixCmdPost [^l]* nested cwindow
 
 "CTRL-P
 set wildignore+=_build
