@@ -236,5 +236,27 @@ function get_android_v4() {
 
 alias tcpmon='sudo tcpdump -A "tcp port 80 and (((ip[2:2] - ((ip[0]&0xf)<<2)) - ((tcp[12]&0xf0)>>2)) != 0)"'
 
+function skel() {
+    local src="$HOME/.skel/$1/"
+    if [[ ! -d "$src" ]]; then
+        src="$(ls -d "$HOME/.skel/$1"*)"
+        local num_results="$(echo "$src" | wc -l)"
+        if [[ "$num_results" -eq 0 ]]; then
+            echo "Could not find $src" >&2
+            return 2
+        elif [[ "$num_results" -gt 1 ]]; then
+            echo "Found to many matches for $1:" >&2
+            echo "$src"
+            return 3
+        fi
+    fi
+    echo "Copying $src"
+    rsync -avP "$src"/ ./
+    if [[ -x init.sh ]]; then
+        ./init.sh || return 2
+        rm init.sh
+    fi
+}
+
 true
 # vim:ts=4 sts=4 sw=4 et:
