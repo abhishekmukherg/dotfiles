@@ -4,6 +4,3 @@ m4=.m4
 vm=.vm
 --type-set
 as=.as3
---invert-file-match
--G
-^(data|langs)/|site/(js[23]|css2?)/.*-(c|gen)\.(js|css)
