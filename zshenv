@@ -23,6 +23,7 @@ pathmunge $HOME/bin
 pathmunge $HOME/dev/opt/android-sdk-macosx/tools
 pathmunge $HOME/dev/opt/android-sdk-macosx/platform-tools
 pathmunge $HOME/.local/share/go/bin
+pathmunge $HOME/.rbenv/bin
 
 export PATH
 
