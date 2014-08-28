@@ -39,7 +39,6 @@ export LANG="en_US.UTF-8"
 export LOCALE="$LANG"
 export HADOOP_HOME=/opt/hadoop
 export PATH="$PATH:$HADOOP_HOME/bin"
-export RBENV_ROOT=/usr/local/var/rbenv
 
 export CVSROOT=":pserver:webadmin@source.tripadvisor.com:/home/CVS"
 export ANT_HOME=/usr/local/ant
@@ -62,5 +61,5 @@ if [[ -f $HOME/.zshenv.local ]]; then
 	source ~/.zshenv.local
 fi
 
-export GOPATH="$HOME/gocode"
-export PATH="$HOME/gocode/bin:$PATH"
+export GOPATH="$HOME/.local/share/go:$HOME/dev/play/gocode"
+export PATH="$HOME/.local/share/go/bin:$PATH"

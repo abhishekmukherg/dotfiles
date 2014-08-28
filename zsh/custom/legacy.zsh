@@ -155,12 +155,39 @@ autoload -Uz vcs_info
 
 ## Gitignore.io
 function gi() {
-    local output="$(curl -s http://gitignore.io/api/$@)"
+    local output="$(curl -s http://www.gitignore.io/api/$@)"
     if [[ $1 == "list" ]]; then
         echo "$output" | tr ',' '\n' | sort | column | column | column -t
     else
         echo "$output"
     fi
+}
+
+function gw() {
+    local gradlew="$(while [[ $(pwd) != / ]]; do
+        if [[ -x gradlew ]]; then
+            break
+        fi
+        cd ..
+    done;
+    echo $(pwd)/gradlew)"
+
+    if [[ -x "$gradlew" ]]; then
+        "$gradlew" "$@"
+    else
+        cd "$startdir"
+        gradle "$@"
+    fi
+}
+
+autoload -U zmv
+alias zmz='noglob zmv'
+alias zcp='noglob zmv -C'
+alias zln='noglob zmv -L'
+alias zsy='noglob zmv -Ls'
+
+interview() {
+    vim ~/interviews/$(date +%Y%m%d)-$1
 }
 
 local prompt_color
