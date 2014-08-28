@@ -13,13 +13,14 @@ Bundle 'linkinpark342/vimpager'
 Bundle 'nelstrom/vim-qargs'
 Bundle 'tpope/vim-repeat.git'
 Bundle 'tpope/vim-dispatch.git'
+Bundle 'suan/vim-instant-markdown'
 
 " color schemes
 Bundle 'altercation/vim-colors-solarized'
 
 " Navigation
 Bundle 'kien/ctrlp.vim'
-Bundle 'mileszs/ack.vim'
+Bundle 'rking/ag.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'Shougo/unite.vim'
 Bundle 'tpope/vim-unimpaired'
@@ -33,19 +34,19 @@ Bundle 'tetsuo13/Vim-log4j'
 Bundle 'jgb/django.vim'
 Bundle 'juvenn/mustache.vim'
 Bundle 'tfnico/vim-gradle'
+Bundle 'TWiki-Syntax'
 
 " Text formatting
 Bundle 'Align'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'sjl/gundo.vim'
 Bundle 'msanders/snipmate.vim'
-Bundle 'mattn/zencoding-vim'
 Bundle 'VisIncr'
 Bundle 'tpope/vim-surround'
+Bundle "mattn/emmet-vim"
 
 " Visual formatting
 Bundle 'ap/vim-css-color'
-Bundle 'scrooloose/syntastic'
 Bundle 'matchit.zip'
 Bundle 'ShowMarks'
 Bundle 'tpope/vim-abolish'
@@ -54,9 +55,8 @@ Bundle 'tpope/vim-abolish'
 Bundle 'git://repo.or.cz/vcscommand'
 "Bundle 'airblade/vim-gitgutter.git'
 Bundle 'tpope/vim-fugitive'
+Bundle 'bling/vim-airline'
 
-
-set rtp+=~/.local/lib/python2.6/lib/python2.7/site-packages/powerline/bindings/vim
 
 filetype plugin indent on
 
@@ -69,6 +69,8 @@ set sts=4
 set sw=4
 set et
 set laststatus=2
+
+let g:airline_powerline_fonts = 1
 
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
@@ -188,7 +190,7 @@ set ruler
 set wildmode=longest,list,full
 set wildmenu
 set undofile
-set undodir=~/.vim/undo
+set undodir=/var/db/vim
 set scrolloff=4
 set number
 "set relativenumber
@@ -281,20 +283,26 @@ let g:gundo_help = 0
 nnoremap <leader>q ?['"]<CR>lv//s-1<CR>y:r!trans value <C-R>"<CR>I## <ESC>kJ:nohlsearch<CR>
 
 " VCS
-let g:VCSCommandCommitOnWrite = 0
-let g:VCSCommandSVNExec="svn.real --username webadmin --password webadmin --non-interactive"
+"let g:VCSCommandCommitOnWrite = 0
+"let g:VCSCommandSVNExec="svn.real --username webadmin --password webadmin --non-interactive"
+let g:VCSCommandSVNExec="svntr"
 
 " VisIncr
 vnoremap <c-a> :I<CR>
 
 runtime ftplugin/man.vim
 
+nnoremap cd :Dispatch<CR>
+nnoremap cD :Dispatch %:p<CR>
+
 " invisible characters
 set list
 nnoremap <leader>l :set list!<CR>
-set listchars=tab:▸\ ,eol:¬
+"set listchars=tab:▸\ ,eol:¬
+set listchars=tab:▸\ ,eol:\ 
 highlight NonText ctermfg=darkgreen
 highlight SpecialKey ctermfg=darkgreen
+
 
 let g:js_indent_log = 0
 
@@ -326,7 +334,10 @@ function! SummarizeTabs()
 endfunction
 
 " Syntastic
-set statusline=%<%f\ %h%m%r(%n)%#warningmsg#%{SyntasticStatuslineFlag()}%*%=%-14.(%l,%c%V%)\ %P 
+" set statusline=%<%f\ %h%m%r(%n)%#warningmsg#%{SyntasticStatuslineFlag()}%*%=%-14.(%l,%c%V%)\ %P 
+
+" Instant Markdown
+let g:instant_markdown_autostart = 0
 
 " CScope
 " add any cscope database in current directory
