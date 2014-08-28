@@ -14,6 +14,7 @@ Bundle 'nelstrom/vim-qargs'
 Bundle 'tpope/vim-repeat.git'
 Bundle 'tpope/vim-dispatch.git'
 Bundle 'suan/vim-instant-markdown'
+Bundle 'sudo.vim'
 
 " color schemes
 Bundle 'altercation/vim-colors-solarized'
@@ -35,6 +36,8 @@ Bundle 'jgb/django.vim'
 Bundle 'juvenn/mustache.vim'
 Bundle 'tfnico/vim-gradle'
 Bundle 'TWiki-Syntax'
+Bundle 'tpope/vim-markdown'
+Bundle 'proguard.vim'
 
 " Text formatting
 Bundle 'Align'
@@ -47,6 +50,7 @@ Bundle "mattn/emmet-vim"
 
 " Visual formatting
 Bundle 'ap/vim-css-color'
+"Bundle 'scrooloose/syntastic'
 Bundle 'matchit.zip'
 Bundle 'ShowMarks'
 Bundle 'tpope/vim-abolish'
@@ -75,9 +79,9 @@ let g:airline_powerline_fonts = 1
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal g'\"" | endif
-"  autocmd FileType python compiler pylint
+  autocmd FileType python compiler pyunit
   autocmd Filetype python set ts=4 sw=4 sta et sts=4 ai kp=pydoc isk=a-z,A-Z,48-57,_ cc=+1 tw=79
-  autocmd Filetype go set ts=8 sw=8 sta noet sts=8 ai 
+  autocmd Filetype go set ts=8 sw=8 sta noet sts=8 ai nolist
 
   autocmd Filetype objc set tabstop=4
   autocmd Filetype objc set shiftwidth=4
@@ -86,8 +90,8 @@ if has("autocmd")
   autocmd Filetype objc set softtabstop=0
   autocmd Filetype objc set autoindent
 
-  autocmd Filetype javascript set tabstop=4
-  autocmd Filetype javascript set shiftwidth=4
+  autocmd Filetype javascript set tabstop=2
+  autocmd Filetype javascript set shiftwidth=2
   autocmd Filetype javascript set smarttab
   autocmd Filetype javascript set expandtab
   autocmd Filetype javascript set softtabstop=0
@@ -145,7 +149,8 @@ if has("autocmd")
   autocmd Filetype rst nnoremap <silent> <buffer> <leader>h yypVr
 
   autocmd BufNewFile folding.vim 0r ~/.vim/skel/folding.vim
-
+  au BufNewFile,BufRead *.gradle setf groovy
+  au BufNewFile,BufRead proguard.cfg setf proguard
 endif
 
 "let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
@@ -205,12 +210,18 @@ nnoremap ^ 0
 nnoremap <C-]> g<C-]>
 nnoremap g<C-]> <C-]>
 
+nnoremap ∂ :Dispatch<CR>
+nnoremap Î :Dispatch %:p<CR>
+nnoremap µ :Make<CR>
+
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
 noremap <F1> <nop>
+
+"last
 
 " Make :w!! automatically write as sudo
 "cnoremap w!! %!sudo tee > /dev/null %
@@ -333,10 +344,7 @@ function! SummarizeTabs()
   endtry
 endfunction
 
-" Syntastic
-" set statusline=%<%f\ %h%m%r(%n)%#warningmsg#%{SyntasticStatuslineFlag()}%*%=%-14.(%l,%c%V%)\ %P 
-
-" Instant Markdown
+" vim-instant-markdown
 let g:instant_markdown_autostart = 0
 
 " CScope
