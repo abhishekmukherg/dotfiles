@@ -1,6 +1,6 @@
 function! DiffFolds()
     let thisline = getline(v:lnum)
-    if match(thisline, '^Index: ') >= 0
+    if match(thisline, '^\(Index: \|diff \)') >= 0
         return ">1"
     elseif v:lnum == 1
         return '-1'

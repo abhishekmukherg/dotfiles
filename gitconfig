@@ -17,6 +17,11 @@
 	lol = log --pretty=oneline --abbrev-commit --graph --decorate
 	stn = status -uno
 	diffc = diff --cached
+	br = branch -vva
+	up = pull
+	ff = flow feature
+	fast = merge --ff-only
+	ffast = pull --ff-only
 [log]
 	decorate = true
 [giggle]
@@ -33,3 +38,10 @@
 
 [url "git@github.com:linkinpark342/"]
 	insteadOf = wgh:
+[mergetool]
+	keepBackup = false
+[merge]
+	tool = vimdiff
+	defaultToUpstream = true
+[rerere]
+	enabled = true

@@ -13,13 +13,15 @@ Bundle 'linkinpark342/vimpager'
 Bundle 'nelstrom/vim-qargs'
 Bundle 'tpope/vim-repeat.git'
 Bundle 'tpope/vim-dispatch.git'
+Bundle 'suan/vim-instant-markdown'
+Bundle 'sudo.vim'
 
 " color schemes
 Bundle 'altercation/vim-colors-solarized'
 
 " Navigation
 Bundle 'kien/ctrlp.vim'
-Bundle 'mileszs/ack.vim'
+Bundle 'rking/ag.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'Shougo/unite.vim'
 Bundle 'tpope/vim-unimpaired'
@@ -32,19 +34,23 @@ Bundle 'JavaScript-Indent'
 Bundle 'tetsuo13/Vim-log4j'
 Bundle 'jgb/django.vim'
 Bundle 'juvenn/mustache.vim'
+Bundle 'tfnico/vim-gradle'
+Bundle 'TWiki-Syntax'
+Bundle 'tpope/vim-markdown'
+Bundle 'proguard.vim'
 
 " Text formatting
 Bundle 'Align'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'sjl/gundo.vim'
 Bundle 'msanders/snipmate.vim'
-Bundle 'mattn/zencoding-vim'
 Bundle 'VisIncr'
 Bundle 'tpope/vim-surround'
+Bundle "mattn/emmet-vim"
 
 " Visual formatting
 Bundle 'ap/vim-css-color'
-Bundle 'scrooloose/syntastic'
+"Bundle 'scrooloose/syntastic'
 Bundle 'matchit.zip'
 Bundle 'ShowMarks'
 Bundle 'tpope/vim-abolish'
@@ -53,9 +59,8 @@ Bundle 'tpope/vim-abolish'
 Bundle 'git://repo.or.cz/vcscommand'
 "Bundle 'airblade/vim-gitgutter.git'
 Bundle 'tpope/vim-fugitive'
+Bundle 'bling/vim-airline'
 
-
-set rtp+=~/.local/lib/python2.6/lib/python2.7/site-packages/powerline/bindings/vim
 
 filetype plugin indent on
 
@@ -69,12 +74,14 @@ set sw=4
 set et
 set laststatus=2
 
+let g:airline_powerline_fonts = 1
+
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal g'\"" | endif
-"  autocmd FileType python compiler pylint
-  autocmd Filetype python set ts=4 sw=4 sta et sts=4 ai kp=pydoc isk=a-z,A-Z,48-57,_ tw=79
-  autocmd Filetype go set ts=8 sw=8 sta noet sts=8 ai 
+  autocmd FileType python compiler pyunit
+  autocmd Filetype python set ts=4 sw=4 sta et sts=4 ai kp=pydoc isk=a-z,A-Z,48-57,_ cc=+1 tw=79
+  autocmd Filetype go set ts=8 sw=8 sta noet sts=8 ai nolist
 
   autocmd Filetype objc set tabstop=4
   autocmd Filetype objc set shiftwidth=4
@@ -83,8 +90,8 @@ if has("autocmd")
   autocmd Filetype objc set softtabstop=0
   autocmd Filetype objc set autoindent
 
-  autocmd Filetype javascript set tabstop=4
-  autocmd Filetype javascript set shiftwidth=4
+  autocmd Filetype javascript set tabstop=2
+  autocmd Filetype javascript set shiftwidth=2
   autocmd Filetype javascript set smarttab
   autocmd Filetype javascript set expandtab
   autocmd Filetype javascript set softtabstop=0
@@ -145,6 +152,8 @@ if has("autocmd")
 
   au BufRead,BufNewFile *.go     setfiletype go
 
+  au BufNewFile,BufRead *.gradle setf groovy
+  au BufNewFile,BufRead proguard.cfg setf proguard
 endif
 
 "let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
@@ -188,6 +197,10 @@ set wildignore=*.o,*.pyc,*.pyo,*/build/*
 set ruler
 set wildmode=longest,list,full
 set wildmenu
+if has('persistent_undo')
+  set undofile
+  set undodir=/var/db/vim
+endif
 set scrolloff=4
 set number
 "set relativenumber
@@ -215,7 +228,7 @@ noremap <C-l> <C-w>l
 noremap <F1> <nop>
 
 " Dispatch configuration
-nnoremap cm :Dispatch<CR>
+nnoremap cm :Make<CR>
 nnoremap cd :Dispatch %:p<CR>
 nnoremap cD :Dispatch<CR>
 
@@ -290,20 +303,26 @@ let g:gundo_help = 0
 nnoremap <leader>q ?['"]<CR>lv//s-1<CR>y:r!trans value <C-R>"<CR>I## <ESC>kJ:nohlsearch<CR>
 
 " VCS
-let g:VCSCommandCommitOnWrite = 0
-let g:VCSCommandSVNExec="svn.real --username webadmin --password webadmin --non-interactive"
+"let g:VCSCommandCommitOnWrite = 0
+"let g:VCSCommandSVNExec="svn.real --username webadmin --password webadmin --non-interactive"
+let g:VCSCommandSVNExec="svntr"
 
 " VisIncr
 vnoremap <c-a> :I<CR>
 
 runtime ftplugin/man.vim
 
+nnoremap cd :Dispatch<CR>
+nnoremap cD :Dispatch %:p<CR>
+
 " invisible characters
 set list
 nnoremap <leader>l :set list!<CR>
-set listchars=tab:▸\ ,eol:¬
+"set listchars=tab:▸\ ,eol:¬
+set listchars=tab:▸\ ,eol:\ 
 highlight NonText ctermfg=darkgreen
 highlight SpecialKey ctermfg=darkgreen
+
 
 let g:js_indent_log = 0
 
@@ -334,8 +353,8 @@ function! SummarizeTabs()
   endtry
 endfunction
 
-" Syntastic
-set statusline=%<%f\ %h%m%r(%n)%#warningmsg#%{SyntasticStatuslineFlag()}%*%=%-14.(%l,%c%V%)\ %P 
+" vim-instant-markdown
+let g:instant_markdown_autostart = 0
 
 " CScope
 " add any cscope database in current directory
