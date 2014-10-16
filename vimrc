@@ -143,6 +143,8 @@ if has("autocmd")
 
   autocmd BufNewFile folding.vim 0r ~/.vim/skel/folding.vim
 
+  au BufRead,BufNewFile *.go     setfiletype go
+
 endif
 
 "let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
@@ -211,6 +213,11 @@ noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 
 noremap <F1> <nop>
+
+" Dispatch configuration
+nnoremap cm :Dispatch<CR>
+nnoremap cd :Dispatch %:p<CR>
+nnoremap cD :Dispatch<CR>
 
 " Make :w!! automatically write as sudo
 "cnoremap w!! %!sudo tee > /dev/null %
@@ -351,13 +358,6 @@ highlight ShowMarksHLl ctermfg=Black ctermbg=241
 highlight ShowMarksHLo ctermfg=Black ctermbg=241
 let showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.'`^<>[]\""
 nnoremap mm :ShowMarksPlaceMark<CR>
-
-au FileType qf call AdjustWindowHeight(3, 10)
-function! AdjustWindowHeight(minheight, maxheight)
-  exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
-  exe "wincmd J"
-endfunction
-autocmd QuickFixCmdPost [^l]* nested cwindow
 
 "CTRL-P
 set wildignore+=_build
