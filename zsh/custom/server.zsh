@@ -9,5 +9,11 @@ function server() {
 	if [[ -n $opener ]]; then
 		$opener "http://localhost:${port}/"
 	fi
-	python -m SimpleHTTPServer "$port"
+    python -c "import SimpleHTTPServer, SocketServer
+Handler = SimpleHTTPServer.SimpleHTTPRequestHandler
+Handler.address_string = lambda self: str(self.client_address[0])
+httpd = SocketServer.TCPServer(('', $port), Handler)
+print 'serving at port $port'
+httpd.serve_forever()
+"
 }
