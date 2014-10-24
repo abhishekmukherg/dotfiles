@@ -153,6 +153,7 @@ if has("autocmd")
   au BufRead,BufNewFile *.go     setfiletype go
 
   au BufNewFile,BufRead *.gradle setf groovy
+  autocmd Filetype groovy set st=4 ts=4 sts=4 et formatoptions+=ro ai tw=80
   au BufNewFile,BufRead proguard.cfg setf proguard
 endif
 
