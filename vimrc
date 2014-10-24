@@ -221,6 +221,10 @@ nnoremap ^ 0
 nnoremap <C-]> g<C-]>
 nnoremap g<C-]> <C-]>
 
+nnoremap ∂ :Dispatch<CR>
+nnoremap Î :Dispatch %:p<CR>
+nnoremap µ :Make<CR>
+
 noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
