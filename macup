@@ -42,42 +42,48 @@ else
 fi
 
 declare -ra CASK=(
-    alfred
-    dropbox
-    google-chrome
-    qlcolorcode
-    transmit
-    appcleaner
-    firefox
-    qlmarkdown
-    spotify
-    vagrant
-    iterm2
-    virtualbox
-    flux
-    vlc
-    github
-    transmission
-    skype
-    wireshark
     adium
-    intellij-idea
+    adobe-photoshop-lightroom
+    alfred
+    appcleaner
     bettertouchtool
     chicken
     colloquy
     disk-inventory-x
+    dropbox
+    firefox
+    flux
     genymotion
     gimp
+    github
+    google-chrome
     google-drive
     handbrake
     hipchat
-    keepassx
-    pycharm-ce
-    slate
-    x2goclient
-    insomniax
+    hugin
     inkscape
-    adobe-photoshop-lightroom
+    insomniax
+    intellij-idea
+    iterm2
+    keepassx
+    logitech-unifying
+    logitech-control-center
+    luminance-hdr
+    pycharm-ce
+    qlcolorcode
+    qlmarkdown
+    skype
+    slate
+    sourcetree
+    spotify
+    steam
+    transmission
+    transmit
+    vagrant
+    virtualbox
+    vlc
+    wireshark
+    x2goclient
 )
 
 echo "brew cask install ${CASK[@]}"
