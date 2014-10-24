@@ -56,6 +56,7 @@ declare -ra CASK=(
     virtualbox
     flux
     vlc
+    github
     transmission
     skype
     wireshark
