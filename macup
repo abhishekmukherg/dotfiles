@@ -18,6 +18,7 @@ fi
 declare -ra BREW=(
     coreutils
     findutils
+    fasd
     bash
     homebrew/dupes/grep
     git

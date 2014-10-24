@@ -36,8 +36,11 @@ ZSH_TMUX_AUTOSTART=true
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git ant autojump pip screen svn go gradle git-flow-avg rbenv zsh-syntax-highlighting)
+plugins=(git ant fasd pip screen svn go gradle git-flow-avg rbenv zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
+
+# The next line updates PATH for the Google Cloud SDK.
+source '/Users/abhishekmukherjee/google-cloud-sdk/path.zsh.inc'
