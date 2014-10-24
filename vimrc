@@ -198,16 +198,12 @@ set wildignore=*.o,*.pyc,*.pyo,*/build/*
 set ruler
 set wildmode=longest,list,full
 set wildmenu
-if has('persistent_undo')
-  set undofile
-  set undodir=/var/db/vim
-endif
 set scrolloff=4
 set number
 "set relativenumber
 set nostartofline
 
-if exists('+undofile')
+if has('persistent_undo')
     set undofile
     set undodir=~/.vim/undo
 endif
