@@ -1,0 +1,69 @@
+#!/bin/bash
+
+set -e
+set -o nounset
+
+declare python3=
+
+which python >/dev/null 2>&1 || (echo "No python installed??" && exit 2)
+declare -r python=$(which python)
+if which python3 >/dev/null 2>&1; then
+    python3=$(which python3)
+fi
+
+echo "Installing python2 dependencies with $python"
+if [[ -z $python3 ]]; then
+    echo "And not installing python3"
+else
+    echo "Installing python3 dependencies with $python3"
+fi
+
+install_pip() {
+    if ! get_pip2 >/dev/null 2>&1; then
+        echo "Installing pip2"
+        echo "not implemented"
+        exit 2
+    fi
+
+    if ! get_pip3 >/dev/null 2>&1; then
+        echo "Installing pip3"
+        echo "not implemented"
+        exit 3
+    fi
+}
+
+get_pip2() {
+    which pip-2 2>/dev/null || which pip2 2>/dev/null
+}
+
+get_pip3() {
+    which pip-3 2>/dev/null || which pip3 2>/dev/null
+}
+declare -r pip2=$(get_pip2)
+declare -r pip3=$(get_pip3)
+
+echo $pip2
+echo $pip3
+
+if [[ -n $python3 ]]; then
+    declare -r PY2=(
+        bpython
+    )
+
+    declare -r PY3=(
+        bpython
+        httpie
+        glances
+    )
+else
+
+    declare -ra PY3=
+    declare -r PY2=(
+        bpython
+        httpie
+        glances
+    )
+fi
+
+$pip2 install ${PY2[@]}
+$pip3 install ${PY3[@]}
