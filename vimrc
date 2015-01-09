@@ -149,7 +149,11 @@ if has("autocmd")
   autocmd Filetype rst nnoremap <silent> <buffer> <leader>h yypVr
 
   autocmd BufNewFile folding.vim 0r ~/.vim/skel/folding.vim
+
+  au BufRead,BufNewFile *.go     setfiletype go
+
   au BufNewFile,BufRead *.gradle setf groovy
+  autocmd Filetype groovy set st=4 ts=4 sts=4 et formatoptions+=ro ai tw=80
   au BufNewFile,BufRead proguard.cfg setf proguard
 endif
 
@@ -194,12 +198,15 @@ set wildignore=*.o,*.pyc,*.pyo,*/build/*
 set ruler
 set wildmode=longest,list,full
 set wildmenu
-set undofile
-set undodir=/var/db/vim
 set scrolloff=4
 set number
 "set relativenumber
 set nostartofline
+
+if has('persistent_undo')
+    set undofile
+    set undodir=~/.vim/undo
+endif
 
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
@@ -221,7 +228,10 @@ noremap <C-l> <C-w>l
 
 noremap <F1> <nop>
 
-"last
+" Dispatch configuration
+nnoremap cm :Make<CR>
+nnoremap cd :Dispatch %:p<CR>
+nnoremap cD :Dispatch<CR>
 
 " Make :w!! automatically write as sudo
 "cnoremap w!! %!sudo tee > /dev/null %

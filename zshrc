@@ -42,5 +42,6 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 
-# The next line updates PATH for the Google Cloud SDK.
-source '/Users/abhishekmukherjee/google-cloud-sdk/path.zsh.inc'
+if [[ -f ~/google-cloud-sdk/path.zsh.inc ]]; then
+    source ~/google-cloud-sdk/path.zsh.inc
+fi
