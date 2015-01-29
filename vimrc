@@ -27,7 +27,7 @@ Bundle 'Shougo/unite.vim'
 Bundle 'tpope/vim-unimpaired'
 
 " Filetypes
-Bundle 'go.vim'
+Bundle 'fatih/vim-go'
 Bundle 'groenewege/vim-less'
 Bundle 'hail2u/vim-css3-syntax'
 Bundle 'JavaScript-Indent'
