@@ -52,7 +52,7 @@ Bundle "mattn/emmet-vim"
 Bundle 'ap/vim-css-color'
 "Bundle 'scrooloose/syntastic'
 Bundle 'matchit.zip'
-Bundle 'ShowMarks'
+"Bundle 'ShowMarks'
 Bundle 'tpope/vim-abolish'
 
 " Source control
