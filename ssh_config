@@ -35,6 +35,3 @@ Host aria.rh.uchicago.edu
 
 Host *.aghq.net
 	User abhishek
-
-Host dev*n
-	User root

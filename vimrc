@@ -27,7 +27,7 @@ Bundle 'Shougo/unite.vim'
 Bundle 'tpope/vim-unimpaired'
 
 " Filetypes
-Bundle 'go.vim'
+Bundle 'fatih/vim-go'
 Bundle 'groenewege/vim-less'
 Bundle 'hail2u/vim-css3-syntax'
 Bundle 'JavaScript-Indent'
@@ -80,7 +80,10 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal g'\"" | endif
   autocmd FileType python compiler pyunit
-  autocmd Filetype python set ts=4 sw=4 sta et sts=4 ai kp=pydoc isk=a-z,A-Z,48-57,_ cc=+1 tw=79
+  autocmd Filetype python set ts=4 sw=4 sta et sts=4 ai kp=pydoc isk=a-z,A-Z,48-57,_ tw=79
+  if exists('^colorcolumn')
+      autocmd FileType python set cc+=1
+  endif
   autocmd Filetype go set ts=8 sw=8 sta noet sts=8 ai nolist
 
   autocmd Filetype objc set tabstop=4
@@ -398,6 +401,7 @@ set wildignore+=build
 let g:ctrlp_max_files = 300000
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_lazy_update=1
+let g:ctrlp_working_path_mode = 'raw'
 nnoremap <C-B> :CtrlPBuffer<CR>
 
 if filereadable(".vimrc_local")

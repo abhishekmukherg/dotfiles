@@ -26,7 +26,7 @@ vim/bundle/vundle/.git:
 	git submodule update
 
 .installed_vundles: vimrc vim/bundle/vundle/.git
-	vim +BundleInstall +qall
+	vim +PluginInstall +qall
 
 $(HOME)/.%: %
 	ln -fs $(abspath $<) $@
