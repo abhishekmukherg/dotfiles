@@ -41,10 +41,6 @@ try_which diff colordiff
 
 try_which ack ack-grep
 
-alias paludis='sudo nice paludis'
-alias ip='paludis --install --continue-on-failure if-satisfied'
-alias ipu='ip --dl-reinstall if-use-changed'
-alias pacman='sudo pacman -y'
 alias sql='cd ~/bin/sql'
 
 alias bugz='bugz --connection=default'
