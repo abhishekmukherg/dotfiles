@@ -1,7 +1,6 @@
 Host *
 	ControlPath ~/.ssh/master-%r@%h:%p
 	ControlMaster auto
-	VisualHostKey yes
 	Compression yes
 
 Host remote.cs.rpi.edu
