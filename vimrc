@@ -52,7 +52,7 @@ Bundle "mattn/emmet-vim"
 Bundle 'ap/vim-css-color'
 "Bundle 'scrooloose/syntastic'
 Bundle 'matchit.zip'
-Bundle 'ShowMarks'
+"Bundle 'ShowMarks'
 Bundle 'tpope/vim-abolish'
 
 " Source control
@@ -159,6 +159,17 @@ if has("autocmd")
   autocmd Filetype groovy set st=4 ts=4 sts=4 et formatoptions+=ro ai tw=80
   au BufNewFile,BufRead proguard.cfg setf proguard
 endif
+
+vnoremap <silent> * :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy/<C-R><C-R>=substitute(
+  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
+vnoremap <silent> # :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy?<C-R><C-R>=substitute(
+  \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
 
 "let w:m1=matchadd('Search', '\%<81v.\%>77v', -1)
 "let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)

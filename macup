@@ -28,6 +28,10 @@ declare -ra BREW=(
     node
     python
     rename
+    zsh
+    mobile-shell
+    tmux
+    vim
 )
 
 echo "installing binaries"
@@ -43,6 +47,7 @@ else
 fi
 
 declare -ra CASK=(
+    xquartz  ## must be first
     adium
     adobe-photoshop-lightroom
     alfred
@@ -54,14 +59,12 @@ declare -ra CASK=(
     dropbox
     firefox
     flux
-    genymotion
     gimp
     github
     google-chrome
     google-drive
     handbrake
     hipchat
-    hugin
     inkscape
     insomniax
     intellij-idea
@@ -70,16 +73,14 @@ declare -ra CASK=(
     logitech-unifying
     logitech-control-center
     luminance-hdr
+    macvim
     pycharm-ce
     qlcolorcode
     qlmarkdown
     skype
     slate
     sourcetree
-    spotify
-    steam
     transmission
-    transmit
     vagrant
     virtualbox
     vlc
