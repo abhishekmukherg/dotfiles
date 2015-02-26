@@ -44,3 +44,5 @@ try_which ack ack-grep
 alias sql='cd ~/bin/sql'
 
 alias bugz='bugz --connection=default'
+
+alias fig='docker-compose'
