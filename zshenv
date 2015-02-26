@@ -48,8 +48,6 @@ export INQUISITIO_OPTIONS="--log-level warning"
 export BROWSER="/usr/bin/google-chrome"
 export TZ='America/New_York'
 export QEMU_AUDIO_DRV=pa
-export PYTHONUSERBASE="$HOME/.local/lib/python2.6/"
-export PYTHONPATH="$HOME/.local/lib/python2.6/"
 export SDL_AUDIODRIVER="pulse"
 export LANG="en_US.UTF-8"
 export LOCALE="$LANG"
@@ -77,5 +75,5 @@ if [[ -f $HOME/.zshenv.local ]]; then
     source ~/.zshenv.local
 fi
 
-export GOPATH="$HOME/.local/share/go:$HOME/dev/play/gocode"
+export GOPATH="$HOME/.local/share/go:$GOPATH"
 export PATH="$HOME/.local/share/go/bin:$PATH"
