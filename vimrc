@@ -4,63 +4,70 @@ filetype off
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
 " Utility
-Bundle 'L9'
-Bundle 'LargeFile'
-Bundle 'linkinpark342/vimpager'
-Bundle 'nelstrom/vim-qargs'
-Bundle 'tpope/vim-repeat.git'
-Bundle 'tpope/vim-dispatch.git'
-Bundle 'suan/vim-instant-markdown'
-Bundle 'sudo.vim'
+Plugin 'L9'
+Plugin 'LargeFile'
+Plugin 'linkinpark342/vimpager'
+Plugin 'nelstrom/vim-qargs'
+Plugin 'tpope/vim-repeat.git'
+Plugin 'tpope/vim-dispatch.git'
+Plugin 'suan/vim-instant-markdown'
+Plugin 'sudo.vim'
 
 " color schemes
-Bundle 'altercation/vim-colors-solarized'
+Plugin 'altercation/vim-colors-solarized'
 
 " Navigation
-Bundle 'kien/ctrlp.vim'
-Bundle 'rking/ag.vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'Shougo/unite.vim'
-Bundle 'tpope/vim-unimpaired'
+Plugin 'kien/ctrlp.vim'
+Plugin 'rking/ag.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-unimpaired'
 
 " Filetypes
-Bundle 'fatih/vim-go'
-Bundle 'groenewege/vim-less'
-Bundle 'hail2u/vim-css3-syntax'
-Bundle 'JavaScript-Indent'
-Bundle 'tetsuo13/Vim-log4j'
-Bundle 'jgb/django.vim'
-Bundle 'juvenn/mustache.vim'
-Bundle 'tfnico/vim-gradle'
-Bundle 'TWiki-Syntax'
-Bundle 'tpope/vim-markdown'
-Bundle 'proguard.vim'
+Plugin 'fatih/vim-go'
+Plugin 'groenewege/vim-less'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'JavaScript-Indent'
+Plugin 'tetsuo13/Vim-log4j'
+Plugin 'jgb/django.vim'
+Plugin 'juvenn/mustache.vim'
+Plugin 'tfnico/vim-gradle'
+Plugin 'TWiki-Syntax'
+Plugin 'tpope/vim-markdown'
+Plugin 'proguard.vim'
 
 " Text formatting
-Bundle 'Align'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'sjl/gundo.vim'
-Bundle 'msanders/snipmate.vim'
-Bundle 'VisIncr'
-Bundle 'tpope/vim-surround'
-Bundle "mattn/emmet-vim"
+Plugin 'Align'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'sjl/gundo.vim'
+Plugin 'VisIncr'
+Plugin 'tpope/vim-surround'
+Plugin 'mattn/emmet-vim'
 
 " Visual formatting
-Bundle 'ap/vim-css-color'
+Plugin 'ap/vim-css-color'
 "Bundle 'scrooloose/syntastic'
-Bundle 'matchit.zip'
-"Bundle 'ShowMarks'
-Bundle 'tpope/vim-abolish'
+Plugin 'matchit.zip'
+Plugin 'ShowMarks'
+Plugin 'tpope/vim-abolish'
 
 " Source control
-Bundle 'git://repo.or.cz/vcscommand'
+Plugin 'git://repo.or.cz/vcscommand'
 "Bundle 'airblade/vim-gitgutter.git'
-Bundle 'tpope/vim-fugitive'
-Bundle 'bling/vim-airline'
+Plugin 'tpope/vim-fugitive'
+Plugin 'bling/vim-airline'
 
+" Shougo
+Plugin 'Shougo/unite.vim'
+
+if has("lua") 
+    Plugin 'Shougo/vimproc'
+    Plugin 'Shougo/neocomplete.vim'
+    Plugin 'Shougo/neosnippet.vim'
+    Plugin 'Shougo/neosnippet-snippets'
+endif
 
 filetype plugin indent on
 
