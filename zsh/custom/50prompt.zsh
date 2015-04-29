@@ -21,10 +21,38 @@ if [[ $(echo $ZSH_VERSION | cut -d. -f1) == 3 ]] && [[ $(echo $ZSH_VERSION | cut
   local jobcolor="%{$fg[blue]%}"
   local reset="%{$reset_color%}"
 fi
-export PS1="$bgc($fgc%n$bgc@$fgc%m$bgc|$fgc%h$bgc @$fgc%t$bgc){$fgc%~$bgc}$reset"
+
+typeset -ga chpwd_functions
+
+local svnbranchinfo=
+get_branch_info() {
+    local svn=$(svn_current_branch_name)
+    if [[ -n $svn ]]; then
+        if [[ $PWD != */trsrc-${svn##*/}* ]]; then
+            svnbranchinfo=" ($svn)"
+        else
+            svnbranchinfo=""
+        fi
+    else
+        svnbranchinfo=""
+    fi
+}
+
+chpwd_functions+='get_branch_info'
+
+isauthed() {
+    if [[ ${SVNTR_SUBSHELL:-} == 1 ]]; then
+        echo -n "${fgc}s"
+    else
+        echo -n "${bgc}-"
+    fi
+}
+local is_subshell=$(isauthed)
+
+export PS1="$bgc{$fgc%n$bgc@$fgc%m$bgc@$fgc%t$bgc}{$fgc%~$bgc\$svnbranchinfo}$reset"
 export PS1="${PS1}
 $bgc-$fgc%#$reset "
-export RPS1="$bgc(%b%1(j,$jobcolor,$reset)%j %(?,$reset,$error)%?$reset"
+export RPS1="$bgc(%b%1(j,$jobcolor,$reset)%j$reset\${is_subshell}%(?,$reset,$error)%?$reset"
 
 local bgc=${bgc//[%]b/%%b}
 local fgc=${fgc//[%]b/%%b}

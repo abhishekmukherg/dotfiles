@@ -53,6 +53,7 @@ export LANG="en_US.UTF-8"
 export LOCALE="$LANG"
 export HADOOP_HOME=/opt/hadoop
 export PATH="$PATH:$HADOOP_HOME/bin"
+export PATH="$PATH:$HOME/.local/bin"
 
 # RBENV Settings
 export RBENV_ROOT=/usr/local/var/rbenv

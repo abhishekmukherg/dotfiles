@@ -50,9 +50,8 @@ Plugin 'mattn/emmet-vim'
 
 " Visual formatting
 Plugin 'ap/vim-css-color'
-"Bundle 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 Plugin 'matchit.zip'
-Plugin 'ShowMarks'
 Plugin 'tpope/vim-abolish'
 
 " Source control
