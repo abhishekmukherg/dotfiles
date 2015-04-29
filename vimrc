@@ -37,6 +37,8 @@ Plugin 'tfnico/vim-gradle'
 Plugin 'TWiki-Syntax'
 Plugin 'tpope/vim-markdown'
 Plugin 'proguard.vim'
+Plugin 'Matt-Deacalion/vim-systemd-syntax'
+Plugin 'rosstimson/bats.vim'
 
 " Text formatting
 Plugin 'Align'
