@@ -33,10 +33,12 @@ COMPLETION_WAITING_DOTS="true"
 
 ZSH_TMUX_AUTOSTART=true
 
+zstyle :omz:plugins:ssh-agent lifetime 4h
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(zsh-completions git ant fasd pip screen svn go gradle git-flow-avg rbenv zsh-syntax-highlighting zsh_reload)
+plugins=(zsh-completions git ant fasd pip screen svn go gradle git-flow-avg rbenv zsh-syntax-highlighting zsh_reload my-ssh-agent)
 
 source $ZSH/oh-my-zsh.sh
 
