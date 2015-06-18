@@ -15,6 +15,7 @@ Plugin 'tpope/vim-repeat.git'
 Plugin 'tpope/vim-dispatch.git'
 Plugin 'suan/vim-instant-markdown'
 Plugin 'sudo.vim'
+Plugin 'editorconfig/editorconfig-vim'
 
 " color schemes
 Plugin 'altercation/vim-colors-solarized'
