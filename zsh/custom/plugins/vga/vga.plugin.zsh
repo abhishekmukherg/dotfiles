@@ -1,0 +1,3 @@
+function vga() {
+    vim +'Ag '"$@"
+}
