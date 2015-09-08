@@ -40,6 +40,9 @@ Plugin 'tpope/vim-markdown'
 Plugin 'proguard.vim'
 Plugin 'Matt-Deacalion/vim-systemd-syntax'
 Plugin 'rosstimson/bats.vim'
+Plugin 'Firef0x/PKGBUILD.vim'
+Plugin 'chase/vim-ansible-yaml'
+Plugin 'rust-lang/rust.vim'
 
 " Text formatting
 Plugin 'Align'
