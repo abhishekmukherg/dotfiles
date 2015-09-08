@@ -65,8 +65,14 @@ Plugin 'Shougo/unite.vim'
 if has("lua") 
     Plugin 'Shougo/vimproc'
     Plugin 'Shougo/neocomplete.vim'
-    Plugin 'Shougo/neosnippet.vim'
-    Plugin 'Shougo/neosnippet-snippets'
+    " Plugin 'Shougo/neosnippet.vim'
+    " Plugin 'Shougo/neosnippet-snippets'
+endif
+
+if has("python") || has("python3")
+    Plugin 'SirVer/ultisnips'
+    Plugin 'honza/vim-snippets'
+    Plugin 'FelikZ/ctrlp-py-matcher'
 endif
 
 call vundle#end()
@@ -401,17 +407,6 @@ highlight ShowMarksHLl ctermfg=Black ctermbg=241
 highlight ShowMarksHLo ctermfg=Black ctermbg=241
 let showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.'`^<>[]\""
 nnoremap mm :ShowMarksPlaceMark<CR>
-
-"CTRL-P
-set wildignore+=_build
-set wildignore+=eggs
-set wildignore+=bin
-set wildignore+=build
-let g:ctrlp_max_files = 300000
-let g:ctrlp_clear_cache_on_exit = 0
-let g:ctrlp_lazy_update=1
-let g:ctrlp_working_path_mode = 'raw'
-nnoremap <C-B> :CtrlPBuffer<CR>
 
 if filereadable(".vimrc_local")
   source .vimrc_local
