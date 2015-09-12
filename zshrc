@@ -41,9 +41,6 @@ zstyle :omz:plugins:ssh-agent lifetime 4h
 plugins=(
     ant
     fasd
-    git
-    git-flow-avg
-    github
     go
     goenv
     gradle
