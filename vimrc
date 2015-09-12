@@ -13,8 +13,6 @@ Plugin 'linkinpark342/vimpager'
 Plugin 'nelstrom/vim-qargs'
 Plugin 'tpope/vim-repeat.git'
 Plugin 'tpope/vim-dispatch.git'
-Plugin 'suan/vim-instant-markdown'
-Plugin 'sudo.vim'
 Plugin 'editorconfig/editorconfig-vim'
 
 " color schemes
@@ -31,13 +29,10 @@ Plugin 'fatih/vim-go'
 Plugin 'groenewege/vim-less'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'JavaScript-Indent'
-Plugin 'tetsuo13/Vim-log4j'
 Plugin 'jgb/django.vim'
 Plugin 'juvenn/mustache.vim'
 Plugin 'tfnico/vim-gradle'
-Plugin 'TWiki-Syntax'
 Plugin 'tpope/vim-markdown'
-Plugin 'proguard.vim'
 Plugin 'Matt-Deacalion/vim-systemd-syntax'
 Plugin 'rosstimson/bats.vim'
 
@@ -47,17 +42,14 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'sjl/gundo.vim'
 Plugin 'VisIncr'
 Plugin 'tpope/vim-surround'
-Plugin 'mattn/emmet-vim'
 
 " Visual formatting
-Plugin 'ap/vim-css-color'
 Plugin 'scrooloose/syntastic'
-Plugin 'matchit.zip'
-Plugin 'tpope/vim-abolish'
+Plugin 'vim-scripts/matchit.zip.git'
+Plugin 'tpope/vim-abolish'  " Subvert
 
 " Source control
 Plugin 'git://repo.or.cz/vcscommand'
-"Bundle 'airblade/vim-gitgutter.git'
 Plugin 'tpope/vim-fugitive'
 Plugin 'bling/vim-airline'
 
@@ -67,14 +59,11 @@ Plugin 'Shougo/unite.vim'
 if has("lua") 
     Plugin 'Shougo/vimproc'
     Plugin 'Shougo/neocomplete.vim'
-    " Plugin 'Shougo/neosnippet.vim'
-    " Plugin 'Shougo/neosnippet-snippets'
 endif
 
 if has("python") || has("python3")
     Plugin 'SirVer/ultisnips'
     Plugin 'honza/vim-snippets'
-    Plugin 'FelikZ/ctrlp-py-matcher'
 endif
 
 call vundle#end()
