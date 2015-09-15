@@ -32,6 +32,7 @@ DISABLE_AUTO_UPDATE="true"
 COMPLETION_WAITING_DOTS="true"
 
 ZSH_TMUX_AUTOSTART=true
+ZSH_SSH_SKIP=true
 
 zstyle :omz:plugins:ssh-agent lifetime 4h
 
@@ -39,10 +40,8 @@ zstyle :omz:plugins:ssh-agent lifetime 4h
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(
-    ant
     fasd
     git
-    git-flow-avg
     github
     go
     goenv
@@ -51,7 +50,6 @@ plugins=(
     pip
     pyenv
     rbenv
-    screen
     svn-fast-info
     zsh-completions
     zsh_reload
