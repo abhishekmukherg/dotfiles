@@ -41,8 +41,6 @@ zstyle :omz:plugins:ssh-agent lifetime 4h
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(
     fasd
-    git
-    github
     go
     goenv
     gradle
