@@ -1,4 +1,5 @@
 function cdtop
-	set -U TRTOP (cat ~/.trtop_env)
+	set -e -g TRTOP
+	set -xU TRTOP (cat ~/.trtop_env)
     cd $TRTOP
 end
