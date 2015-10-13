@@ -1,4 +1,5 @@
 # Path to your oh-my-zsh configuration.
+#zmodload zsh/zprof
 
 
 zshhome=$(dirname $(readlink $HOME/.zshrc))/zsh
@@ -55,6 +56,8 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+
+#zprof
 
 # Customize to your needs...
 
