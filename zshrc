@@ -51,6 +51,7 @@ plugins=(
     pyenv
     rbenv
     svn-fast-info
+    vi-mode
     zsh-completions
     zsh_reload
     zsh-syntax-highlighting
