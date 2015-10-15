@@ -19,8 +19,6 @@ try_which gitk gitview
 alias ga="gitk --all &|"
 try_which ga stree
 
-alias V='vim -R -'
-alias v="vim"
 try_which xo xdg-open
 alias jobs='jobs -dlp'
 
