@@ -5,6 +5,15 @@ else
   local prompt_color=green
 fi
 
+if (( $+commands[cksum] )); then
+    local -i hostname_hash="$(( $(hostname -f | cksum | cut -d' ' -f1) % 5 + 1 ))"
+    local -a fg_colors
+    fg_colors=( cyan green yellow blue magenta white )
+    prompt_color="${fg_colors[$hostname_hash]}"
+    unset fg_colors
+    unset hostname_hash
+fi
+
 if [[ $UID == 0 ]]; then
   local prompt_color=red
 fi
