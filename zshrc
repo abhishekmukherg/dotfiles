@@ -1,4 +1,5 @@
 # Path to your oh-my-zsh configuration.
+#zmodload zsh/zprof
 
 
 zshhome=$(dirname $(readlink $HOME/.zshrc))/zsh
@@ -40,21 +41,27 @@ zstyle :omz:plugins:ssh-agent lifetime 4h
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(
+    archlinux
+    command-not-found
     fasd
     go
     goenv
     gradle
     my-ssh-agent
     pip
+    profiles
     pyenv
     rbenv
     svn-fast-info
+    vi-mode
     zsh-completions
     zsh_reload
     zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
+
+#zprof
 
 # Customize to your needs...
 

@@ -46,7 +46,6 @@ export GOPATH="$HOME/.local/share/go"
 export PALUDIS_OPTIONS="--log-level warning"
 export INQUISITIO_OPTIONS="--log-level warning"
 export BROWSER="/usr/bin/google-chrome"
-export TZ='America/New_York'
 export QEMU_AUDIO_DRV=pa
 export SDL_AUDIODRIVER="pulse"
 export LANG="en_US.UTF-8"
