@@ -49,10 +49,7 @@ isauthed() {
 }
 local is_subshell=$(isauthed)
 
-export PS1="$bgc{$fgc%n$bgc@$fgc%m$bgc@$fgc%t$bgc}{$fgc%~$bgc\$svnbranchinfo}$reset"
-export PS1="${PS1}
-$bgc-$fgc%#$reset "
-export RPS1="$bgc(%b%1(j,$jobcolor,$reset)%j$reset\${is_subshell}%(?,$reset,$error)%?$reset"
+export PS1="${bgc}[$fgc%n$bgc@$fgc%m $fgc%~$bgc\${svnbranchinfo}]$reset%# "
 
 local bgc=${bgc//[%]b/%%b}
 local fgc=${fgc//[%]b/%%b}

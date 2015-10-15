@@ -41,6 +41,7 @@ zstyle :omz:plugins:ssh-agent lifetime 4h
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(
+    archlinux
     command-not-found
     fasd
     go
