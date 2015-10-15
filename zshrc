@@ -49,6 +49,7 @@ plugins=(
     gradle
     my-ssh-agent
     pip
+    profiles
     pyenv
     rbenv
     svn-fast-info
