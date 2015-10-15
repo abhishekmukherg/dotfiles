@@ -6,7 +6,7 @@ else
 fi
 
 if (( $+commands[cksum] )); then
-    local -i hostname_hash="$(( $(hostname -f | cksum | cut -d' ' -f1) % 5 + 1 ))"
+    local -i hostname_hash="$(( $(hostname -f | cksum | cut -d' ' -f1) % 6 + 1 ))"
     local -a fg_colors
     fg_colors=( cyan green yellow blue magenta white )
     prompt_color="${fg_colors[$hostname_hash]}"
