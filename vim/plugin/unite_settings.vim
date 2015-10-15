@@ -1,5 +1,9 @@
 nnoremap <C-p> :Unite -start-insert file_rec/async<cr>
 nnoremap <Space>f :Unite -start-insert file_rec/async<cr>
+let g:unite_source_rec_max_cache_files = 200000
+let g:unite_source_rec_async_command =
+    \ ['ag', '--follow', '--nocolor', '--nogroup',
+    \  '--hidden', '-g', '']
 
 nnoremap <Space>/ :Unite grep:.<cr>
 let g:unite_source_grep_max_candidates = 200
