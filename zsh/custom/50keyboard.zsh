@@ -38,3 +38,9 @@ function load_zkbd() {
 load_zkbd || true
 unfunction load_zkbd
 unfunction zkbd_file
+bindkey -M viins "^A" vi-digit-or-beginning-of-line
+bindkey -M vicmd "^A" vi-digit-or-beginning-of-line
+bindkey -M viins "^E" vi-end-of-line
+bindkey -M vicmd "^E" vi-end-of-line
+bindkey -M viins "^R" history-incremental-search-backward
+bindkey -M vicmd "^R" history-incremental-search-backward
