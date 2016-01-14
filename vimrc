@@ -400,6 +400,7 @@ highlight ShowMarksHLl ctermfg=Black ctermbg=241
 highlight ShowMarksHLo ctermfg=Black ctermbg=241
 let showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.'`^<>[]\""
 nnoremap mm :ShowMarksPlaceMark<CR>
+hi! link SignColumn LineNr
 
 if filereadable(".vimrc_local")
   source .vimrc_local
