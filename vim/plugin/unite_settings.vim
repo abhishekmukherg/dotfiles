@@ -1,6 +1,6 @@
 nnoremap <C-p> :Unite -start-insert file_rec/async<cr>
-nnoremap <Space>f :Unite -start-insert file_rec/async<cr>
-let g:unite_source_rec_max_cache_files = 200000
+nnoremap <Space>f :execute "Unite -input=" . expand("%:h") . "/ -start-insert file_rec/async"<cr>
+"let g:unite_source_rec_max_cache_files = 20
 let g:unite_source_rec_async_command =
     \ ['ag', '--follow', '--nocolor', '--nogroup',
     \  '--hidden', '-g', '']
@@ -19,6 +19,7 @@ let g:unite_source_history_yank_enable = 1
 nnoremap <Space>y :Unite -quick-match history/yank<cr>
 nnoremap <Space>b :Unite -quick-match buffer<cr>
 nnoremap <Space>l :Unite -start-insert line<cr>
+nnoremap <Space>r :UniteResume<cr>
 
 autocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()
