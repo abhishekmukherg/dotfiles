@@ -18,6 +18,7 @@ all: $(HOME)/.vim \
 	$(HOME)/.jshintrc \
 	$(HOME)/.tmux.conf \
 	vim/bundle/vundle/.git \
+	$(HOME)/.xonshrc \
 	vim/undo/ \
 	.installed_vundles
 	$(HOME)/bin/vv
