@@ -20,6 +20,7 @@ all: $(HOME)/.vim \
 	vim/bundle/vundle/.git \
 	vim/undo/ \
 	.installed_vundles
+	$(HOME)/bin/vv
 
 vim/bundle/vundle/.git:
 	git submodule init
@@ -27,6 +28,8 @@ vim/bundle/vundle/.git:
 
 .installed_vundles: vimrc vim/bundle/vundle/.git
 	vim +PluginInstall +qall
+$(HOME)/bin/%: bin/%
+	ln -fs $(abspath $<) $@
 
 $(HOME)/.%: %
 	ln -fs $(abspath $<) $@
