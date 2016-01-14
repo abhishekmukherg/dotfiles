@@ -1,76 +1,92 @@
-﻿set nocompatible
-filetype off
+﻿if 0 | endif
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+ if has('vim_starting')
+   if &compatible
+     set nocompatible               " Be iMproved
+   endif
 
-Plugin 'gmarik/Vundle.vim'
+   " Required:
+   set runtimepath+=~/.vim/bundle/neobundle.vim/
+ endif
+
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Utility
-Plugin 'L9'
-Plugin 'LargeFile'
-Plugin 'linkinpark342/vimpager'
-Plugin 'nelstrom/vim-qargs'
-Plugin 'tpope/vim-repeat.git'
-Plugin 'tpope/vim-dispatch.git'
-Plugin 'editorconfig/editorconfig-vim'
+NeoBundle 'L9'
+NeoBundle 'LargeFile'
+NeoBundle 'linkinpark342/vimpager'
+NeoBundle 'nelstrom/vim-qargs'
+NeoBundle 'tpope/vim-repeat.git'
+NeoBundle 'tpope/vim-dispatch.git'
 
 " color schemes
-Plugin 'altercation/vim-colors-solarized'
+NeoBundle 'altercation/vim-colors-solarized'
 
 " Navigation
-Plugin 'rking/ag.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-unimpaired'
+NeoBundle 'rking/ag.vim'
+NeoBundleLazy 'scrooloose/nerdtree', {'augroup': 'NERDTree'}
+NeoBundle 'tpope/vim-unimpaired'
 
 " Filetypes
-Plugin 'fatih/vim-go'
-Plugin 'groenewege/vim-less'
-Plugin 'hail2u/vim-css3-syntax'
-Plugin 'JavaScript-Indent'
-Plugin 'jgb/django.vim'
-Plugin 'juvenn/mustache.vim'
-Plugin 'tfnico/vim-gradle'
-Plugin 'tpope/vim-markdown'
-Plugin 'Matt-Deacalion/vim-systemd-syntax'
-Plugin 'rosstimson/bats.vim'
-Plugin 'Firef0x/PKGBUILD.vim'
-Plugin 'chase/vim-ansible-yaml'
-Plugin 'rust-lang/rust.vim'
+NeoBundle 'fatih/vim-go'
+NeoBundle 'groenewege/vim-less'
+NeoBundle 'hail2u/vim-css3-syntax'
+NeoBundle 'JavaScript-Indent'
+NeoBundle 'jgb/django.vim'
+NeoBundle 'juvenn/mustache.vim'
+NeoBundle 'tfnico/vim-gradle'
+NeoBundle 'tpope/vim-markdown'
+NeoBundle 'Matt-Deacalion/vim-systemd-syntax'
+NeoBundle 'rosstimson/bats.vim'
+NeoBundle 'Firef0x/PKGBUILD.vim'
+NeoBundle 'chase/vim-ansible-yaml'
+NeoBundle 'rust-lang/rust.vim'
 
 " Text formatting
-Plugin 'Align'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'sjl/gundo.vim'
-Plugin 'VisIncr'
-Plugin 'tpope/vim-surround'
+NeoBundle 'Align'
+NeoBundle 'scrooloose/nerdcommenter'
+NeoBundle 'sjl/gundo.vim'
+NeoBundle 'VisIncr'
+NeoBundle 'tpope/vim-surround'
 
 " Visual formatting
-Plugin 'scrooloose/syntastic'
-Plugin 'vim-scripts/matchit.zip.git'
-Plugin 'tpope/vim-abolish'  " Subvert
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'vim-scripts/matchit.zip.git'
+NeoBundle 'tpope/vim-abolish'  " Subvert
 
 " Source control
-Plugin 'git://repo.or.cz/vcscommand'
-Plugin 'tpope/vim-fugitive'
-Plugin 'bling/vim-airline'
+NeoBundle 'https://repo.or.cz/vcscommand.git'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'bling/vim-airline'
 
 " Shougo
-Plugin 'Shougo/unite.vim'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/vimproc.vim', {
+\ 'build' : {
+\     'windows' : 'tools\\update-dll-mingw',
+\     'cygwin' : 'make -f make_cygwin.mak',
+\     'mac' : 'make',
+\     'linux' : 'make',
+\     'unix' : 'gmake',
+\    },
+\ }
 
 if has("lua") 
-    Plugin 'Shougo/vimproc'
-    Plugin 'Shougo/neocomplete.vim'
+    NeoBundle 'Shougo/neocomplete.vim'
 endif
 
 if has("python") || has("python3")
-    Plugin 'SirVer/ultisnips'
-    Plugin 'honza/vim-snippets'
+    NeoBundle 'SirVer/ultisnips'
+    NeoBundle 'honza/vim-snippets'
 endif
 
-call vundle#end()
+call neobundle#end()
 
 filetype plugin indent on
+
+NeoBundleCheck
 
 syntax on
 colorscheme solarized
