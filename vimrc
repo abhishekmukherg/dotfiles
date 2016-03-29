@@ -20,6 +20,7 @@ NeoBundle 'linkinpark342/vimpager'
 NeoBundle 'nelstrom/vim-qargs'
 NeoBundle 'tpope/vim-repeat.git'
 NeoBundle 'tpope/vim-dispatch.git'
+NeoBundle 'Konfekt/FastFold'
 
 " color schemes
 NeoBundle 'altercation/vim-colors-solarized'
