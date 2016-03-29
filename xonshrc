@@ -7,32 +7,11 @@ import pathlib
 $SHELL_TYPE = 'prompt_toolkit'
 $EDITOR = 'vim'
 $VI_MODE = True
-$PATH = [os.path.expanduser('~/bin'), '/usr/local/bin'] + $PATH
 
+path_prepend = [
+    os.path.expanduser('~/bin/'),
+    os.path.expanduser('~/.local/bin/'),
+    '/usr/local/bin',
+]
 
-class _TrtopMgr(object):
-    trtop_file = '~/.trtop_env'
-
-    @classmethod
-    def _get_filename(cls):
-        return os.path.expanduser(cls.trtop_file)
-
-
-    @classmethod
-    def cd_to_trtop(cls, args, stdin=None):
-        trtop_file = cls._get_filename()
-        if os.path.exists(trtop_file):
-            with open(trtop_file, 'r') as file:
-                $TRTOP = file.read().strip()
-        if $TRTOP is None:
-            print("Failed to find TRTOP", file=sys.stderr)
-            return None
-        xonsh.dirstack.cd([$TRTOP])
-
-    def set_current_trtop(cls, args, stdin=None):
-        path = pathlib.Path('.')
-        print(path)
-
-
-aliases['cdtop'] = _TrtopMgr.cd_to_trtop
-aliases['st'] = _TrtopMgr.set_current_trtop
+$PATH = path_prepend + $PATH
