@@ -23,7 +23,7 @@ NeoBundle 'tpope/vim-dispatch.git'
 
 " color schemes
 " NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'ChrisKempson/Tomorrow-Theme', {'directory': 'Tomorrow-Theme/vim'}
+NeoBundle 'ChrisKempson/Tomorrow-Theme', {'rtp': 'vim'}
 " NeoBundle 'jnurmine/zenburn'
 
 " Navigation
