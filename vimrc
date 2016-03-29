@@ -22,7 +22,9 @@ NeoBundle 'tpope/vim-repeat.git'
 NeoBundle 'tpope/vim-dispatch.git'
 
 " color schemes
-NeoBundle 'altercation/vim-colors-solarized'
+" NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'ChrisKempson/Tomorrow-Theme', {'directory': 'Tomorrow-Theme/vim'}
+" NeoBundle 'jnurmine/zenburn'
 
 " Navigation
 NeoBundle 'rking/ag.vim'
@@ -89,7 +91,7 @@ filetype plugin indent on
 NeoBundleCheck
 
 syntax on
-colorscheme solarized
+colorscheme Tomorrow-Night-Eighties
 set background=dark
 
 set ts=4
