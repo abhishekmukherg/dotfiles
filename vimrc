@@ -23,7 +23,9 @@ NeoBundle 'tpope/vim-dispatch.git'
 NeoBundle 'Konfekt/FastFold'
 
 " color schemes
-NeoBundle 'altercation/vim-colors-solarized'
+" NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'ChrisKempson/Tomorrow-Theme', {'rtp': 'vim'}
+" NeoBundle 'jnurmine/zenburn'
 
 " Navigation
 NeoBundle 'rking/ag.vim'
@@ -52,6 +54,10 @@ NeoBundle 'sjl/gundo.vim'
 NeoBundle 'VisIncr'
 NeoBundle 'tpope/vim-surround'
 
+NeoBundle 'xolox/vim-misc'
+NeoBundle 'xolox/vim-notes'
+NeoBundle 'vim-scripts/utl.vim'
+
 " Visual formatting
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'vim-scripts/matchit.zip.git'
@@ -60,7 +66,8 @@ NeoBundle 'tpope/vim-abolish'  " Subvert
 " Source control
 NeoBundle 'https://repo.or.cz/vcscommand.git'
 NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'bling/vim-airline'
+NeoBundle 'vim-airline/vim-airline'
+NeoBundle 'vim-airline/vim-airline-themes'
 
 " Shougo
 NeoBundle 'Shougo/unite.vim'
@@ -90,7 +97,7 @@ filetype plugin indent on
 NeoBundleCheck
 
 syntax on
-colorscheme solarized
+colorscheme Tomorrow-Night-Eighties
 set background=dark
 
 set ts=4
@@ -317,6 +324,11 @@ let NERDTreeQuitOnOpen = 1
 " NERD Commenter
 vmap # <plug>NERDCommenterToggle
 
+" vim notes
+let g:notes_directories = ['~/.local/share/vim-notes/']
+let g:notes_suffix = '.txt'
+let g:notes_word_boundaries = 1
+
 
 " OmniCPPComplete
 nnoremap <C-F11> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
@@ -417,6 +429,7 @@ highlight ShowMarksHLl ctermfg=Black ctermbg=241
 highlight ShowMarksHLo ctermfg=Black ctermbg=241
 let showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.'`^<>[]\""
 nnoremap mm :ShowMarksPlaceMark<CR>
+hi! link SignColumn LineNr
 
 if filereadable(".vimrc_local")
   source .vimrc_local

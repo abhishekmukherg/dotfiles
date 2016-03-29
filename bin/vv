@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cd "$(dirname $(readlink ~/.vimrc))/vim"
+vim ../vimrc .
