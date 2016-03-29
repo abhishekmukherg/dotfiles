@@ -51,6 +51,10 @@ NeoBundle 'sjl/gundo.vim'
 NeoBundle 'VisIncr'
 NeoBundle 'tpope/vim-surround'
 
+NeoBundle 'xolox/vim-misc'
+NeoBundle 'xolox/vim-notes'
+NeoBundle 'vim-scripts/utl.vim'
+
 " Visual formatting
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'vim-scripts/matchit.zip.git'
@@ -59,7 +63,8 @@ NeoBundle 'tpope/vim-abolish'  " Subvert
 " Source control
 NeoBundle 'https://repo.or.cz/vcscommand.git'
 NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'bling/vim-airline'
+NeoBundle 'vim-airline/vim-airline'
+NeoBundle 'vim-airline/vim-airline-themes'
 
 " Shougo
 NeoBundle 'Shougo/unite.vim'
@@ -315,6 +320,11 @@ let NERDTreeQuitOnOpen = 1
 
 " NERD Commenter
 vmap # <plug>NERDCommenterToggle
+
+" vim notes
+let g:notes_directories = ['~/.local/share/vim-notes/']
+let g:notes_suffix = '.txt'
+let g:notes_word_boundaries = 1
 
 
 " OmniCPPComplete
