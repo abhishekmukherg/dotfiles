@@ -28,7 +28,7 @@ NeoBundle 'ChrisKempson/Tomorrow-Theme', {'rtp': 'vim'}
 
 " Navigation
 NeoBundle 'rking/ag.vim'
-NeoBundleLazy 'scrooloose/nerdtree', {'augroup': 'NERDTree'}
+NeoBundle 'tpope/vim-vinegar'
 NeoBundle 'tpope/vim-unimpaired'
 
 " Filetypes
@@ -332,11 +332,6 @@ nnoremap [] k$][%?}<CR>
 inoremap <C-R><Delete> <C-R>+
 
 set backspace=indent,eol,start
-
-" NERD tree
-nnoremap <silent> <leader>e :NERDTreeToggle<CR>
-nnoremap <silent> <leader>E :NERDTree %:h<CR>
-let NERDTreeQuitOnOpen = 1
 
 " NERD Commenter
 vmap # <plug>NERDCommenterToggle
