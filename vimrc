@@ -84,7 +84,9 @@ NeoBundle 'Shougo/vimproc.vim', {
 \    },
 \ }
 
-if has("lua")
+if has('nvim') && has('python3')
+    NeoBundle 'Shougo/deoplete.nvim'
+elseif has("lua")
     NeoBundle 'Shougo/neocomplete.vim'
 endif
 

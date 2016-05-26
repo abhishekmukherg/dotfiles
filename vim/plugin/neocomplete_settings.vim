@@ -1,7 +1,7 @@
 "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 " Disable AutoComplPop.
 
-if !has("lua")
+if !has("lua") || !(has('nvim') && has('python3'))
   finish
 endif
 
