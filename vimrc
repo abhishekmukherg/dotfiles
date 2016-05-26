@@ -1,105 +1,114 @@
 ﻿if 0 | endif
 
- if has('vim_starting')
-   if &compatible
-     set nocompatible               " Be iMproved
-   endif
+if &compatible
+    set nocompatible               " Be iMproved
+endif
 
-   " Required:
-   set runtimepath+=~/.vim/bundle/neobundle.vim/
- endif
+" Required:
+set runtimepath^=~/.vim/repos/github.com/Shougo/dein.vim
 
-call neobundle#begin(expand('~/.vim/bundle/'))
+" Required:
+call dein#begin(expand('~/.vim'))
 
-NeoBundleFetch 'Shougo/neobundle.vim'
+" Let dein manage dein
+" Required:
+call dein#add('Shougo/dein.vim')
 
 " Utility
-NeoBundle 'L9'
-NeoBundle 'LargeFile'
-NeoBundle 'linkinpark342/vimpager'
-NeoBundle 'nelstrom/vim-qargs'
-NeoBundle 'tpope/vim-repeat.git'
-NeoBundle 'tpope/vim-dispatch.git'
+call dein#add('L9')
+call dein#add('LargeFile')
+call dein#add('linkinpark342/vimpager')
+call dein#add('nelstrom/vim-qargs')
+call dein#add('tpope/vim-repeat.git')
+call dein#add('tpope/vim-dispatch.git')
 
 " color schemes
-" NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'ChrisKempson/Tomorrow-Theme', {'rtp': 'vim'}
-" NeoBundle 'jnurmine/zenburn'
+" call dein#add('altercation/vim-colors-solarized')
+call dein#add('ChrisKempson/Tomorrow-Theme', {'rtp': 'vim'})
+" call dein#add('jnurmine/zenburn')
 
 " Navigation
-NeoBundle 'rking/ag.vim'
-NeoBundle 'tpope/vim-vinegar'
-NeoBundle 'tpope/vim-unimpaired'
+call dein#add('rking/ag.vim')
+call dein#add('tpope/vim-vinegar')
+call dein#add('tpope/vim-unimpaired')
 
 " Filetypes
-NeoBundle 'fatih/vim-go'
-NeoBundle 'groenewege/vim-less'
-NeoBundle 'hail2u/vim-css3-syntax'
-NeoBundle 'JavaScript-Indent'
-NeoBundle 'jgb/django.vim'
-NeoBundle 'juvenn/mustache.vim'
-NeoBundle 'tfnico/vim-gradle'
-NeoBundle 'tpope/vim-markdown'
-NeoBundle 'Matt-Deacalion/vim-systemd-syntax'
-NeoBundle 'rosstimson/bats.vim'
-NeoBundle 'Firef0x/PKGBUILD.vim'
-NeoBundle 'chase/vim-ansible-yaml'
-NeoBundle 'rust-lang/rust.vim'
+call dein#add('fatih/vim-go')
+call dein#add('groenewege/vim-less')
+call dein#add('hail2u/vim-css3-syntax')
+call dein#add('JavaScript-Indent')
+call dein#add('jgb/django.vim')
+call dein#add('juvenn/mustache.vim')
+call dein#add('tfnico/vim-gradle')
+call dein#add('tpope/vim-markdown')
+call dein#add('Matt-Deacalion/vim-systemd-syntax')
+call dein#add('rosstimson/bats.vim')
+call dein#add('Firef0x/PKGBUILD.vim')
+call dein#add('chase/vim-ansible-yaml')
+call dein#add('rust-lang/rust.vim')
 
 " Text formatting
-NeoBundle 'Align'
-NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'sjl/gundo.vim'
-NeoBundle 'VisIncr'
-NeoBundle 'tpope/vim-surround'
+call dein#add('Align')
+call dein#add('scrooloose/nerdcommenter')
+call dein#add('sjl/gundo.vim')
+call dein#add('VisIncr')
+call dein#add('tpope/vim-surround')
 
-NeoBundle 'xolox/vim-misc'
-NeoBundle 'xolox/vim-notes'
-NeoBundle 'vim-scripts/utl.vim'
+call dein#add('xolox/vim-misc')
+call dein#add('xolox/vim-notes')
+call dein#add('vim-scripts/utl.vim')
 
 " Visual formatting
 if has('nvim')
-    NeoBundle 'benekastah/neomake'
+    call dein#add('benekastah/neomake')
 else
-    NeoBundle 'scrooloose/syntastic'
+    call dein#add('scrooloose/syntastic')
 endif
-NeoBundle 'vim-scripts/matchit.zip.git'
-NeoBundle 'tpope/vim-abolish'  " Subvert
+call dein#add('vim-scripts/matchit.zip.git')
+call dein#add('tpope/vim-abolish')  " Subvert
 
 " Source control
-NeoBundle 'https://repo.or.cz/vcscommand.git'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'vim-airline/vim-airline'
-NeoBundle 'vim-airline/vim-airline-themes'
+call dein#add('https://repo.or.cz/vcscommand.git')
+call dein#add('tpope/vim-fugitive')
+call dein#add('vim-airline/vim-airline')
+call dein#add('vim-airline/vim-airline-themes')
 
 " Shougo
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimproc.vim', {
-\ 'build' : {
-\     'windows' : 'tools\\update-dll-mingw',
-\     'cygwin' : 'make -f make_cygwin.mak',
-\     'mac' : 'make',
-\     'linux' : 'make',
-\     'unix' : 'gmake',
-\    },
-\ }
+call dein#add('Shougo/unite.vim')
+"NeoBundle 'Shougo/vimproc.vim', {
+"\ 'build' : {
+"\     'windows' : 'tools\\update-dll-mingw',
+"\     'cygwin' : 'make -f make_cygwin.mak',
+"\     'mac' : 'make',
+"\     'linux' : 'make',
+"\     'unix' : 'gmake',
+"\    },
+"\ }
 
 if has('nvim') && has('python3')
-    NeoBundle 'Shougo/deoplete.nvim'
+    call dein#add('Shougo/deoplete.nvim')
 elseif has("lua")
-    NeoBundle 'Shougo/neocomplete.vim'
+    call dein#add('Shougo/neocomplete.vim')
 endif
 
 if has("python") || has("python3")
-    NeoBundle 'SirVer/ultisnips'
-    NeoBundle 'honza/vim-snippets'
+    call dein#add('SirVer/ultisnips')
+    call dein#add('honza/vim-snippets')
 endif
 
-call neobundle#end()
+" Required:
+call dein#end()
 
+" Required:
 filetype plugin indent on
 
-NeoBundleCheck
+" If you want to install not installed plugins on startup.
+"if dein#check_install()
+"  call dein#install()
+"endif
+
+"End dein Scripts-------------------------
+
 
 syntax on
 colorscheme Tomorrow-Night-Eighties
