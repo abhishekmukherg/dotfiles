@@ -58,7 +58,11 @@ NeoBundle 'xolox/vim-notes'
 NeoBundle 'vim-scripts/utl.vim'
 
 " Visual formatting
-NeoBundle 'scrooloose/syntastic'
+if has('nvim')
+    NeoBundle 'benekastah/neomake'
+else
+    NeoBundle 'scrooloose/syntastic'
+endif
 NeoBundle 'vim-scripts/matchit.zip.git'
 NeoBundle 'tpope/vim-abolish'  " Subvert
 
@@ -80,7 +84,7 @@ NeoBundle 'Shougo/vimproc.vim', {
 \    },
 \ }
 
-if has("lua") 
+if has("lua")
     NeoBundle 'Shougo/neocomplete.vim'
 endif
 
@@ -106,6 +110,18 @@ set et
 set laststatus=2
 
 let g:airline_powerline_fonts = 1
+
+if has("nvim")
+    autocmd! BufWritePost * Neomake
+    tnoremap <C-h> <C-\><C-n><C-w>h
+    tnoremap <C-j> <C-\><C-n><C-w>j
+    tnoremap <C-k> <C-\><C-n><C-w>k
+    tnoremap <C-l> <C-\><C-n><C-w>l
+    tnoremap <C-p> <C-\><C-n><C-w>p
+    tnoremap <C-[> <C-\><C-n>
+
+    nnoremap gt :botright sp<CR>:te<CR>
+endif
 
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
@@ -183,11 +199,12 @@ if has("autocmd")
   autocmd Filetype rst nnoremap <silent> <buffer> <leader>h yypVr
 
   autocmd BufNewFile folding.vim 0r ~/.vim/skel/folding.vim
+  autocmd BufNewFile docker-compose.yml 0r ~/.vim/skel/docker-compose.yml
 
   au BufRead,BufNewFile *.go     setfiletype go
 
   au BufNewFile,BufRead *.gradle setf groovy
-  autocmd Filetype groovy set st=4 ts=4 sts=4 et formatoptions+=ro ai tw=80
+  autocmd Filetype groovy set ts=4 sts=4 et formatoptions+=ro ai tw=80
   au BufNewFile,BufRead proguard.cfg setf proguard
 endif
 
@@ -216,7 +233,7 @@ if has("multi_byte")
   endif
   set encoding=utf-8
   set termencoding=utf-8
-  setglobal fileencoding=utf-8 
+  setglobal fileencoding=utf-8
   "setglobal bomb
   set fileencodings=ucs-bom,utf-8,latin1
 endif
@@ -255,6 +272,7 @@ endif
 
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
+nnoremap <Space>s :Start 
 nnoremap ' `
 nnoremap ` '
 nnoremap 0 ^
@@ -282,7 +300,7 @@ nnoremap cD :Dispatch<CR>
 "cnoremap w!! %!sudo tee > /dev/null %
 "command! -nargs=0 w!! call Suwrite()
 function! Suwrite()
-	%!sudo tee >/dev/null %
+    %!sudo tee >/dev/null %
 endfunction
 
 nnoremap Q gq
@@ -313,7 +331,7 @@ nnoremap [] k$][%?}<CR>
 
 inoremap <C-R><Delete> <C-R>+
 
-set backspace=indent,eol,start 
+set backspace=indent,eol,start
 
 " NERD tree
 nnoremap <silent> <leader>e :NERDTreeToggle<CR>
@@ -339,10 +357,10 @@ let g:netrw_list_hide="\.pyc,\.swp"
 nnoremap <F3> :Explore<CR>
 
 " miniBufExplorer
-"let g:miniBufExplMapWindowNavVim = 1 
-"let g:miniBufExplMapWindowNavArrows = 1 
-"let g:miniBufExplMapCTabSwitchBufs = 1 
-"let g:miniBufExplModSelTarget = 1 
+"let g:miniBufExplMapWindowNavVim = 1
+"let g:miniBufExplMapWindowNavArrows = 1
+"let g:miniBufExplMapCTabSwitchBufs = 1
+"let g:miniBufExplModSelTarget = 1
 
 function! MyGundoToggle()
   let g:gundo_width = &columns / 4
@@ -410,8 +428,8 @@ let g:instant_markdown_autostart = 0
 " CScope
 " add any cscope database in current directory
 if filereadable("cscope.out")
-    cs add cscope.out  
-" else add the database pointed to by environment variable 
+    cs add cscope.out
+" else add the database pointed to by environment variable
 elseif $CSCOPE_DB != ""
     cs add $CSCOPE_DB
 endif
@@ -422,7 +440,7 @@ nnoremap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
 nnoremap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
 nnoremap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nnoremap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-nnoremap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR> 
+nnoremap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 highlight ShowMarksHLl ctermfg=Black ctermbg=241
 highlight ShowMarksHLo ctermfg=Black ctermbg=241
