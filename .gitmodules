@@ -43,9 +43,6 @@
 [submodule "zsh/custom/plugins/autosuggestions"]
 	path = zsh/custom/plugins/autosuggestions
 	url = https://github.com/tarruda/zsh-autosuggestions.git
-[submodule "vim/bundle/neobundle.vim"]
-	path = vim/bundle/neobundle.vim
-	url = https://github.com/Shougo/neobundle.vim
 [submodule "vim/repos/github.com/Shougo/dein.vim"]
 	path = vim/repos/github.com/Shougo/dein.vim
 	url = https://github.com/Shougo/dein.vim
