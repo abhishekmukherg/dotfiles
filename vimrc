@@ -1,100 +1,115 @@
 ﻿if 0 | endif
 
- if has('vim_starting')
-   if &compatible
-     set nocompatible               " Be iMproved
-   endif
+if &compatible
+    set nocompatible               " Be iMproved
+endif
 
-   " Required:
-   set runtimepath+=~/.vim/bundle/neobundle.vim/
- endif
+" Required:
+set runtimepath^=~/.vim/repos/github.com/Shougo/dein.vim
 
-call neobundle#begin(expand('~/.vim/bundle/'))
+" Required:
+call dein#begin(expand('~/.vim'))
 
-NeoBundleFetch 'Shougo/neobundle.vim'
+" Let dein manage dein
+" Required:
+call dein#add('Shougo/dein.vim')
 
 " Utility
-NeoBundle 'L9'
-NeoBundle 'LargeFile'
-NeoBundle 'linkinpark342/vimpager'
-NeoBundle 'nelstrom/vim-qargs'
-NeoBundle 'tpope/vim-repeat.git'
-NeoBundle 'tpope/vim-dispatch.git'
-NeoBundle 'Konfekt/FastFold'
+call dein#add('L9')
+call dein#add('LargeFile')
+call dein#add('linkinpark342/vimpager')
+call dein#add('nelstrom/vim-qargs')
+call dein#add('tpope/vim-repeat.git')
+call dein#add('tpope/vim-dispatch.git')
+call dein#add('Konfekt/FastFold')
 
 " color schemes
-" NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'ChrisKempson/Tomorrow-Theme', {'rtp': 'vim'}
-" NeoBundle 'jnurmine/zenburn'
+" call dein#add('altercation/vim-colors-solarized')
+call dein#add('ChrisKempson/Tomorrow-Theme', {'rtp': 'vim'})
+" call dein#add('jnurmine/zenburn')
 
 " Navigation
-NeoBundle 'rking/ag.vim'
-NeoBundleLazy 'scrooloose/nerdtree', {'augroup': 'NERDTree'}
-NeoBundle 'tpope/vim-unimpaired'
+call dein#add('rking/ag.vim')
+call dein#add('tpope/vim-vinegar')
+call dein#add('tpope/vim-unimpaired')
 
 " Filetypes
-NeoBundle 'fatih/vim-go'
-NeoBundle 'groenewege/vim-less'
-NeoBundle 'hail2u/vim-css3-syntax'
-NeoBundle 'JavaScript-Indent'
-NeoBundle 'jgb/django.vim'
-NeoBundle 'juvenn/mustache.vim'
-NeoBundle 'tfnico/vim-gradle'
-NeoBundle 'tpope/vim-markdown'
-NeoBundle 'Matt-Deacalion/vim-systemd-syntax'
-NeoBundle 'rosstimson/bats.vim'
-NeoBundle 'Firef0x/PKGBUILD.vim'
-NeoBundle 'chase/vim-ansible-yaml'
-NeoBundle 'rust-lang/rust.vim'
+call dein#add('fatih/vim-go')
+call dein#add('groenewege/vim-less')
+call dein#add('hail2u/vim-css3-syntax')
+call dein#add('JavaScript-Indent')
+call dein#add('jgb/django.vim')
+call dein#add('juvenn/mustache.vim')
+call dein#add('tfnico/vim-gradle')
+call dein#add('tpope/vim-markdown')
+call dein#add('Matt-Deacalion/vim-systemd-syntax')
+call dein#add('rosstimson/bats.vim')
+call dein#add('Firef0x/PKGBUILD.vim')
+call dein#add('chase/vim-ansible-yaml')
+call dein#add('rust-lang/rust.vim')
 
 " Text formatting
-NeoBundle 'Align'
-NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'sjl/gundo.vim'
-NeoBundle 'VisIncr'
-NeoBundle 'tpope/vim-surround'
+call dein#add('Align')
+call dein#add('scrooloose/nerdcommenter')
+call dein#add('sjl/gundo.vim')
+call dein#add('VisIncr')
+call dein#add('tpope/vim-surround')
 
-NeoBundle 'xolox/vim-misc'
-NeoBundle 'xolox/vim-notes'
-NeoBundle 'vim-scripts/utl.vim'
+call dein#add('xolox/vim-misc')
+call dein#add('xolox/vim-notes')
+call dein#add('vim-scripts/utl.vim')
 
 " Visual formatting
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'vim-scripts/matchit.zip.git'
-NeoBundle 'tpope/vim-abolish'  " Subvert
+if has('nvim')
+    call dein#add('benekastah/neomake')
+else
+    call dein#add('scrooloose/syntastic')
+endif
+call dein#add('vim-scripts/matchit.zip.git')
+call dein#add('tpope/vim-abolish')  " Subvert
 
 " Source control
-NeoBundle 'https://repo.or.cz/vcscommand.git'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'vim-airline/vim-airline'
-NeoBundle 'vim-airline/vim-airline-themes'
+call dein#add('vcscommand.vim')
+call dein#add('tpope/vim-fugitive')
+call dein#add('vim-airline/vim-airline')
+call dein#add('vim-airline/vim-airline-themes')
 
 " Shougo
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimproc.vim', {
-\ 'build' : {
-\     'windows' : 'tools\\update-dll-mingw',
-\     'cygwin' : 'make -f make_cygwin.mak',
-\     'mac' : 'make',
-\     'linux' : 'make',
-\     'unix' : 'gmake',
-\    },
-\ }
+call dein#add('Shougo/unite.vim')
+"NeoBundle 'Shougo/vimproc.vim', {
+"\ 'build' : {
+"\     'windows' : 'tools\\update-dll-mingw',
+"\     'cygwin' : 'make -f make_cygwin.mak',
+"\     'mac' : 'make',
+"\     'linux' : 'make',
+"\     'unix' : 'gmake',
+"\    },
+"\ }
 
-if has("lua") 
-    NeoBundle 'Shougo/neocomplete.vim'
+if has('nvim') && has('python3')
+    call dein#add('Shougo/deoplete.nvim')
+elseif has("lua")
+    call dein#add('Shougo/neocomplete.vim')
 endif
 
 if has("python") || has("python3")
-    NeoBundle 'SirVer/ultisnips'
-    NeoBundle 'honza/vim-snippets'
+    call dein#add('SirVer/ultisnips')
+    call dein#add('honza/vim-snippets')
 endif
 
-call neobundle#end()
+" Required:
+call dein#end()
 
+" Required:
 filetype plugin indent on
 
-NeoBundleCheck
+" If you want to install not installed plugins on startup.
+"if dein#check_install()
+"  call dein#install()
+"endif
+
+"End dein Scripts-------------------------
+
 
 syntax on
 colorscheme Tomorrow-Night-Eighties
@@ -107,6 +122,18 @@ set et
 set laststatus=2
 
 let g:airline_powerline_fonts = 1
+
+if has("nvim")
+    autocmd! BufWritePost * Neomake
+    tnoremap <C-h> <C-\><C-n><C-w>h
+    tnoremap <C-j> <C-\><C-n><C-w>j
+    tnoremap <C-k> <C-\><C-n><C-w>k
+    tnoremap <C-l> <C-\><C-n><C-w>l
+    tnoremap <C-p> <C-\><C-n><C-w>p
+    tnoremap <C-[> <C-\><C-n>
+
+    nnoremap gt :botright sp<CR>:te<CR>
+endif
 
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
@@ -184,11 +211,12 @@ if has("autocmd")
   autocmd Filetype rst nnoremap <silent> <buffer> <leader>h yypVr
 
   autocmd BufNewFile folding.vim 0r ~/.vim/skel/folding.vim
+  autocmd BufNewFile docker-compose.yml 0r ~/.vim/skel/docker-compose.yml
 
   au BufRead,BufNewFile *.go     setfiletype go
 
   au BufNewFile,BufRead *.gradle setf groovy
-  autocmd Filetype groovy set st=4 ts=4 sts=4 et formatoptions+=ro ai tw=80
+  autocmd Filetype groovy set ts=4 sts=4 et formatoptions+=ro ai tw=80
   au BufNewFile,BufRead proguard.cfg setf proguard
 endif
 
@@ -217,7 +245,7 @@ if has("multi_byte")
   endif
   set encoding=utf-8
   set termencoding=utf-8
-  setglobal fileencoding=utf-8 
+  setglobal fileencoding=utf-8
   "setglobal bomb
   set fileencodings=ucs-bom,utf-8,latin1
 endif
@@ -256,6 +284,7 @@ endif
 
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
+nnoremap <Space>s :Start 
 nnoremap ' `
 nnoremap ` '
 nnoremap 0 ^
@@ -283,7 +312,7 @@ nnoremap cD :Dispatch<CR>
 "cnoremap w!! %!sudo tee > /dev/null %
 "command! -nargs=0 w!! call Suwrite()
 function! Suwrite()
-	%!sudo tee >/dev/null %
+    %!sudo tee >/dev/null %
 endfunction
 
 nnoremap Q gq
@@ -314,12 +343,7 @@ nnoremap [] k$][%?}<CR>
 
 inoremap <C-R><Delete> <C-R>+
 
-set backspace=indent,eol,start 
-
-" NERD tree
-nnoremap <silent> <leader>e :NERDTreeToggle<CR>
-nnoremap <silent> <leader>E :NERDTree %:h<CR>
-let NERDTreeQuitOnOpen = 1
+set backspace=indent,eol,start
 
 " NERD Commenter
 vmap # <plug>NERDCommenterToggle
@@ -340,10 +364,10 @@ let g:netrw_list_hide="\.pyc,\.swp"
 nnoremap <F3> :Explore<CR>
 
 " miniBufExplorer
-"let g:miniBufExplMapWindowNavVim = 1 
-"let g:miniBufExplMapWindowNavArrows = 1 
-"let g:miniBufExplMapCTabSwitchBufs = 1 
-"let g:miniBufExplModSelTarget = 1 
+"let g:miniBufExplMapWindowNavVim = 1
+"let g:miniBufExplMapWindowNavArrows = 1
+"let g:miniBufExplMapCTabSwitchBufs = 1
+"let g:miniBufExplModSelTarget = 1
 
 function! MyGundoToggle()
   let g:gundo_width = &columns / 4
@@ -411,8 +435,8 @@ let g:instant_markdown_autostart = 0
 " CScope
 " add any cscope database in current directory
 if filereadable("cscope.out")
-    cs add cscope.out  
-" else add the database pointed to by environment variable 
+    cs add cscope.out
+" else add the database pointed to by environment variable
 elseif $CSCOPE_DB != ""
     cs add $CSCOPE_DB
 endif
@@ -423,7 +447,7 @@ nnoremap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
 nnoremap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
 nnoremap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nnoremap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-nnoremap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR> 
+nnoremap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 highlight ShowMarksHLl ctermfg=Black ctermbg=241
 highlight ShowMarksHLo ctermfg=Black ctermbg=241
