@@ -46,6 +46,3 @@
 [submodule "vim/bundle/neobundle.vim"]
 	path = vim/bundle/neobundle.vim
 	url = https://github.com/Shougo/neobundle.vim
-[submodule "vim/repos/github.com/Shougo/dein.vim"]
-	path = vim/repos/github.com/Shougo/dein.vim
-	url = https://github.com/Shougo/dein.vim
