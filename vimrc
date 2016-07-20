@@ -30,18 +30,18 @@ Plug 'tpope/vim-unimpaired'
 
 " Filetypes
 Plug 'fatih/vim-go'
-Plug 'groenewege/vim-less'
-Plug 'hail2u/vim-css3-syntax'
-Plug 'JavaScript-Indent'
-Plug 'jgb/django.vim'
-Plug 'juvenn/mustache.vim'
-Plug 'tfnico/vim-gradle'
-Plug 'tpope/vim-markdown'
-Plug 'Matt-Deacalion/vim-systemd-syntax'
-Plug 'rosstimson/bats.vim'
-Plug 'Firef0x/PKGBUILD.vim'
-Plug 'chase/vim-ansible-yaml'
-Plug 'rust-lang/rust.vim'
+"Plug 'groenewege/vim-less'
+"Plug 'hail2u/vim-css3-syntax'
+"Plug 'JavaScript-Indent'
+"Plug 'jgb/django.vim'
+"Plug 'juvenn/mustache.vim'
+"Plug 'tfnico/vim-gradle'
+"Plug 'tpope/vim-markdown'
+"Plug 'Matt-Deacalion/vim-systemd-syntax'
+"Plug 'rosstimson/bats.vim'
+Plug 'Firef0x/PKGBUILD.vim', {'for': 'PKGBUILD'}
+Plug 'pearofducks/ansible-vim', {'for': 'yaml'}
+"Plug 'rust-lang/rust.vim'
 Plug 'puppetlabs/puppet-syntax-vim', {'for': 'puppet'}
 
 " Text formatting
@@ -107,7 +107,7 @@ set laststatus=2
 let g:airline_powerline_fonts = 1
 
 if has("nvim")
-    autocmd! BufWritePost * Neomake
+    "autocmd! BufWritePost * Neomake
     tnoremap <C-h> <C-\><C-n><C-w>h
     tnoremap <C-j> <C-\><C-n><C-w>j
     tnoremap <C-k> <C-\><C-n><C-w>k
@@ -313,10 +313,6 @@ cnoreabbrev Qa qa
 "nnoremap <silent><C-k> gk
 
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
-nnoremap <leader>n :bn<CR>
-nnoremap <leader>p :bp<CR>
-nnoremap <leader>w :bw<CR>
-nnoremap <leader>P :set paste!<CR>:set paste?<CR>
 nnoremap g* *#:s//
 
 nnoremap sip gg/^import <CR>VG?^import <CR>!~/bin/eclipsepackagesort<CR>:nohls<CR>
@@ -330,9 +326,6 @@ inoremap <C-R><Delete> <C-R>+
 
 set backspace=indent,eol,start
 
-" NERD Commenter
-vmap # <plug>NERDCommenterToggle
-
 " vim notes
 let g:notes_directories = ['~/.local/share/vim-notes/']
 let g:notes_suffix = '.txt'
@@ -342,11 +335,6 @@ let g:notes_word_boundaries = 1
 " OmniCPPComplete
 nnoremap <C-F11> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 let OmniCpp_DefaultNamespaces = ["std"]
-
-" NetRW
-let g:explVertical=1
-let g:netrw_list_hide="\.pyc,\.swp"
-nnoremap <F3> :Explore<CR>
 
 " miniBufExplorer
 "let g:miniBufExplMapWindowNavVim = 1
@@ -370,8 +358,6 @@ let g:VCSCommandSVNExec="svntr"
 
 " VisIncr
 vnoremap <c-a> :I<CR>
-
-runtime ftplugin/man.vim
 
 nnoremap cd :Dispatch<CR>
 nnoremap cD :Dispatch %:p<CR>
@@ -413,9 +399,6 @@ function! SummarizeTabs()
     echohl None
   endtry
 endfunction
-
-" vim-instant-markdown
-let g:instant_markdown_autostart = 0
 
 " CScope
 " add any cscope database in current directory

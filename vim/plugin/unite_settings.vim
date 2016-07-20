@@ -1,4 +1,8 @@
-nnoremap <C-p> :Unite -start-insert file_rec/async<cr>
+if has('nvim')
+    nnoremap <C-p> :Unite -start-insert file_rec/neovim<cr>
+else
+    nnoremap <C-p> :Unite -start-insert file_rec/async<cr>
+endif
 nnoremap <Space>f :execute "Unite -input=" . expand("%:h") . "/ -start-insert file_rec/async"<cr>
 "let g:unite_source_rec_max_cache_files = 20
 let g:unite_source_rec_async_command =
