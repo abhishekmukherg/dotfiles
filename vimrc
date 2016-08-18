@@ -5,110 +5,93 @@ if &compatible
 endif
 
 " Required:
-set runtimepath^=~/.vim/repos/github.com/Shougo/dein.vim
-
-" Required:
-call dein#begin(expand('~/.vim'))
-
-" Let dein manage dein
-" Required:
-call dein#add('Shougo/dein.vim')
+call plug#begin('~/.vim/plugged')
 
 " Utility
-call dein#add('L9')
-call dein#add('LargeFile')
-call dein#add('linkinpark342/vimpager')
-call dein#add('nelstrom/vim-qargs')
-call dein#add('tpope/vim-repeat.git')
-call dein#add('tpope/vim-dispatch.git')
-call dein#add('Konfekt/FastFold')
+Plug 'L9'
+" Plug 'LargeFile'
+" Plug 'linkinpark342/vimpager'
+Plug 'nelstrom/vim-qargs'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-dispatch'
+if has('nvim')
+    Plug 'radenling/vim-dispatch-neovim'
+endif
 
 " color schemes
-" call dein#add('altercation/vim-colors-solarized')
-call dein#add('ChrisKempson/Tomorrow-Theme', {'rtp': 'vim'})
-" call dein#add('jnurmine/zenburn')
+" Plug 'altercation/vim-colors-solarized'
+Plug 'ChrisKempson/Tomorrow-Theme', {'rtp': 'vim'}
+" Plug 'jnurmine/zenburn'
 
 " Navigation
-call dein#add('rking/ag.vim')
-call dein#add('tpope/vim-vinegar')
-call dein#add('tpope/vim-unimpaired')
+Plug 'rking/ag.vim'
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-unimpaired'
 
 " Filetypes
-call dein#add('fatih/vim-go')
-call dein#add('groenewege/vim-less')
-call dein#add('hail2u/vim-css3-syntax')
-call dein#add('JavaScript-Indent')
-call dein#add('jgb/django.vim')
-call dein#add('juvenn/mustache.vim')
-call dein#add('tfnico/vim-gradle')
-call dein#add('tpope/vim-markdown')
-call dein#add('Matt-Deacalion/vim-systemd-syntax')
-call dein#add('rosstimson/bats.vim')
-call dein#add('Firef0x/PKGBUILD.vim')
-call dein#add('chase/vim-ansible-yaml')
-call dein#add('rust-lang/rust.vim')
+Plug 'fatih/vim-go'
+"Plug 'groenewege/vim-less'
+"Plug 'hail2u/vim-css3-syntax'
+"Plug 'JavaScript-Indent'
+"Plug 'jgb/django.vim'
+"Plug 'juvenn/mustache.vim'
+"Plug 'tfnico/vim-gradle'
+"Plug 'tpope/vim-markdown'
+"Plug 'Matt-Deacalion/vim-systemd-syntax'
+"Plug 'rosstimson/bats.vim'
+Plug 'Firef0x/PKGBUILD.vim', {'for': 'PKGBUILD'}
+Plug 'pearofducks/ansible-vim', {'for': 'yaml'}
+"Plug 'rust-lang/rust.vim'
+Plug 'puppetlabs/puppet-syntax-vim', {'for': 'puppet'}
 
 " Text formatting
-call dein#add('Align')
-call dein#add('scrooloose/nerdcommenter')
-call dein#add('sjl/gundo.vim')
-call dein#add('VisIncr')
-call dein#add('tpope/vim-surround')
+Plug 'Align'
+Plug 'tpope/vim-commentary'
+Plug 'sjl/gundo.vim'
+Plug 'VisIncr'
+Plug 'tpope/vim-surround'
 
-call dein#add('xolox/vim-misc')
-call dein#add('xolox/vim-notes')
-call dein#add('vim-scripts/utl.vim')
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-notes'
+Plug 'vim-scripts/utl.vim'
 
 " Visual formatting
 if has('nvim')
-    call dein#add('benekastah/neomake')
+    Plug 'benekastah/neomake'
 else
-    call dein#add('scrooloose/syntastic')
+    Plug 'scrooloose/syntastic'
 endif
-call dein#add('vim-scripts/matchit.zip.git')
-call dein#add('tpope/vim-abolish')  " Subvert
+Plug 'vim-scripts/matchit.zip'
+Plug 'tpope/vim-abolish'  " Subvert
 
 " Source control
-call dein#add('vcscommand.vim')
-call dein#add('tpope/vim-fugitive')
-call dein#add('vim-airline/vim-airline')
-call dein#add('vim-airline/vim-airline-themes')
+Plug 'vcscommand.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " Shougo
-call dein#add('Shougo/unite.vim')
-"NeoBundle 'Shougo/vimproc.vim', {
-"\ 'build' : {
-"\     'windows' : 'tools\\update-dll-mingw',
-"\     'cygwin' : 'make -f make_cygwin.mak',
-"\     'mac' : 'make',
-"\     'linux' : 'make',
-"\     'unix' : 'gmake',
-"\    },
-"\ }
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 
 if has('nvim') && has('python3')
-    call dein#add('Shougo/deoplete.nvim')
+    function! DoRemote(arg)
+        UpdateRemotePlugins
+    endfunction
+    Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
 elseif has("lua")
-    call dein#add('Shougo/neocomplete.vim')
+    Plug 'Shougo/neocomplete.vim'
+endif
+if (has('nvim') && has('python3')) || has("lua")
+    Plug 'Shougo/neco-vim'
 endif
 
-if has("python") || has("python3")
-    call dein#add('SirVer/ultisnips')
-    call dein#add('honza/vim-snippets')
-endif
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
-" Required:
-call dein#end()
+call plug#end()
 
 " Required:
 filetype plugin indent on
-
-" If you want to install not installed plugins on startup.
-"if dein#check_install()
-"  call dein#install()
-"endif
-
-"End dein Scripts-------------------------
 
 
 syntax on
@@ -124,7 +107,7 @@ set laststatus=2
 let g:airline_powerline_fonts = 1
 
 if has("nvim")
-    autocmd! BufWritePost * Neomake
+    "autocmd! BufWritePost * Neomake
     tnoremap <C-h> <C-\><C-n><C-w>h
     tnoremap <C-j> <C-\><C-n><C-w>j
     tnoremap <C-k> <C-\><C-n><C-w>k
@@ -218,6 +201,8 @@ if has("autocmd")
   au BufNewFile,BufRead *.gradle setf groovy
   autocmd Filetype groovy set ts=4 sts=4 et formatoptions+=ro ai tw=80
   au BufNewFile,BufRead proguard.cfg setf proguard
+
+  autocmd FileType puppet set ts=8
 endif
 
 vnoremap <silent> * :<C-U>
@@ -328,10 +313,6 @@ cnoreabbrev Qa qa
 "nnoremap <silent><C-k> gk
 
 nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
-nnoremap <leader>n :bn<CR>
-nnoremap <leader>p :bp<CR>
-nnoremap <leader>w :bw<CR>
-nnoremap <leader>P :set paste!<CR>:set paste?<CR>
 nnoremap g* *#:s//
 
 nnoremap sip gg/^import <CR>VG?^import <CR>!~/bin/eclipsepackagesort<CR>:nohls<CR>
@@ -345,9 +326,6 @@ inoremap <C-R><Delete> <C-R>+
 
 set backspace=indent,eol,start
 
-" NERD Commenter
-vmap # <plug>NERDCommenterToggle
-
 " vim notes
 let g:notes_directories = ['~/.local/share/vim-notes/']
 let g:notes_suffix = '.txt'
@@ -357,11 +335,6 @@ let g:notes_word_boundaries = 1
 " OmniCPPComplete
 nnoremap <C-F11> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 let OmniCpp_DefaultNamespaces = ["std"]
-
-" NetRW
-let g:explVertical=1
-let g:netrw_list_hide="\.pyc,\.swp"
-nnoremap <F3> :Explore<CR>
 
 " miniBufExplorer
 "let g:miniBufExplMapWindowNavVim = 1
@@ -385,8 +358,6 @@ let g:VCSCommandSVNExec="svntr"
 
 " VisIncr
 vnoremap <c-a> :I<CR>
-
-runtime ftplugin/man.vim
 
 nnoremap cd :Dispatch<CR>
 nnoremap cD :Dispatch %:p<CR>
@@ -428,9 +399,6 @@ function! SummarizeTabs()
     echohl None
   endtry
 endfunction
-
-" vim-instant-markdown
-let g:instant_markdown_autostart = 0
 
 " CScope
 " add any cscope database in current directory
