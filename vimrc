@@ -236,6 +236,8 @@ if has("multi_byte")
 endif
 set grepprg=grep\ -nH\ $*
 
+set termguicolors
+
 "set autochdir
 set showcmd		" Show (partial) command in status line.
 set showmatch		" Show matching brackets.
