@@ -107,15 +107,18 @@ set laststatus=2
 let g:airline_powerline_fonts = 1
 
 if has("nvim")
-    "autocmd! BufWritePost * Neomake
-    tnoremap <C-h> <C-\><C-n><C-w>h
-    tnoremap <C-j> <C-\><C-n><C-w>j
-    tnoremap <C-k> <C-\><C-n><C-w>k
-    tnoremap <C-l> <C-\><C-n><C-w>l
-    tnoremap <C-p> <C-\><C-n><C-w>p
-    tnoremap <C-[> <C-\><C-n>
+  "autocmd! BufWritePost * Neomake
+  tnoremap <C-h> <C-\><C-n><C-w>h
+  tnoremap <C-j> <C-\><C-n><C-w>j
+  tnoremap <C-k> <C-\><C-n><C-w>k
+  tnoremap <C-l> <C-\><C-n><C-w>l
+  tnoremap <C-p> <C-\><C-n><C-w>p
+  tnoremap <C-[> <C-\><C-n>
 
-    nnoremap gt :botright sp<CR>:te<CR>
+  nnoremap gt :botright sp<CR>:te<CR>
+  set termguicolors
+else
+  set bufhidden=wipe  " for netrw buffers. hopefully this won't bite me
 endif
 
 if has("autocmd")
@@ -236,10 +239,6 @@ if has("multi_byte")
   set fileencodings=ucs-bom,utf-8,latin1
 endif
 set grepprg=grep\ -nH\ $*
-
-if has("nvim")
-  set termguicolors
-endif
 
 "set autochdir
 set showcmd		" Show (partial) command in status line.
