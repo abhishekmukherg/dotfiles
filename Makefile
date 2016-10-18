@@ -27,6 +27,7 @@ vim/bundle/neobundle.vim/.git:
 	git submodule update
 
 $(HOME)/bin/%: bin/%
+	mkdir -p $(HOME)/bin
 	ln -fs $(abspath $<) $@
 
 $(HOME)/.%: %
