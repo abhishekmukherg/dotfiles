@@ -50,6 +50,7 @@ plugins=(
     go
     goenv
     gradle
+    grepper
     my-ssh-agent
     pip
     profiles
