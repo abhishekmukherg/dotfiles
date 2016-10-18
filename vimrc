@@ -200,6 +200,7 @@ if has("autocmd")
 
   au BufNewFile,BufRead *.gradle setf groovy
   autocmd Filetype groovy set ts=4 sts=4 et formatoptions+=ro ai tw=80
+  autocmd Filetype yaml set ts=2 sts=2 et formatoptions+=ro ai
   au BufNewFile,BufRead proguard.cfg setf proguard
 
   autocmd FileType puppet set ts=8
