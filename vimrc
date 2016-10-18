@@ -237,7 +237,9 @@ if has("multi_byte")
 endif
 set grepprg=grep\ -nH\ $*
 
-set termguicolors
+if has("nvim")
+  set termguicolors
+endif
 
 "set autochdir
 set showcmd		" Show (partial) command in status line.
