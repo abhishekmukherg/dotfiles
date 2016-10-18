@@ -30,7 +30,7 @@ DISABLE_AUTO_UPDATE="true"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
-COMPLETION_WAITING_DOTS="true"
+#COMPLETION_WAITING_DOTS="true"
 
 ZSH_TMUX_AUTOSTART=true
 ZSH_SSH_SKIP=true
@@ -47,6 +47,7 @@ plugins=(
     archlinux
     command-not-found
     fasd
+    fzf-zsh
     go
     goenv
     gradle

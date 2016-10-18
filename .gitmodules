@@ -43,3 +43,9 @@
 [submodule "zsh/custom/plugins/autosuggestions"]
 	path = zsh/custom/plugins/autosuggestions
 	url = https://github.com/tarruda/zsh-autosuggestions.git
+[submodule "zsh/custom/plugins/fzf"]
+	path = zsh/custom/plugins/fzf
+	url = https://github.com/junegunn/fzf.git
+[submodule "zsh/custom/plugins/fzf-zsh"]
+	path = zsh/custom/plugins/fzf-zsh
+	url = https://github.com/Treri/fzf-zsh.git
