@@ -27,6 +27,8 @@ Plug 'ChrisKempson/Tomorrow-Theme', {'rtp': 'vim'}
 Plug 'rking/ag.vim'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-unimpaired'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
 
 " Filetypes
 Plug 'fatih/vim-go'
