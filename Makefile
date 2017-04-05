@@ -20,7 +20,12 @@ all: $(HOME)/.vim \
 	vim/bundle/neobundle.vim/.git \
 	$(HOME)/.xonshrc \
 	vim/undo/ \
-	$(HOME)/bin/vv
+	$(HOME)/bin/vv \
+	$(HOME)/.config/nvim
+
+$(HOME)/.config/nvim:
+	mkdir -p $(HOME)/.config
+	ln -s "../.vim" $@
 
 vim/bundle/neobundle.vim/.git:
 	git submodule init
