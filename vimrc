@@ -8,10 +8,10 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " Utility
-Plug 'L9'
+Plug 'vim-scripts/L9'
 " Plug 'LargeFile'
 " Plug 'linkinpark342/vimpager'
-Plug 'nelstrom/vim-qargs'
+" Plug 'nelstrom/vim-qargs'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-dispatch'
 if has('nvim')
@@ -29,6 +29,7 @@ Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-unimpaired'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
+Plug 'christoomey/vim-tmux-navigator'
 
 " Filetypes
 Plug 'fatih/vim-go'
@@ -41,16 +42,17 @@ Plug 'fatih/vim-go'
 "Plug 'tpope/vim-markdown'
 "Plug 'Matt-Deacalion/vim-systemd-syntax'
 "Plug 'rosstimson/bats.vim'
-Plug 'Firef0x/PKGBUILD.vim', {'for': 'PKGBUILD'}
-Plug 'pearofducks/ansible-vim', {'for': 'yaml'}
+Plug 'Firef0x/PKGBUILD.vim'
+Plug 'pearofducks/ansible-vim'
 "Plug 'rust-lang/rust.vim'
-Plug 'puppetlabs/puppet-syntax-vim', {'for': 'puppet'}
+Plug 'puppetlabs/puppet-syntax-vim'
+Plug 'bracki/vim-prometheus'
 
 " Text formatting
-Plug 'Align'
+Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-commentary'
 Plug 'sjl/gundo.vim'
-Plug 'VisIncr'
+Plug 'vim-scripts/VisIncr'
 Plug 'tpope/vim-surround'
 
 Plug 'xolox/vim-misc'
@@ -59,7 +61,7 @@ Plug 'vim-scripts/utl.vim'
 
 " Visual formatting
 if has('nvim')
-    Plug 'benekastah/neomake'
+    Plug 'w0rp/ale'
 else
     Plug 'scrooloose/syntastic'
 endif
@@ -67,13 +69,13 @@ Plug 'vim-scripts/matchit.zip'
 Plug 'tpope/vim-abolish'  " Subvert
 
 " Source control
-Plug 'vcscommand.vim'
+Plug 'vim-scripts/vcscommand.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " Shougo
-Plug 'Shougo/unite.vim'
+"Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 
 if has('nvim') && has('python3')
@@ -124,6 +126,10 @@ else
 endif
 
 if has("autocmd")
+  augroup gogroup
+    autocmd!
+    autocmd BufWrite *.go GoImports
+  augroup END
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal g'\"" | endif
   autocmd FileType python compiler pyunit
@@ -153,6 +159,8 @@ if has("autocmd")
   autocmd Filetype ruby set expandtab
   autocmd Filetype ruby set softtabstop=2
   autocmd Filetype ruby set autoindent
+
+  autocmd BufRead Jenkinsfile setfiletype groovy
 
   autocmd Filetype html set tabstop=2
   autocmd Filetype html set shiftwidth=2
@@ -205,10 +213,10 @@ if has("autocmd")
 
   au BufNewFile,BufRead *.gradle setf groovy
   autocmd Filetype groovy set ts=4 sts=4 et formatoptions+=ro ai tw=80
-  autocmd Filetype yaml set ts=2 sts=2 et formatoptions+=ro ai
+  autocmd Filetype yaml set ts=2 sts=2 sw=2 et formatoptions+=ro ai
   au BufNewFile,BufRead proguard.cfg setf proguard
 
-  autocmd FileType puppet set ts=8
+  autocmd FileType puppet set ts=2 sts=2 sw=2 et
 endif
 
 vnoremap <silent> * :<C-U>
@@ -240,7 +248,11 @@ if has("multi_byte")
   "setglobal bomb
   set fileencodings=ucs-bom,utf-8,latin1
 endif
-set grepprg=grep\ -nH\ $*
+if executable("rg")
+  set grepprg=rg\ --vimgrep
+else
+  set grepprg=grep\ -nH\ $*
+endif
 
 "set autochdir
 set showcmd		" Show (partial) command in status line.
@@ -287,12 +299,11 @@ nnoremap ∂ :Dispatch<CR>
 nnoremap Î :Dispatch %:p<CR>
 nnoremap µ :Make<CR>
 
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
-
 noremap <F1> <nop>
+
+" junegunn/vim-easy-align
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 
 " Dispatch configuration
 nnoremap cm :Make<CR>
@@ -333,9 +344,12 @@ inoremap <C-R><Delete> <C-R>+
 set backspace=indent,eol,start
 
 " vim notes
-let g:notes_directories = ['~/.local/share/vim-notes/']
+let g:notes_directories = ['~/Sync/vim-notes/']
 let g:notes_suffix = '.txt'
 let g:notes_word_boundaries = 1
+let g:notes_conceal_code = 0
+let g:notes_conceal_italic = 0
+let g:notes_conceal_bold = 0
 
 
 " OmniCPPComplete
