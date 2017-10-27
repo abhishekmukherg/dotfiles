@@ -35,9 +35,6 @@ DISABLE_AUTO_UPDATE="true"
 ZSH_TMUX_AUTOSTART=true
 ZSH_SSH_SKIP=true
 
-VENV_LAZY=true
-WORKON_HOME="$HOME/.virtualenvs/"
-
 zstyle :omz:plugins:ssh-agent lifetime 4h
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
@@ -52,14 +49,15 @@ plugins=(
     goenv
     gradle
     grepper
+    kubectl
     my-ssh-agent
+    pew
     pip
     profiles
     pyenv
     rbenv
     svn-fast-info
     vi-mode
-    virtualenvwrapper
     zsh-completions
     zsh_reload
     zsh-syntax-highlighting
@@ -74,3 +72,5 @@ source $ZSH/oh-my-zsh.sh
 if [[ -f ~/google-cloud-sdk/path.zsh.inc ]]; then
     source ~/google-cloud-sdk/path.zsh.inc
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

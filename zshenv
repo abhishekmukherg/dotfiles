@@ -75,5 +75,8 @@ if [[ -f $HOME/.zshenv.local ]]; then
     source ~/.zshenv.local
 fi
 
-export GOPATH="$HOME/.local/share/go:$GOPATH"
-export PATH="$HOME/.local/share/go/bin:$PATH"
+if (( $+commands[rg] )); then
+    export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+fi
+
+export PATH="$HOME/go/bin:$PATH"
