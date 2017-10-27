@@ -72,3 +72,5 @@ source $ZSH/oh-my-zsh.sh
 if [[ -f ~/google-cloud-sdk/path.zsh.inc ]]; then
     source ~/google-cloud-sdk/path.zsh.inc
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
