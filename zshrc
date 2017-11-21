@@ -1,76 +1,46 @@
-# Path to your oh-my-zsh configuration.
-#zmodload zsh/zprof
-
-
-zshhome=$(dirname $(readlink $HOME/.zshrc))/zsh
-
-ZSH=$zshhome/oh-my-zsh/
-ZSH_CUSTOM=$zshhome/custom
-
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-#ZSH_THEME="robbyrussell"
-
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
-
-# Comment this out to disable weekly auto-update checks
-DISABLE_AUTO_UPDATE="true"
-
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
-
-# Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment following line if you want red dots to be displayed while waiting for completion
-#COMPLETION_WAITING_DOTS="true"
-
-ZSH_TMUX_AUTOSTART=true
-ZSH_SSH_SKIP=true
-
-zstyle :omz:plugins:ssh-agent lifetime 4h
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(
-    archlinux
-    command-not-found
-    fasd
-    fzf-zsh
-    go
-    goenv
-    gradle
-    grepper
-    kubectl
-    my-ssh-agent
-    pew
-    pip
-    profiles
-    pyenv
-    rbenv
-    svn-fast-info
-    vi-mode
-    zsh-completions
-    zsh_reload
-    zsh-syntax-highlighting
-)
-
-source $ZSH/oh-my-zsh.sh
-
-#zprof
-
-# Customize to your needs...
-
-if [[ -f ~/google-cloud-sdk/path.zsh.inc ]]; then
-    source ~/google-cloud-sdk/path.zsh.inc
+if [[ "$TERM" != 'dumb' ]]; then
+  zstyle ':prezto:*:*' color 'on'
+  zstyle ':prezto:module:prompt' theme 'off'
 fi
+zstyle ':prezto:module:utility' safe-ops 'off'
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export ZPLUG_HOME=/usr/local/opt/zplug
+source $ZPLUG_HOME/init.zsh
+
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+
+# # Make sure to use double quotes
+zplug "zsh-users/zsh-history-substring-search"
+
+# Grab binaries from GitHub Releases
+# and rename with the "rename-to:" tag
+zplug "junegunn/fzf", \
+    as:command, \
+    use:"bin/fzf-tmux"
+zplug "junegunn/fzf-bin", \
+    as:command, \
+    from:gh-r, \
+    rename-to:"fzf"
+
+zplug "plugins/archlinux", from:oh-my-zsh
+zplug "modules/environment", from:prezto
+zplug "modules/gnu-utility", from:prezto
+zplug "modules/utility", from:prezto
+zplug "modules/fasd", from:prezto
+zplug "modules/history", from:prezto
+zplug "sharat87/zsh-vim-mode", defer:1
+zplug "zdharma/fast-syntax-highlighting", defer:2
+
+zplug "mafredri/zsh-async"
+zplug "sindresorhus/pure", use:pure.zsh, as:theme
+
+# Install plugins if there are plugins that have not been installed
+if ! zplug check; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+zplug load
+
+HISTFILE=$HOME/.zsh/history
