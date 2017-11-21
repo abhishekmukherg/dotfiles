@@ -18,7 +18,6 @@ all: $(HOME)/.vim \
 	$(HOME)/.jshintrc \
 	$(HOME)/.tmux.conf \
 	vim/bundle/neobundle.vim/.git \
-	$(HOME)/.xonshrc \
 	vim/undo/ \
 	$(HOME)/bin/vv \
 	$(HOME)/.config/nvim

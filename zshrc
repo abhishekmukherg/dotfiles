@@ -1,6 +1,5 @@
 if [[ "$TERM" != 'dumb' ]]; then
   zstyle ':prezto:*:*' color 'on'
-  zstyle ':prezto:module:prompt' theme 'off'
 fi
 zstyle ':prezto:module:utility' safe-ops 'off'
 
@@ -25,7 +24,7 @@ zplug "junegunn/fzf-bin", \
 zplug "plugins/archlinux", from:oh-my-zsh
 zplug "modules/environment", from:prezto
 zplug "modules/gnu-utility", from:prezto
-zplug "modules/utility", from:prezto
+zplug "modules/utility", from:prezto, defer:1
 zplug "modules/fasd", from:prezto
 zplug "modules/history", from:prezto
 zplug "sharat87/zsh-vim-mode", defer:1
