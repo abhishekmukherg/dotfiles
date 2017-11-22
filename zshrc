@@ -3,7 +3,7 @@ if [[ "$TERM" != 'dumb' ]]; then
 fi
 zstyle ':prezto:module:utility' safe-ops 'off'
 
-export ZPLUG_HOME=/usr/local/opt/zplug
+export ZPLUG_HOME=~/.zplug/
 source $ZPLUG_HOME/init.zsh
 
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
@@ -20,10 +20,11 @@ zplug "junegunn/fzf-bin", \
     as:command, \
     from:gh-r, \
     rename-to:"fzf"
+zplug "junegunn/fzf", use:shell/key-bindings.zsh, defer:1
 
 zplug "plugins/archlinux", from:oh-my-zsh
 zplug "modules/environment", from:prezto
-zplug "modules/gnu-utility", from:prezto
+zplug "modules/gnu-utility", from:prezto, if:"[[ $OSTYPE == *darwin* ]]"
 zplug "modules/utility", from:prezto, defer:1
 zplug "modules/fasd", from:prezto
 zplug "modules/history", from:prezto
