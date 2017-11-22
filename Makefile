@@ -17,14 +17,9 @@ all: $(HOME)/.vim \
 	$(HOME)/.pylintrc \
 	$(HOME)/.jshintrc \
 	$(HOME)/.tmux.conf \
-	vim/bundle/neobundle.vim/.git \
 	$(HOME)/.xonshrc \
 	vim/undo/ \
 	$(HOME)/bin/vv
-
-vim/bundle/neobundle.vim/.git:
-	git submodule init
-	git submodule update
 
 $(HOME)/bin/%: bin/%
 	mkdir -p $(HOME)/bin
@@ -40,10 +35,6 @@ $(HOME)/.ssh/config: ssh_config
 	mkdir -p $(HOME)/.ssh
 	ln -fs $(abspath $<) $@
 
-python_vim/python.vim python_vim/vimrc:
-	svn checkout http://svn.python.org/projects/python/trunk/Misc/Vim python_vim
-
-vim/syntax/python.vim: python_vim/python.vim
-	cd python_vim && svn up
-	ln -s $(abspath $<) $@
-
+vim/pack/tomorrow/start/theme/colors/Tomorrow-Night-Eighties.vim:
+	mkdir -p $(dir $@)
+	curl -L https://raw.githubusercontent.com/chriskempson/tomorrow-theme/master/vim/colors/Tomorrow-Night-Eighties.vim -o $@
