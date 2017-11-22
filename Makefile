@@ -17,9 +17,13 @@ all: $(HOME)/.vim \
 	$(HOME)/.pylintrc \
 	$(HOME)/.jshintrc \
 	$(HOME)/.tmux.conf \
-	$(HOME)/.xonshrc \
 	vim/undo/ \
-	$(HOME)/bin/vv
+	$(HOME)/bin/vv \
+	$(HOME)/.config/nvim
+
+$(HOME)/.config/nvim:
+	mkdir -p $(HOME)/.config
+	ln -s "../.vim" $@
 
 $(HOME)/bin/%: bin/%
 	mkdir -p $(HOME)/bin
