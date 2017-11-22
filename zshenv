@@ -35,17 +35,12 @@ export DEBEMAIL="abhishek.mukher.g@gmail.com"
 # Default program settings
 export EDITOR="vim"
 export LESS="--ignore-case -R"
-export BROWSER="/usr/bin/google-chrome"
 which vimmanpager > /dev/null 2>&1 && export MANPAGER="vimmanpager"
 which vimpager >/dev/null 2>&1 && export PAGER="vimpager" && alias less=vimpager && alias zless=vimpager
-
-# Go
-export GOPATH="$HOME/.local/share/go"
 
 # Gentoo settings
 export PALUDIS_OPTIONS="--log-level warning"
 export INQUISITIO_OPTIONS="--log-level warning"
-export BROWSER="/usr/bin/google-chrome"
 export QEMU_AUDIO_DRV=pa
 export SDL_AUDIODRIVER="pulse"
 export LANG="en_US.UTF-8"
