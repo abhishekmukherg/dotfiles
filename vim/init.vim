@@ -1,1 +1,1 @@
-/home/amukherjee/.vimrc
+../vimrc
