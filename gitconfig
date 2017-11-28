@@ -2,7 +2,7 @@
 	name = Abhishek Mukherjee
 	email = abhishek.mukher.g@gmail.com
 [core]
-	pager = less
+	pager = less -X -F
 [color]
 	pager = true
 	ui = auto
