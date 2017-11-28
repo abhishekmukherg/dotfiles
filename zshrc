@@ -44,3 +44,15 @@ fi
 zplug load
 
 HISTFILE=$HOME/.zsh/history
+
+if [[ -n "${SSH_CONNECTION:-}" ]]; then
+    SOCK=$HOME/.local/share/ssh-agent/ssh-auth.sock
+    mkdir -p $(dirname $SOCK)
+    chmod 0700 $(dirname $SOCK)
+    if [[ -e $SSH_AUTH_SOCK && "$(readlink $SOCK)" != "$SSH_AUTH_SOCK" ]]; then
+        (umask 077 && ln -sf $SSH_AUTH_SOCK $SOCK)
+    fi
+    echo $SOCK $SSH_AUTH_SOCK
+    export SSH_AUTH_SOCK=$SOCK
+fi
+
