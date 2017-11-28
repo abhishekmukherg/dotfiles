@@ -1,5 +1,5 @@
 if [[ "$TERM" != 'dumb' ]]; then
-  zstyle ':prezto:*:*' color 'on'
+    zstyle ':prezto:*:*' color 'on'
 fi
 zstyle ':prezto:module:utility' safe-ops 'off'
 
@@ -56,3 +56,7 @@ if [[ -n "${SSH_CONNECTION:-}" ]]; then
     export SSH_AUTH_SOCK=$SOCK
 fi
 
+
+if [[ -f "$HOME/.wzshrc" ]]; then
+   source "$HOME/.wzshrc"
+fi
