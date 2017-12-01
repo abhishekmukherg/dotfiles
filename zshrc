@@ -44,3 +44,10 @@ fi
 zplug load
 
 HISTFILE=$HOME/.zsh/history
+bindkey -M vicmd -r 'H'
+bindkey -M viins -r '\eh'
+bindkey -M vicmd 'K' run-help
+
+if (( $+commands[kubectl] )); then
+  source <(kubectl completion zsh)
+fi
