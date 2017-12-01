@@ -57,6 +57,13 @@ if [[ -n "${SSH_CONNECTION:-}" ]]; then
 fi
 
 
+bindkey -M vicmd -r 'H'
+bindkey -M viins -r '\eh'
+bindkey -M vicmd 'K' run-help
+
+if (( $+commands[kubectl] )); then
+  source <(kubectl completion zsh)
+fi
 if [[ -f "$HOME/.wzshrc" ]]; then
    source "$HOME/.wzshrc"
 fi
