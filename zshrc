@@ -23,7 +23,7 @@ zplug "junegunn/fzf-bin", \
     as:command, \
     from:gh-r, \
     rename-to:"fzf"
-zplug "junegunn/fzf", use:shell/key-bindings.zsh, defer:1
+zplug "junegunn/fzf", use:shell/key-bindings.zsh, defer:2
 
 zplug "plugins/zsh_reload", from:oh-my-zsh
 zplug "plugins/archlinux", from:oh-my-zsh
