@@ -75,6 +75,10 @@ alias drun="docker run --rm -it"
 alias fig=docker-compose
 # }}}
 
+# {{{ Option overrides
+unsetopt share_history
+# }}}
+
 # {{{ Additional sources from external commands
 if (( $+commands[kubectl] )); then
   source <(kubectl completion zsh)
